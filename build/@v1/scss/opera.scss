@@ -1,0 +1,25 @@
+/*
+ * Opera vbuild (link_website)
+ * Copyright 2022 The Opera Espoweb Authors
+ * Licensed under MIT (https://github.com/frankin0/espoweb-opera/LICENSE)
+ */
+
+//import configuration files
+@import "_functions.scss";
+@import "_variables.scss";
+
+*{
+    margin: 0px;
+    padding: 0px;
+
+    &:before, &::after{
+        box-sizing: border-box;
+    }
+}
+
+
+div{
+    color: $primary;
+}
+
+

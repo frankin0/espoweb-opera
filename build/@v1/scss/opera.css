@@ -1,0 +1,19 @@
+/*
+ * Opera vbuild (link_website)
+ * Copyright 2022 The Opera Espoweb Authors
+ * Licensed under MIT (https://github.com/frankin0/espoweb-opera/LICENSE)
+ */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+*:before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div {
+  color: #0d6efd;
+}
+/*# sourceMappingURL=opera.css.map */
