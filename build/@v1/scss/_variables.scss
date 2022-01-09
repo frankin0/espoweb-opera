@@ -30,3 +30,21 @@ $colors: (
 
 $primary: color(colors, "blue");
 $secondary: #6c757d;
+
+$prefix-: bs- !default;
+$grid-gutter-width: 1.5rem !default;
+
+//Set grid number x columns
+$grid-columns: 12 !default;;
+$grid-gutter-width: 1.5rem !default;
+$grid-row-cols: 6 !default;
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;

@@ -1,3 +1,89 @@
 @function color($color, $tone: '100') {
     @return map-get(map-get($colors, $color), $tone);
 }
+
+
+@mixin make-grid-cols($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+    @each $row in map-keys($breakpoints) {
+        $index: breakpoint-infix($row, $breakpoints);
+
+        @include media-breakpoint-up($row, $breakpoints){
+
+            .col#{$index}{
+                flex: 1 0 0%;
+            }
+
+            .row-cols#{$index}-auto > *{
+                @include make-col-auto();
+            }
+
+            @if $grid-row-cols > 0{
+                @for $i from 1 through $grid-row-cols{
+                    .row-cols#{$index}-#{$i}{
+                        @include row-cols($i);
+                    }
+                }
+            }
+
+            .col#{$index}-auto{
+                @include make-col-auto();
+            }
+
+            @if $columns > 0{
+                @for $i from 1 through $columns{
+                    .col#{$index}-#{$i}{
+                        @include make-col($i, $columns);
+                    }
+                }
+
+                @for $i from 0 through ($columns -1){
+                    @if not ($index == "" and $i == 0){
+                        .offset#{$index}-#{i}{
+                            @include make-col-offset($i, $columns);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin make-col-auto() {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+@mixin  make-col-offset($size, $columns: $grid-columns) {
+    $num: divide($size, $columns);
+    margin-left: if($num == 0, 0, percentage($num));
+}
+@mixin make-col($size: false, $columns: $grid-columns) {
+    @if $size{
+        flex: 0 0 auto;
+        width: percentage(divide($size, $columns));
+    }@else{
+        flex: 1 1 0 auto;
+        max-width: 100%;
+    }
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+    $min: breakpoint-min($name, $breakpoints);
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+} 
+
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    576px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+    $min: map-get($breakpoints, $name);
+    @return if($min != 0, $min, null);
+}

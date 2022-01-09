@@ -7,6 +7,7 @@
 //import configuration files
 @import "_functions.scss";
 @import "_variables.scss";
+@import "_grid.scss";
 
 *{
     margin: 0px;
@@ -15,11 +16,11 @@
     &:before, &::after{
         box-sizing: border-box;
     }
-}
+} 
 
-
+/*
 div{
     color: $primary;
 }
-
+*/
 
