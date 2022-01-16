@@ -2,6 +2,7 @@
 
 //Color system
 $white: #fff !default;
+$black: #000;
 $colors: (
     "grays": (
         "100": #f8f9fa,
@@ -107,3 +108,10 @@ $grid-breakpoints: (
 ) !default;
 
 $enable-container-classes: true !default;
+
+//color defaults
+$color-contrast-dark: $black !default;
+$color-contrast-light: $white !default;
+
+
+$enable-gradients: false !default;

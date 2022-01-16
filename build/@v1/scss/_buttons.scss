@@ -1,13 +1,27 @@
+
+@mixin button-variant(
+    $background, 
+    $border
+    ){
+    @include contrasted($background);
+    border-color: transparent;
+
+    &:hover{
+        color: red;
+    }
+}
+
+
+
 .btn{
     background-color: #fff;
     border-color: #dbdbdb;
     border-width: 1px;
-    color: #363636;
+    color: color(grays, "900");
     cursor: pointer;
     justify-content: center;
     text-align: center;
     white-space: nowrap;
-
     -moz-appearance: none;
     -webkit-appearance: none;
     align-items: center;
@@ -32,6 +46,19 @@
     user-select: none;
 
     &:hover{
-        opacity: .9;
+        color:color(grays, "900");
     }
 }
+
+
+
+@each $color-attr, $value-attr in $colors {
+    @each $color, $value in $value-attr {
+        @if $color-attr == "background"{
+            .btn-#{$color}{
+                @include button-variant($value, $value);
+            }
+        }
+    }
+}
+

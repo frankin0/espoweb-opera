@@ -5,8 +5,10 @@
  */
 
 //import configuration files
-@import "_functions.scss";
 @import "_variables.scss";
+@import "_contrast.scss";
+@import "_functions.scss";
+@import "_colors.scss";
 
 
 *{
@@ -22,5 +24,4 @@
 @import "_roots.scss";
 @import "_grid.scss";
 @import "_container.scss";
-@import "_colors.scss";
 @import "_buttons.scss";

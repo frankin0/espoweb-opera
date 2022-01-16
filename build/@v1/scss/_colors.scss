@@ -1,8 +1,16 @@
+// scss-docs-start gradient-bg-mixin
+@mixin gradient-bg($color: null) {
+    background-color: $color;
 
+    @if $enable-gradients {
+        background-image: var(--#{$prefix-}gradient);
+    }
+}
 
 @each $color-attr, $value-attr in $colors {
     @each $color, $value in $value-attr {
-        .#{$color-attr}-#{$color}{
+        .#{$color-attr}-#{$color}, 
+        button.#{$color-attr}-#{$color}{
             @if $color-attr == "text" or $color-attr == "text-dark" or $color-attr == "text-light"{
                 color: $value !important;
             } @else if $color-attr == "background" or $color-attr == "background-dark" or $color-attr == "background-light"{

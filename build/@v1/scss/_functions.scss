@@ -144,4 +144,36 @@
     margin-right: auto;
     margin-left: auto;
 }
-  
+@function brightness($color) {
+    @if type-of($color) == 'color' { 
+        @return (red($color) * .950 + green($color) * .7152 + blue($color) * 0.0722) / 255 * 100%;
+    }
+    @else {
+        @return unquote("brightness(#{$color})");
+    }
+} 
+
+@function contrast-color($color, $dark, $light, $threshold: null) {
+    @if $threshold {
+        // Deprecated in Compass 0.13
+        @warn "The $threshold argment to contrast-color is no longer needed and will be removed in the next release.";
+    }
+    @if $color == null {
+        @return null;
+    }
+    @else {
+        $color-brightness: brightness($color);
+        $dark-text-brightness: brightness($dark);
+        $light-text-brightness: brightness($light);
+        @return if(abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness), $light, $dark);
+    }
+}
+
+@mixin contrasted($background-color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    @if $threshold {
+        // Deprecated in Compass 0.13
+        @warn "The $threshold argment to contrasted is no longer needed and will be removed in the next release.";
+    }
+    background-color: $background-color;
+    color: contrast-color($background-color, $dark, $light);
+}

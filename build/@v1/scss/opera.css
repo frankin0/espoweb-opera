@@ -3,6 +3,255 @@
  * Copyright 2022 The Opera Espoweb Authors
  * Licensed under MIT (https://github.com/frankin0/espoweb-opera/LICENSE)
  */
+/*
+SCSS Color Methods for Accessibility
+================================================================================
+Adjust given colors to ensure that those color combination provide sufficient
+contrast.
+@version 0.1
+@link http://eye48.com/go/scsscontrast
+@license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License (LGPL)
+@author Michael Haschke, http://michael.haschke.biz/
+Usage
+--------------------------------------------------------------------------------
+Import contrast.scss first, then use method ``color_adjust_contrast_AERT``.
+```(scss)
+@import 'libs/contrast';
+.my-element {
+    background-color: #eee;
+    color: color_adjust_contrast_AERT(#ccc, #eee); // get grey with good contrast on #eee
+}
+```
+How it works
+--------------------------------------------------------------------------------
+It tests for sufficent difference on brightness and color of two values. If it
+is not enough contrats regarding test formulas of accessible guidelines then one
+color is adjusted on lightness and saturation.
+Methods using calculations from:
+* "Techniques For Accessibility Evaluation And Repair Tools (AERT)" working draft,
+  @see http://www.w3.org/TR/AERT#color-contrast
+* TODO: add methods to test with WCAG2 formulas
+*/
+.text-white,
+button.text-white {
+  color: white !important;
+}
+
+.text-black,
+button.text-black {
+  color: #0a0a0a !important;
+}
+
+.text-dark,
+button.text-dark {
+  color: #363636 !important;
+}
+
+.text-light,
+button.text-light {
+  color: whitesmoke !important;
+}
+
+.text-primary,
+button.text-primary {
+  color: #00d1b2 !important;
+}
+
+.text-link,
+button.text-link {
+  color: #3273dc !important;
+}
+
+.text-info,
+button.text-info {
+  color: #209cee !important;
+}
+
+.text-success,
+button.text-success {
+  color: #23d160 !important;
+}
+
+.text-warning,
+button.text-warning {
+  color: #ffdd57 !important;
+}
+
+.text-danger,
+button.text-danger {
+  color: #ff3860 !important;
+}
+
+.text-light-primary,
+button.text-light-primary {
+  color: #ebfffc !important;
+}
+
+.text-light-link,
+button.text-light-link {
+  color: #eef3fc !important;
+}
+
+.text-light-info,
+button.text-light-info {
+  color: #eef6fc !important;
+}
+
+.text-light-success,
+button.text-light-success {
+  color: #effaf3 !important;
+}
+
+.text-light-warning,
+button.text-light-warning {
+  color: #fffbeb !important;
+}
+
+.text-light-danger,
+button.text-light-danger {
+  color: #feecf0 !important;
+}
+
+.text-dark-primary,
+button.text-dark-primary {
+  color: #00947e !important;
+}
+
+.text-dark-link,
+button.text-dark-link {
+  color: #2160c4 !important;
+}
+
+.text-dark-info,
+button.text-dark-info {
+  color: #1d72aa !important;
+}
+
+.text-dark-success,
+button.text-dark-success {
+  color: #257942 !important;
+}
+
+.text-dark-warning,
+button.text-dark-warning {
+  color: #947600 !important;
+}
+
+.text-dark-danger,
+button.text-dark-danger {
+  color: #cc0f35 !important;
+}
+
+.background-white,
+button.background-white {
+  background-color: white !important;
+}
+
+.background-black,
+button.background-black {
+  background-color: #0a0a0a !important;
+}
+
+.background-dark,
+button.background-dark {
+  background-color: #363636 !important;
+}
+
+.background-light,
+button.background-light {
+  background-color: whitesmoke !important;
+}
+
+.background-primary,
+button.background-primary {
+  background-color: #00d1b2 !important;
+}
+
+.background-link,
+button.background-link {
+  background-color: #3273dc !important;
+}
+
+.background-info,
+button.background-info {
+  background-color: #209cee !important;
+}
+
+.background-success,
+button.background-success {
+  background-color: #23d160 !important;
+}
+
+.background-warning,
+button.background-warning {
+  background-color: #ffdd57 !important;
+}
+
+.background-danger,
+button.background-danger {
+  background-color: #ff3860 !important;
+}
+
+.background-light-primary,
+button.background-light-primary {
+  background-color: #ebfffc !important;
+}
+
+.background-light-link,
+button.background-light-link {
+  background-color: #eef3fc !important;
+}
+
+.background-light-info,
+button.background-light-info {
+  background-color: #eef6fc !important;
+}
+
+.background-light-success,
+button.background-light-success {
+  background-color: #effaf3 !important;
+}
+
+.background-light-warning,
+button.background-light-warning {
+  background-color: #fffbeb !important;
+}
+
+.background-light-danger,
+button.background-light-danger {
+  background-color: #feecf0 !important;
+}
+
+.background-dark-primary,
+button.background-dark-primary {
+  background-color: #00947e !important;
+}
+
+.background-dark-link,
+button.background-dark-link {
+  background-color: #2160c4 !important;
+}
+
+.background-dark-info,
+button.background-dark-info {
+  background-color: #1d72aa !important;
+}
+
+.background-dark-success,
+button.background-dark-success {
+  background-color: #257942 !important;
+}
+
+.background-dark-warning,
+button.background-dark-warning {
+  background-color: #947600 !important;
+}
+
+.background-dark-danger,
+button.background-dark-danger {
+  background-color: #cc0f35 !important;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -1141,187 +1390,11 @@
   margin-left: auto;
 }
 
-.text-white {
-  color: white !important;
-}
-
-.text-black {
-  color: #0a0a0a !important;
-}
-
-.text-dark {
-  color: #363636 !important;
-}
-
-.text-light {
-  color: whitesmoke !important;
-}
-
-.text-primary {
-  color: #00d1b2 !important;
-}
-
-.text-link {
-  color: #3273dc !important;
-}
-
-.text-info {
-  color: #209cee !important;
-}
-
-.text-success {
-  color: #23d160 !important;
-}
-
-.text-warning {
-  color: #ffdd57 !important;
-}
-
-.text-danger {
-  color: #ff3860 !important;
-}
-
-.text-light-primary {
-  color: #ebfffc !important;
-}
-
-.text-light-link {
-  color: #eef3fc !important;
-}
-
-.text-light-info {
-  color: #eef6fc !important;
-}
-
-.text-light-success {
-  color: #effaf3 !important;
-}
-
-.text-light-warning {
-  color: #fffbeb !important;
-}
-
-.text-light-danger {
-  color: #feecf0 !important;
-}
-
-.text-dark-primary {
-  color: #00947e !important;
-}
-
-.text-dark-link {
-  color: #2160c4 !important;
-}
-
-.text-dark-info {
-  color: #1d72aa !important;
-}
-
-.text-dark-success {
-  color: #257942 !important;
-}
-
-.text-dark-warning {
-  color: #947600 !important;
-}
-
-.text-dark-danger {
-  color: #cc0f35 !important;
-}
-
-.background-white {
-  background-color: white !important;
-}
-
-.background-black {
-  background-color: #0a0a0a !important;
-}
-
-.background-dark {
-  background-color: #363636 !important;
-}
-
-.background-light {
-  background-color: whitesmoke !important;
-}
-
-.background-primary {
-  background-color: #00d1b2 !important;
-}
-
-.background-link {
-  background-color: #3273dc !important;
-}
-
-.background-info {
-  background-color: #209cee !important;
-}
-
-.background-success {
-  background-color: #23d160 !important;
-}
-
-.background-warning {
-  background-color: #ffdd57 !important;
-}
-
-.background-danger {
-  background-color: #ff3860 !important;
-}
-
-.background-light-primary {
-  background-color: #ebfffc !important;
-}
-
-.background-light-link {
-  background-color: #eef3fc !important;
-}
-
-.background-light-info {
-  background-color: #eef6fc !important;
-}
-
-.background-light-success {
-  background-color: #effaf3 !important;
-}
-
-.background-light-warning {
-  background-color: #fffbeb !important;
-}
-
-.background-light-danger {
-  background-color: #feecf0 !important;
-}
-
-.background-dark-primary {
-  background-color: #00947e !important;
-}
-
-.background-dark-link {
-  background-color: #2160c4 !important;
-}
-
-.background-dark-info {
-  background-color: #1d72aa !important;
-}
-
-.background-dark-success {
-  background-color: #257942 !important;
-}
-
-.background-dark-warning {
-  background-color: #947600 !important;
-}
-
-.background-dark-danger {
-  background-color: #cc0f35 !important;
-}
-
 .btn {
   background-color: #fff;
   border-color: #dbdbdb;
   border-width: 1px;
-  color: #363636;
+  color: #212529;
   cursor: pointer;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -1360,6 +1433,106 @@
 }
 
 .btn:hover {
-  opacity: .9;
+  color: #212529;
+}
+
+.btn-white {
+  background-color: white;
+  color: #212529;
+  border-color: transparent;
+}
+
+.btn-white:hover {
+  color: red;
+}
+
+.btn-black {
+  background-color: #0a0a0a;
+  color: #f8f9fa;
+  border-color: transparent;
+}
+
+.btn-black:hover {
+  color: red;
+}
+
+.btn-dark {
+  background-color: #363636;
+  color: #f8f9fa;
+  border-color: transparent;
+}
+
+.btn-dark:hover {
+  color: red;
+}
+
+.btn-light {
+  background-color: whitesmoke;
+  color: #212529;
+  border-color: transparent;
+}
+
+.btn-light:hover {
+  color: red;
+}
+
+.btn-primary {
+  background-color: #00d1b2;
+  color: #f8f9fa;
+  border-color: transparent;
+}
+
+.btn-primary:hover {
+  color: red;
+}
+
+.btn-link {
+  background-color: #3273dc;
+  color: #f8f9fa;
+  border-color: transparent;
+}
+
+.btn-link:hover {
+  color: red;
+}
+
+.btn-info {
+  background-color: #209cee;
+  color: #f8f9fa;
+  border-color: transparent;
+}
+
+.btn-info:hover {
+  color: red;
+}
+
+.btn-success {
+  background-color: #23d160;
+  color: #f8f9fa;
+  border-color: transparent;
+}
+
+.btn-success:hover {
+  color: red;
+}
+
+.btn-warning {
+  background-color: #ffdd57;
+  color: #212529;
+  border-color: transparent;
+}
+
+.btn-warning:hover {
+  color: red;
+}
+
+.btn-danger {
+  background-color: #ff3860;
+  color: #212529;
+  border-color: transparent;
+}
+
+.btn-danger:hover {
+  color: red;
 }
 /*# sourceMappingURL=opera.css.map */
