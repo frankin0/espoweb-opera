@@ -5,6 +5,7 @@
 
 @mixin make-grid-cols($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
     @each $row in map-keys($breakpoints) {
+
         $index: breakpoint-infix($row, $breakpoints);
 
         @include media-breakpoint-up($row, $breakpoints){
@@ -20,7 +21,7 @@
             @if $grid-row-cols > 0{
                 @for $i from 1 through $grid-row-cols{
                     .row-cols#{$index}-#{$i}{
-                        @include row-cols($i);
+                        @include make-cols($i);
                     }
                 }
             }
@@ -32,23 +33,27 @@
             @if $columns > 0{
                 @for $i from 1 through $columns{
                     .col#{$index}-#{$i}{
-                        @include make-col($i, $columns);
+                        @include make-cols($i, $columns);
                     }
                 }
 
-                @for $i from 0 through ($columns -1){
+
+                @for $i from 0 through ($columns ){
                     @if not ($index == "" and $i == 0){
-                        .offset#{$index}-#{i}{
+                        .offset#{$index}-#{$i}{
                             @include make-col-offset($i, $columns);
                         }
                     }
                 }
             }
-        }
+        } 
     }
 }
 
-
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+    @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+ 
 @mixin make-col-auto() {
     flex: 0 0 auto;
     width: auto;
@@ -58,7 +63,7 @@
     $num: divide($size, $columns);
     margin-left: if($num == 0, 0, percentage($num));
 }
-@mixin make-col($size: false, $columns: $grid-columns) {
+@mixin make-cols($size: false, $columns: $grid-columns) {
     @if $size{
         flex: 0 0 auto;
         width: percentage(divide($size, $columns));
@@ -87,3 +92,56 @@
     $min: map-get($breakpoints, $name);
     @return if($min != 0, $min, null);
 }
+
+@function divide($dividend, $divisor, $precision: 10) {
+    $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
+    $dividend: abs($dividend);
+    $divisor: abs($divisor);
+    @if $dividend == 0 {
+        @return 0;
+    }
+    @if $divisor == 0 {
+        @error "Cannot divide by 0";
+    }
+    $remainder: $dividend;
+    $result: 0;
+    $factor: 10;
+    @while ($remainder > 0 and $precision >= 0) {
+        $quotient: 0;
+        @while ($remainder >= $divisor) {
+            $remainder: $remainder - $divisor;
+            $quotient: $quotient + 1;
+        }
+        $result: $result * 10 + $quotient;
+        $factor: $factor * .1;
+        $remainder: $remainder * 10;
+        $precision: $precision - 1;
+        @if ($precision < 0 and $remainder >= $divisor * 5) {
+            $result: $result + 1;
+        }
+    }
+    $result: $result * $factor * $sign;
+    $dividend-unit: unit($dividend);
+    $divisor-unit: unit($divisor);
+    $unit-map: (
+    "px": 1px,
+    "rem": 1rem,
+    "em": 1em,
+    "%": 1%
+    );
+    @if ($dividend-unit != $divisor-unit and map-has-key($unit-map, $dividend-unit)) {
+        $result: $result * map-get($unit-map, $dividend-unit);
+    }
+    @return $result;
+}
+  
+@mixin make-container($gutter: $container-padding-x) {
+    --#{$prefix-}gutter-x: #{$gutter};
+    --#{$prefix-}gutter-y: 0;
+    width: 100%;
+    padding-right: var(--#{$prefix-}gutter-x, #{$gutter});
+    padding-left: var(--#{$prefix-}gutter-x, #{$gutter});
+    margin-right: auto;
+    margin-left: auto;
+}
+  

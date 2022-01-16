@@ -25,6 +25,62 @@ $colors: (
         "pink": #d63384,
         "teal": #20c997,
         "cyan": #0dcaf0,
+    ),
+    "text": (
+        "white": hsl(0, 0%, 100%),
+        "black": hsl(0, 0%, 4%),
+        "dark": hsl(0, 0%, 21%),
+        "light": hsl(0, 0%, 96%),
+        "primary": hsl(171, 100%, 41%),
+        "link": hsl(217, 71%, 53%),
+        "info": hsl(204, 86%, 53%),
+        "success": hsl(141, 71%, 48%),
+        "warning": hsl(48, 100%, 67%),
+        "danger": hsl(348, 100%, 61%)
+    ),
+    "text-light": (
+        "primary": hsl(171, 100%, 96%),
+        "link": hsl(219, 70%, 96%),
+        "info": hsl(206, 70%, 96%),
+        "success": hsl(142, 52%, 96%),
+        "warning": hsl(48, 100%, 96%),
+        "danger": hsl(347, 90%, 96%)
+    ),
+    "text-dark": (
+        "primary": hsl(171, 100%, 29%),
+        "link": hsl(217, 71%, 45%),
+        "info": hsl(204, 71%, 39%),
+        "success": hsl(141, 53%, 31%),
+        "warning": hsl(48, 100%, 29%),
+        "danger": hsl(348, 86%, 43%)
+    ),
+    "background": (
+        "white": hsl(0, 0%, 100%),
+        "black": hsl(0, 0%, 4%),
+        "dark": hsl(0, 0%, 21%),
+        "light": hsl(0, 0%, 96%),
+        "primary": hsl(171, 100%, 41%),
+        "link": hsl(217, 71%, 53%),
+        "info": hsl(204, 86%, 53%),
+        "success": hsl(141, 71%, 48%),
+        "warning": hsl(48, 100%, 67%),
+        "danger": hsl(348, 100%, 61%)
+    ),
+    "background-light": (
+        "primary": hsl(171, 100%, 96%),
+        "link": hsl(219, 70%, 96%),
+        "info": hsl(206, 70%, 96%),
+        "success": hsl(142, 52%, 96%),
+        "warning": hsl(48, 100%, 96%),
+        "danger": hsl(347, 90%, 96%)
+    ),
+    "background-dark": (
+        "primary": hsl(171, 100%, 29%),
+        "link": hsl(217, 71%, 45%),
+        "info": hsl(204, 71%, 39%),
+        "success": hsl(141, 53%, 31%),
+        "warning": hsl(48, 100%, 29%),
+        "danger": hsl(348, 86%, 43%)
     )
 ) !default;
 
@@ -38,6 +94,7 @@ $grid-gutter-width: 1.5rem !default;
 $grid-columns: 12 !default;;
 $grid-gutter-width: 1.5rem !default;
 $grid-row-cols: 6 !default;
+$container-padding-x: $grid-gutter-width * .5 !default;
 
 // scss-docs-start grid-breakpoints
 $grid-breakpoints: (
@@ -48,3 +105,5 @@ $grid-breakpoints: (
   xl: 1200px,
   xxl: 1400px
 ) !default;
+
+$enable-container-classes: true !default;

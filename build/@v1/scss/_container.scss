@@ -1,0 +1,5 @@
+@if $enable-container-classes {
+    .container, .container-fluid{
+        @include make-container();
+    }
+}
