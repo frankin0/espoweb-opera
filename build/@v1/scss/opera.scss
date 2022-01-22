@@ -5,11 +5,11 @@
  */
 
 //import configuration files
+@import "_functions.scss";
 @import "_variables.scss";
 @import "_contrast.scss";
-@import "_functions.scss";
 @import "_colors.scss";
-
+@import "_animations.scss";
 
 *{
     margin: 0px;
@@ -25,3 +25,5 @@
 @import "_grid.scss";
 @import "_container.scss";
 @import "_buttons.scss";
+
+@warn "The";

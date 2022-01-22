@@ -146,7 +146,7 @@
 }
 @function brightness($color) {
     @if type-of($color) == 'color' { 
-        @return (red($color) * .950 + green($color) * .7152 + blue($color) * 0.0722) / 255 * 100%;
+        @return (red($color) * .950 + green($color) * 1.3152 + blue($color) * .0722) / 255 * 100%;
     }
     @else {
         @return unquote("brightness(#{$color})");
@@ -176,4 +176,89 @@
     }
     background-color: $background-color;
     color: contrast-color($background-color, $dark, $light);
+}
+
+@function obscureColor($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red), round($green - 13)  , round($blue - 11)); 
+}
+@function obscureColor2($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red), round($green - 25)  , round($blue - 22)); 
+}
+
+@function obscureColor3($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red - 6), round($green - 6)  , round($blue - 6)); 
+}
+
+
+@function obscureColor4($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red - 13), round($green - 13)  , round($blue - 13)); 
+}
+
+@function cartoonedColor($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red), round($green - 61)  , round($blue - 52)); 
+}
+
+@function cartoonedBgColor($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red % 2), round($green % 2 ), round($blue % 2)); 
+}
+
+@mixin  hoverColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor($color);
+    color: contrast-color($color, $dark, $light);
+}
+@mixin activeColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor2($color);
+    color: contrast-color($color, $dark, $light);
+}
+@mixin activeLightColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor4($color);
+    color: contrast-color($color, $dark, $light);
+}
+@mixin lightColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor3($color);
+    color: contrast-color($color, $dark, $light);
+}
+
+
+@function findLightColor($color, $l: 96%){
+    @if type-of($color) == 'color' {
+        $l: 96%;
+        @if lightness($color) > 96%{
+            $l: lightness($color);
+        }
+        @return change-color($color, $lightness: $l);
+    }
+    @return $background;
+}
+
+@function opacity($background, $opacity: 1){
+    $red: red($background);
+    $green: green($background);
+    $blue: blue($background);
+    
+    @return rgba(round($red), round($green), round($blue), $opacity); 
 }

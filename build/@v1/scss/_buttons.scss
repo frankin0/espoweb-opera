@@ -3,20 +3,20 @@
     $background, 
     $border
     ){
-    @include contrasted($background);
-    border-color: transparent;
-
-    &:hover{
-        color: red;
-    }
+        @include contrasted($background);
+        border-color: transparent !important;
 }
 
-
+@mixin button-variant-cartoon(
+    $background,
+    $border
+) {
+    color: cartoonedColor($background);
+    background-color: findLightColor($background); 
+}
 
 .btn{
     background-color: #fff;
-    border-color: #dbdbdb;
-    border-width: 1px;
     color: color(grays, "900");
     cursor: pointer;
     justify-content: center;
@@ -25,7 +25,9 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     align-items: center;
-    border: 1px solid transparent;
+    border: 1px solid;
+    border-color: $btn-border-default;
+    border-width: 1px;
     border-radius: .375em;
     box-shadow: none;
     display: inline-flex;
@@ -34,8 +36,8 @@
     justify-content: flex-start;
     line-height: 1.5;
     padding-bottom: calc(.5em - 1px);
-    padding-left: calc(.75em - 1px);
-    padding-right: calc(.75em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
     padding-top: calc(.5em - 1px);
     position: relative;
     vertical-align: top;
@@ -45,8 +47,64 @@
     -ms-user-select: none;
     user-select: none;
 
-    &:hover{
-        color:color(grays, "900");
+    &:hover:not(:disabled), &.is-hover:not(:disabled){
+        color: color(grays, "900");
+        border-color:  color(grays, "500");
+    }
+
+    &:active, &.is-active{
+        border-color: #000;
+    }
+
+    &.btn-ghost{
+        border: none !important; 
+        background-color: transparent !important;
+    }
+
+    &.btn-large{
+        font-size: $btn-large !important;
+        padding: 18px 36px !important;
+    }
+
+    &.btn-small{
+        font-size: $btn-small !important;
+        padding: 5px 20px !important;
+    }
+
+    &.btn-fullwidth{
+        width: 100%;
+    }
+
+    &.btn-rounded{
+        border-radius: 20px;
+    }
+
+    &.btn-loading,
+    &.btn-loading:hover{
+        color: transparent;
+    }
+    &.btn-loading:after{
+        -webkit-animation: spinAround .5s infinite linear;
+        animation: spinAround .5s infinite linear;
+        border: 2px solid #dbdbdb;
+        border-radius: 9999px;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        content: "";
+        display: block;
+        height: 1em;
+        position: relative;
+        width: 1em;
+    }
+    &.btn-loading::after {
+        position: absolute;
+        left: calc(50% - (1em * .5));
+        top: calc(50% - (1em * .5));
+        position: absolute!important;
+    }
+    &:disabled{
+        opacity: .6;
+        cursor: no-drop;
     }
 }
 
@@ -55,10 +113,53 @@
 @each $color-attr, $value-attr in $colors {
     @each $color, $value in $value-attr {
         @if $color-attr == "background"{
+            .btn-#{$color}.btn-loading:after {
+                $contrastbordercolor: contrast-color($value, color(grays, "900"), color(grays, "100"));
+                border-color: transparent transparent $contrastbordercolor $contrastbordercolor;
+            }
             .btn-#{$color}{
                 @include button-variant($value, $value);
+
+                &:hover:not(:disabled), .is-hover:not(:disabled){
+                    @if $color == "white" && $color == "dark" && $color == "black" {
+                        @include lightColor($value);
+                    }@else{
+                        @include hoverColor($value);
+                    }
+                }
+        
+                &:active, .is-active{
+                    @if $color == "white" && $color == "dark" && $color == "black" {
+                        @include activeLightColor($value);
+                    }@else{
+                        @include activeColor($value);
+                    }
+                }
+            }
+
+            .btn.btn-#{$color}.btn-outlined{
+                background-color: transparent !important;
+                border-color: $value !important;
+            }
+            .btn.btn-#{$color}.btn-outlined:hover, 
+            .btn.btn-#{$color}.btn-outlined.is-hover{
+                @include button-variant($value, $value);
+                background-color: $value !important;
+                border-color: $value !important;
+            }
+
+            .btn.btn-#{$color}.btn-linked{
+                background-color: transparent;
+                color: $value;
+            }
+            .btn.btn-#{$color}.btn-linked:hover,
+            .btn.btn-#{$color}.btn-linked.is-hover{
+                background-color: opacity(#000, .045);
+            }
+
+            .btn-#{$color}.btn-cartoon{
+                @include button-variant-cartoon($value, $value);
             }
         }
     }
 }
-

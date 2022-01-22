@@ -33,11 +33,11 @@ $colors: (
         "dark": hsl(0, 0%, 21%),
         "light": hsl(0, 0%, 96%),
         "primary": hsl(171, 100%, 41%),
-        "link": hsl(217, 71%, 53%),
-        "info": hsl(204, 86%, 53%),
-        "success": hsl(141, 71%, 48%),
-        "warning": hsl(48, 100%, 67%),
-        "danger": hsl(348, 100%, 61%)
+        "link": hsl(229, 53%, 53%),
+        "info": hsl(207, 61%, 53%),
+        "success": hsl(153, 53%, 51%),
+        "warning": hsl(44, 100%, 77%),
+        "danger": hsl(348, 86%, 61%)
     ),
     "text-light": (
         "primary": hsl(171, 100%, 96%),
@@ -61,11 +61,11 @@ $colors: (
         "dark": hsl(0, 0%, 21%),
         "light": hsl(0, 0%, 96%),
         "primary": hsl(171, 100%, 41%),
-        "link": hsl(217, 71%, 53%),
-        "info": hsl(204, 86%, 53%),
-        "success": hsl(141, 71%, 48%),
-        "warning": hsl(48, 100%, 67%),
-        "danger": hsl(348, 100%, 61%)
+        "link": hsl(229, 53%, 53%),
+        "info": hsl(207, 61%, 53%),
+        "success": hsl(153, 53%, 51%),
+        "warning": hsl(44, 100%, 77%),
+        "danger": hsl(348, 86%, 61%)
     ),
     "background-light": (
         "primary": hsl(171, 100%, 96%),
@@ -115,3 +115,7 @@ $color-contrast-light: $white !default;
 
 
 $enable-gradients: false !default;
+$btn-border-default: color(grays, '400') !default;
+
+$btn-small: .77rem  !default;
+$btn-large: 1.5rem  !default;
