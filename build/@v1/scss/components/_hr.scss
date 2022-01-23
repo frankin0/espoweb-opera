@@ -1,0 +1,10 @@
+hr:not([size]) {
+    height: 1px;
+}
+hr {
+    background-color: currentColor;
+    border: 0;
+    color: #f1f4f8;
+    margin: 1rem 0;
+    opacity: 1;
+}

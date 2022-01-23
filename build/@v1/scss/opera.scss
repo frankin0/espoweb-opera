@@ -12,33 +12,19 @@
 @import "_animations.scss";
 @import "_shadow.scss";
 @import "_all.scss";
-@import "_typography.scss";
-
-*{
-    margin: 0px;
-    padding: 0px;
-
-    &:before, &::after{
-        box-sizing: border-box;
-    }
-} 
-
+@import "./components/_typography.scss";
+@import "_mp.scss";
+@import "_overlay.scss";
+@import "./components/_hr.scss";
+@import "_opacity.scss";
+@import "_rounds.scss";
 
 @import "_roots.scss";
-
-body{
-    font-family: var(--bs-font-sans-serif);
-    font-size: 13px!important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-img, svg {
-    vertical-align: middle;
-}
 
 
 @import "_grid.scss";
 @import "_container.scss";
-@import "_buttons.scss";
-@import "_block.scss";
-@import "_card.scss";
+@import "./components/_buttons.scss";
+@import "./components/_block.scss";
+@import "./components/_avatar.scss";
+@import "./components/_card.scss";

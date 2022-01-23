@@ -1,0 +1,39 @@
+.avatar {
+    display: inline-block;
+    font-size: .625rem;
+    height: 1.875rem;
+    position: relative;
+    width: 1.875rem;
+
+    @each $breakpoint, $sizes in $avatar-size {
+        
+        &.avatar-#{$breakpoint}{
+            font-size: map-get($sizes, fs);
+            width: map-get($sizes, wh);
+            height: map-get($sizes, wh);
+        }
+
+        & .avatar-img {
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        &.avatar-offline:before {
+            background-color: #abbcd5;
+        }
+        &.avatar-online:before {
+            background-color: color(background, success);
+        }
+        &.avatar-offline:before, .avatar-online:before {
+            border-radius: 50%;
+            bottom: 5%;
+            content: "";
+            height: 20%;
+            position: absolute;
+            right: 5%;
+            width: 20%;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 //Variables
 
-$font-sans-serif: Poppins,Helvetica,"sans-serif" !default; 
+$font-sans-serif: 'Poppins', sans-serif !default; 
 
 //Color system
 $white: #fff !default;
@@ -135,4 +135,13 @@ $container-size: (
     lg: 960px,
     xl: 1140px,
     xxl: 1320px
+) !default;
+
+//avatar size ex: xs: (width and height, font-size)
+$avatar-size: (
+    xs: (wh: 1rem, fs: .33333rem),
+    sm: (wh: 1.5rem, fs: .5rem),
+    lg: (wh: 2.25rem, fs: .75rem),
+    xl: (wh: 4rem, fs: 1.3333rem),
+    xxl: (wh: 5rem, fs: 1.66667rem) 
 ) !default;

@@ -1,12 +1,36 @@
-.display-none{
-    display: none;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    &:before, &::after{
+        box-sizing: border-box;
+    }
+} 
+
+body{
+    font-family: var(--bs-font-sans-serif);
+    font-size: 13px!important;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+img, svg {
+    vertical-align: middle;
+}
+.img-fluid, .img-thumbnail {
+    height: auto;
+    max-width: 100%;
 }
 
 
-img.img-fluid{
-    height: auto;
-    max-width: 100%;
-    position: inherit;
+.display-none{
+    display: none;
+}
+.display-flex{
+    display: flex;
 }
 .bg-cover{
     background: no-repeat 50%/cover;
@@ -20,6 +44,11 @@ img.img-fluid{
     right: 0;
     top: 0;
 }
+.shape-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 .shape {
     pointer-events: none;
@@ -29,4 +58,53 @@ img.img-fluid{
     .d-md-block {
         display: block!important;
     }
+}
+
+.shape:not([class*=shape-blur])>* {
+    transform: scale(2);
+}
+
+.shape-fluid-y>* {
+    height: 100%;
+    width: auto;
+}
+.shape-end>* {
+    bottom: inherit;
+    position: inherit;
+    right: inherit;
+    top: inherit;
+    transform-origin: center left;
+}
+.shape>* {
+    display: block;
+}
+
+.blockquote {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+blockquote {
+    margin: 0 0 1rem;
+}
+.blockquote>:last-child {
+    margin-bottom: 0;
+}
+
+.blockquote-footer {
+    margin-top: 0;
+}
+.blockquote-footer {
+    color: #869ab8;
+    font-size: .75rem;
+    margin-bottom: 1rem;
+}
+
+.position-relative {
+    position: relative;
+}
+.position-absolute {
+    position: absolute;
+}
+.position-inherit{
+    position: inherit;
 }
