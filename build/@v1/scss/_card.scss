@@ -1,0 +1,38 @@
+.card{
+    word-wrap: break-word;
+    background-clip: border-box;
+    background-color: #fff;
+    border: 0 solid #f1f4f8;
+    border-radius: .375rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    position: relative;
+    width: 100%;
+    font-size: 1.0625rem;
+
+    & .card-body, 
+    & .card-footer, 
+    & .card-img, 
+    & .card-img-end, 
+    & .card-img-start, 
+    & .card-img-top, 
+    & .card-meta {
+        min-height: 1px;
+        position: relative;
+    }
+    & .card-body { 
+        display: block;
+        flex-grow: 0;
+        flex: 1 1 auto;
+        padding: 2rem;
+    }
+
+    & .card-img-start{
+        border-radius: .375rem 0 0 .375rem;
+        min-height: 1px;
+        position: relative;
+    }
+
+
+}

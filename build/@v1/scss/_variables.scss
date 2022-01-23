@@ -1,5 +1,7 @@
 //Variables
 
+$font-sans-serif: Poppins,Helvetica,"sans-serif" !default; 
+
 //Color system
 $white: #fff !default;
 $black: #000;
@@ -30,7 +32,7 @@ $colors: (
     "text": (
         "white": hsl(0, 0%, 100%),
         "black": hsl(0, 0%, 4%),
-        "dark": hsl(0, 0%, 21%),
+        "dark": hsl(231, 35%, 15%),
         "light": hsl(0, 0%, 96%),
         "primary": hsl(171, 100%, 41%),
         "link": hsl(229, 53%, 53%),
@@ -58,7 +60,7 @@ $colors: (
     "background": (
         "white": hsl(0, 0%, 100%),
         "black": hsl(0, 0%, 4%),
-        "dark": hsl(0, 0%, 21%),
+        "dark": hsl(231, 35%, 15%),
         "light": hsl(0, 0%, 96%),
         "primary": hsl(171, 100%, 41%),
         "link": hsl(229, 53%, 53%),
@@ -119,3 +121,6 @@ $btn-border-default: color(grays, '400') !default;
 
 $btn-small: .77rem  !default;
 $btn-large: 1.5rem  !default;
+$animationButton: false !default;
+
+$block-padding: 1.5rem;

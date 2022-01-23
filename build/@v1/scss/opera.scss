@@ -10,6 +10,8 @@
 @import "_contrast.scss";
 @import "_colors.scss";
 @import "_animations.scss";
+@import "_shadow.scss";
+@import "_all.scss";
 
 *{
     margin: 0px;
@@ -22,8 +24,20 @@
 
 
 @import "_roots.scss";
+
+body{
+    font-family: var(--bs-font-sans-serif);
+    font-size: 13px!important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+img, svg {
+    vertical-align: middle;
+}
+
+
 @import "_grid.scss";
 @import "_container.scss";
 @import "_buttons.scss";
-
-@warn "The";
+@import "_block.scss";
+@import "_card.scss";

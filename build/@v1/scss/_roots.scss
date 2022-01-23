@@ -4,4 +4,6 @@
             --#{$prefix-}#{$color-attr}-#{$color}: #{$value};
         }
     }
+    
+    --#{$prefix-}font-sans-serif: #{$font-sans-serif};
 }

@@ -1,0 +1,12 @@
+.shadow-light{
+    box-shadow: 0 .5rem 1.5rem rgba(22,28,45,.05)!important;
+}
+.shadow-dark{
+    box-shadow: 0 .5rem 1.5rem rgba(22,28,45,.15)!important;
+}
+.shadow-lift{
+    box-shadow: 0 1rem 2.5rem rgba(22,28,45,.1),0 .5rem 1rem -.75rem rgba(22,28,45,.1)!important;
+}
+.shadow-none{
+    box-shadow: none !important;
+}

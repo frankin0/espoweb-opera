@@ -1,0 +1,32 @@
+.display-none{
+    display: none;
+}
+
+
+img.img-fluid{
+    height: auto;
+    max-width: 100%;
+    position: inherit;
+}
+.bg-cover{
+    background: no-repeat 50%/cover;
+}
+.shape:not([class*=shape-blur]) {
+    overflow: hidden;
+}
+.shape-end {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.shape {
+    pointer-events: none;
+    position: absolute;
+}
+@media (min-width: 768px){
+    .d-md-block {
+        display: block!important;
+    }
+}
