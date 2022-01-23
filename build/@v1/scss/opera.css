@@ -708,6 +708,27 @@ img.img-fluid {
   }
 }
 
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: .5rem;
+  margin-top: 0;
+}
+
+.h3, h3 {
+  font-size: 1.3125rem;
+  line-height: 1.4;
+}
+
+.h1, .h2, .h3, .h4, h1, h2, h3, h4 {
+  letter-spacing: -.01em;
+}
+
+p {
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -1848,7 +1869,7 @@ img, svg {
   }
 }
 
-.container, .container-fluid {
+.container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
   --bs-gutter-x: 0.75rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -1856,6 +1877,36 @@ img, svg {
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container, .container-sm {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container, .container-sm, .container-md {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container, .container-sm, .container-md, .container-lg {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    max-width: 1320px;
+  }
 }
 
 .btn {
@@ -1870,13 +1921,14 @@ img, svg {
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: .75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: .65rem;
+  padding: .8125rem 1.25rem;
+  font-size: 1.0625rem;
+  border-radius: .375rem;
   background-color: #fff;
   color: #212529;
   outline: 0 !important;
   position: relative;
+  text-decoration: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2600,5 +2652,16 @@ img, svg {
   border-radius: .375rem 0 0 .375rem;
   min-height: 1px;
   position: relative;
+}
+
+.card .card-title {
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  color: #343a40;
+}
+
+.card p {
+  color: #343a40;
+  font-size: 1.0625rem;
 }
 /*# sourceMappingURL=opera.css.map */

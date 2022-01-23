@@ -143,6 +143,8 @@
     padding-left: var(--#{$prefix-}gutter-x, #{$gutter});
     margin-right: auto;
     margin-left: auto;
+
+    
 }
 @function brightness($color) {
     @if type-of($color) == 'color' { 

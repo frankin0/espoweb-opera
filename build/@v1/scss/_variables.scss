@@ -124,3 +124,15 @@ $btn-large: 1.5rem  !default;
 $animationButton: false !default;
 
 $block-padding: 1.5rem;
+
+// Responsiveness
+
+// The container horizontal gap, which acts as the offset for breakpoints
+$gap: 32px !default;
+$container-size: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1320px
+) !default;

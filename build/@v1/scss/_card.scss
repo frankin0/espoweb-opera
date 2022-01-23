@@ -34,5 +34,16 @@
         position: relative;
     }
 
+    & .card-title{
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+        color: color(grays, "800");
+    }
+
+    & p{
+        color: color(grays, "800");
+        font-size: 1.0625rem;;
+    }
+
 
 }
