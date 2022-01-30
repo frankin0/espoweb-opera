@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_o5hd5vvqpoqiwwmi.css">
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+            body {
+                background-color: #f9fbfd ;
+            }
+            pre{
+                overflow: auto;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+
+            <div class="row">
+                <div class="col code">
+                    
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a class="grays-700" href="#">
+                                        Help Center
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Account
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div class="col-md-12 background-grays-200  mb-3">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a class="grays-700" href="#">
+                                        Help Center
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Account
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div class="col-md-12 background-dark mb-3">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a class="text-light" href="#">
+                                        Help Center
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active text-light" aria-current="page">
+                                    Account
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+            
+        </div>
+
+        <script>
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>

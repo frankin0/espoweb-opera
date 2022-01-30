@@ -1,0 +1,32 @@
+.breadcrumb {
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .9375rem;
+    list-style: none;
+    margin-bottom: 0;
+    padding: .75rem 0;
+
+    & .breadcrumb-item {
+        font-size: .9375rem;
+    }
+    & .breadcrumb-item.active {
+        color: #506690;
+    }
+    & .breadcrumb-item+.breadcrumb-item {
+        padding-left: .5rem;
+    }
+}
+
+.accordion-flush .accordion-item .accordion-button, .breadcrumb {
+    border-radius: 0;
+} 
+
+.breadcrumb-item+.breadcrumb-item:before {
+    content: "\e844";
+    font-family: feather;
+    color: #506690;
+    float: left;
+    padding-right: .5rem;
+    margin-top: .2rem;
+}

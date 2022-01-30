@@ -1,7 +1,7 @@
 
 
 .badge {
-    border-radius: .375rem;
+    border-radius: 0.25rem;
     color: #fff;
     display: inline-block;
     font-size: .9em;
@@ -11,7 +11,7 @@
     text-align: center;
     vertical-align: baseline;
     white-space: nowrap;
-
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     
     @each $color-attr, $value-attr in $colors {
         @each $color, $value in $value-attr {
@@ -48,4 +48,49 @@
         height: 1rem;
     }
 
+    &.badge-floating{
+        position: absolute;
+        top: -50%;
+        right: 0;
+        -webkit-transform: translate(50%, 50%);
+        transform: translate(50%, 50%);
+        margin: 0;
+        border: 3px solid;
+        font-size: .8rem;
+        padding-left: .4rem;
+        padding-right: .4rem;
+        padding-top: 5px;
+    }
+
+    &.badge-md{
+        padding: .65em 1em;
+    }
+    &.badge-lg{
+        padding: .85em 1.375em;
+    }
+
+    &.badge-dot.badge-md i {
+        width: .5rem;
+        height: .5rem;
+    }
+    &.badge-dot.badge-lg i {
+        width: .625rem;
+        height: .625rem;
+    }
+    &.badge i {
+        margin-right: .5rem;
+    }
+    &.badge-dot i {
+        display: inline-block;
+        vertical-align: middle;
+        width: .375rem;
+        height: .375rem;
+        border-radius: 50%;
+        margin-right: .375rem;
+    }
+
+    & svg{
+        height: .8rem;
+        width: .8rem;
+    }
 }

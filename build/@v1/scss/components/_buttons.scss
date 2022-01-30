@@ -4,7 +4,7 @@
     $border
     ){
         @include contrasted($background);
-        border-color: transparent !important;
+        //border-color: transparent !important;
 }
 
 @mixin button-variant-cartoon(
@@ -145,6 +145,7 @@
             }
             .btn-#{$color}{
                 @include button-variant($value, $value);
+                border-color: transparent !important;
 
                 &:hover:not(:disabled), .is-hover:not(:disabled){
                     @if $color == "white" && $color == "dark" && $color == "black" {
