@@ -25,12 +25,17 @@ img, svg {
     max-width: 100%;
 }
 
-
+.display-block{
+    display: block !important;
+}
 .display-none{
-    display: none;
+    display: none !important;
 }
 .display-flex{
-    display: flex;
+    display: flex !important;
+}
+.display-inline-grid{
+    display: inline-grid !important;
 }
 .bg-cover{
     background: no-repeat 50%/cover;
@@ -46,6 +51,12 @@ img, svg {
 }
 .shape-bottom {
     bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.shape-bottom-100 {
+    bottom: 100%;
     left: 0;
     right: 0;
 }
@@ -78,7 +89,25 @@ img, svg {
 .shape>* {
     display: block;
 }
+.shape-fluid-x>* {
+    height: auto;
+    width: 100%;
+}
+.shape >* {
+    transform-origin: top center;
+}
+.shape-fluid-y>* {
+    height: 100%;
+    width: auto;
+}
 
+.shape-end>* {
+    bottom: inherit;
+    position: inherit;
+    right: inherit;
+    top: inherit;
+    transform-origin: center left;
+}
 .blockquote {
     font-size: 1.25rem;
     margin-bottom: 1rem;
@@ -107,4 +136,11 @@ blockquote {
 }
 .position-inherit{
     position: inherit;
+}
+.justify-content-between {
+    justify-content: space-between !important;
+}
+
+.fullwidth{
+    width: 100%;
 }

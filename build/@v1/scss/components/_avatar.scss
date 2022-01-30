@@ -13,27 +13,60 @@
             height: map-get($sizes, wh);
         }
 
-        & .avatar-img {
-            height: 100%;
-            -o-object-fit: cover;
-            object-fit: cover;
-            width: 100%;
+        &.avatar-#{$breakpoint}.avatar-online:before{
+            border-width: map-get($sizes, wh) /25;
         }
-        
-        &.avatar-offline:before {
-            background-color: #abbcd5;
-        }
-        &.avatar-online:before {
-            background-color: color(background, success);
-        }
-        &.avatar-offline:before, .avatar-online:before {
-            border-radius: 50%;
-            bottom: 5%;
-            content: "";
-            height: 20%;
-            position: absolute;
-            right: 5%;
-            width: 20%;
-        }
+
     }
+    & .avatar-img {
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        width: 100%;
+    }
+    
+    &.avatar-offline:before, 
+    &.avatar-online:before {
+        border-radius: 50%;
+        bottom: 5%;
+        content: "";
+        height: 25%;
+        position: absolute;
+        right: 5%;
+        width: 25%;
+        border: 2px solid white;
+    }
+    &.avatar-offline:before {
+        background-color: #abbcd5;
+    }
+    &.avatar-online:before {
+        background-color: color(background, success);
+    }
+
+    & .avatar-title {
+        align-items: center;
+        /*
+            Basic color 
+        */
+        background-color: #abbcd5;
+        color: #fff;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        width: 100%;
+    }
+    
+}
+.avatar-group .avatar:not(:first-child){
+    margin-left: -1rem;
+}
+.avatar-group .avatar img{
+    border: 2px solid #FFF;
+}
+.avatar-group .avatar:hover{
+    z-index: 1;
+}
+.avatar-group{
+    display: inline-block;
+    line-height: 1;
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+            body {
+                background-color: #f9fbfd ;
+            }
+            pre{
+                overflow: auto;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+
+            <div class="row">
+                <div class="col code">
+                    <span class="badge background-white">Primary</span>
+                    <span class="badge background-dark">Primary</span>
+                    <span class="badge background-light">Primary</span>
+                    <span class="badge background-primary">Primary</span>
+                    <span class="badge background-link">Primary</span>
+                    <span class="badge background-info">Primary</span>
+                    <span class="badge background-success">Primary</span>
+                    <span class="badge background-warning">Primary</span>
+                    <span class="badge background-danger">Primary</span>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    <span class="badge background-light-primary">Primary</span>
+                    <span class="badge background-light-link">Link Light</span>
+                    <span class="badge background-light-info">Info Light</span>
+                    <span class="badge background-light-success">Success Light</span>
+                    <span class="badge background-light-warning">Warning Light</span>
+                    <span class="badge background-light-danger">Danger Light</span>
+                    <span class="badge background-light-dark">Dark Light</span>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-md-12 code">
+                    <span class="badge badge-lg badge-rounded background-primary"><i data-feather="check"></i></span>
+                    <span class="badge badge-rounded background-link"><i data-feather="check"></i></span>
+                </div>
+                <div class="col-md-12">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            
+        </div>
+
+        <script src="https://unpkg.com/feather-icons"></script>
+        <script>
+            feather.replace();
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>

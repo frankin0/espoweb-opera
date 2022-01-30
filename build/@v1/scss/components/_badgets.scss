@@ -1,0 +1,51 @@
+
+
+.badge {
+    border-radius: .375rem;
+    color: #fff;
+    display: inline-block;
+    font-size: .9em;
+    font-weight: 600;
+    line-height: 1;
+    padding: .25rem .75rem;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+
+    
+    @each $color-attr, $value-attr in $colors {
+        @each $color, $value in $value-attr {
+            @if $color-attr == "background"{
+                &.#{$color-attr}-#{$color}{
+                    @include button-variant($value, $value);
+                }
+            }@else if $color-attr == "background-light"{
+                &.#{$color-attr}-#{$color}{
+                    @include button-variant-light($value, $value);
+                    color: color('text', $color) !important;
+                }
+            }
+        }
+    }
+
+    &.badge-lg {
+        padding: .7em 1.15em;
+    }
+    &.badge-rounded.badge-lg {
+        height: 2.4em;
+        width: 2.4em;
+        padding-left: .6em;
+        padding-right: .6em;
+    }
+    &.badge-rounded{
+        border-radius: 50rem;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
+    &.badge-rounded >* {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+    }
+
+}

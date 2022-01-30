@@ -75,7 +75,8 @@ $colors: (
         "info": hsl(206, 70%, 96%),
         "success": hsl(142, 52%, 96%),
         "warning": hsl(48, 100%, 96%),
-        "danger": hsl(347, 90%, 96%)
+        "danger": hsl(347, 90%, 96%),
+        "dark": rgba(27,42,78,.1)
     ),
     "background-dark": (
         "primary": hsl(171, 100%, 29%),
@@ -84,6 +85,12 @@ $colors: (
         "success": hsl(141, 53%, 31%),
         "warning": hsl(48, 100%, 29%),
         "danger": hsl(348, 86%, 43%)
+    ),
+    "background-gr":(
+        "primary": linear-gradient(50deg, #00947E 0, #247A4D 100%),
+        "dark": linear-gradient(50deg, #273444 0, #272b44 100%),
+        "link": linear-gradient(50deg, #6e00ff 0, #bb00ff 100%),
+    
     )
 ) !default;
 
@@ -145,3 +152,13 @@ $avatar-size: (
     xl: (wh: 4rem, fs: 1.3333rem),
     xxl: (wh: 5rem, fs: 1.66667rem) 
 ) !default;
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);

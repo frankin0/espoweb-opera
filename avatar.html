@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+            body {
+                background-color: #f9fbfd ;
+            }
+            pre{
+                overflow: auto;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+
+            <div class="row">
+                <div class="col code">
+                    <div class="avatar avatar-xxl">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-xl">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-lg">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-sm">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-xs">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    
+                    <div class="avatar avatar-xxl avatar-online">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-xl  avatar-online">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-lg  avatar-offline">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar  avatar-online">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-sm  avatar-offline">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-xs  avatar-online">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    
+                    <div class="avatar avatar-xxl avatar-online">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded">
+                    </div>
+                    
+                    <div class="avatar avatar-xl  avatar-online">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    
+                    <div class="avatar avatar-lg  avatar-offline">
+                        <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img">
+                    </div>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    
+                    <div class="avatar avatar-xxl avatar-online">
+                        <span class="avatar-title rounded-circle">CF</span>
+                    </div>
+                    
+                    <div class="avatar avatar-xl  avatar-online">
+                        <span class="avatar-title rounded-circle background-primary">CF</span>
+                    </div>
+                    
+                    <div class="avatar avatar-lg  avatar-offline">
+                        <span class="avatar-title rounded-circle">CF</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    
+                    <div class="avatar-group">
+                        <div class="avatar">
+                            <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                        </div>
+                        <div class="avatar">
+                            <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                        </div>
+                        <div class="avatar">
+                            <img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                        </div>
+                        <div class="avatar">
+                            <span class="avatar-title rounded-circle">CF</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+            
+        </div>
+
+
+        <script>
+            
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>

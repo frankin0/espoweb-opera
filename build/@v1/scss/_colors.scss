@@ -13,7 +13,17 @@
         button.#{$color-attr}-#{$color}{
             @if $color-attr == "text" or $color-attr == "text-dark" or $color-attr == "text-light"{
                 color: $value !important;
+            }@else if $color-attr == "grays"{
+                color: $value !important;
             } @else if $color-attr == "background" or $color-attr == "background-dark" or $color-attr == "background-light"{
+                background-color: $value !important;
+            }@else if $color-attr == "background-gr"{
+                background: $value !important;
+            }
+        }
+        
+        @if $color-attr == "grays"{
+            .background-#{$color-attr}-#{$color}{
                 background-color: $value !important;
             }
         }
