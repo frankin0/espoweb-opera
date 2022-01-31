@@ -8,9 +8,23 @@ input, button, select, optgroup, textarea {
     font-size: inherit;
     line-height: inherit;
 }
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
 .form-box {
     margin-bottom: 1rem;
 
+    & .form-control::placeholder {
+        color: color('grays', '700');
+        opacity: 1;
+    }
+    & .form-control-label{
+        color: color('grays', '800');
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
     & .form-control {
         display: block;
         width: 100%;

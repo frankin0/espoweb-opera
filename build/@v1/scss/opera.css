@@ -3841,8 +3841,39 @@ input, button, select, optgroup, textarea {
   line-height: inherit;
 }
 
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
 .form-box {
   margin-bottom: 1rem;
+}
+
+.form-box .form-control::-webkit-input-placeholder {
+  color: #495057;
+  opacity: 1;
+}
+
+.form-box .form-control:-ms-input-placeholder {
+  color: #495057;
+  opacity: 1;
+}
+
+.form-box .form-control::-ms-input-placeholder {
+  color: #495057;
+  opacity: 1;
+}
+
+.form-box .form-control::placeholder {
+  color: #495057;
+  opacity: 1;
+}
+
+.form-box .form-control-label {
+  color: #343a40;
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .form-box .form-control {
