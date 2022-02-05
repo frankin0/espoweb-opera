@@ -8,6 +8,7 @@ class Form {
         //super(props);
         this.element = document.querySelectorAll('input');
         this.dashIdxs = [];
+        this.dashItms = ['/', '-'];
     }
 
     init(){
@@ -19,8 +20,10 @@ class Form {
                 element.addEventListener('keydown', this.onKeyDown);
                 element.addEventListener('input', this.onInput);
                 element.ptrns = this.getPattern(element.dataset.mask);
+                let mask = element.dataset.mask;
 
-                //console.log(this.element);
+                const checker = value => this.dashItms.some(element => value.includes(element));
+                console.log(mask.filter(checker));
             }
             
         }
