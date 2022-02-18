@@ -21,6 +21,9 @@
 }
 
 @each $spacer_, $val in $spacers {
+    .mg#{$spacer_}{
+        margin: $val !important;
+    }
     .mt-#{$spacer_}{
         margin-top: $val !important;
     }
@@ -34,6 +37,9 @@
         margin-right: $val !important;
     }
 
+    .pd#{$spacer_}{
+        padding: $val !important;;
+    }
     .pt-#{$spacer_}{
         padding-top: $val !important;
     }

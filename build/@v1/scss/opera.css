@@ -228,6 +228,24 @@ button.grays-900 {
   fill: #0dcaf0;
 }
 
+.btn.btn-icon-success .svg-icon svg [fill]:not(.permanent):not(g) {
+  -webkit-transition: fill .3s ease;
+  transition: fill .3s ease;
+  fill: #40c489;
+}
+
+.btn.btn-icon-warning .svg-icon svg [fill]:not(.permanent):not(g) {
+  -webkit-transition: fill .3s ease;
+  transition: fill .3s ease;
+  fill: #ffe08a;
+}
+
+.btn.btn-icon-danger .svg-icon svg [fill]:not(.permanent):not(g) {
+  -webkit-transition: fill .3s ease;
+  transition: fill .3s ease;
+  fill: #f14668;
+}
+
 .text-white,
 button.text-white {
   color: white !important;
@@ -475,6 +493,13 @@ button.background-white {
   background-color: white !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-white:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-white:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: white;
+  color: #212529;
+  border-color: white !important;
+}
+
 .btn.btn-icon-white .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -484,6 +509,13 @@ button.background-white {
 .background-black,
 button.background-black {
   background-color: #0a0a0a !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-black:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-black:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #0a0a0a;
+  color: #f8f9fa;
+  border-color: #0a0a0a !important;
 }
 
 .btn.btn-icon-black .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -497,6 +529,13 @@ button.background-dark {
   background-color: #191d34 !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-dark:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-dark:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #191d34;
+  color: #f8f9fa;
+  border-color: #191d34 !important;
+}
+
 .btn.btn-icon-dark .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -506,6 +545,13 @@ button.background-dark {
 .background-light,
 button.background-light {
   background-color: whitesmoke !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-light:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: whitesmoke;
+  color: #212529;
+  border-color: whitesmoke !important;
 }
 
 .btn.btn-icon-light .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -519,6 +565,13 @@ button.background-primary {
   background-color: #00d1b2 !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #00d1b2;
+  color: #f8f9fa;
+  border-color: #00d1b2 !important;
+}
+
 .btn.btn-icon-primary .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -528,6 +581,13 @@ button.background-primary {
 .background-link,
 button.background-link {
   background-color: #485fc7 !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #485fc7;
+  color: #f8f9fa;
+  border-color: #485fc7 !important;
 }
 
 .btn.btn-icon-link .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -541,6 +601,13 @@ button.background-info {
   background-color: #3e8ed0 !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #3e8ed0;
+  color: #f8f9fa;
+  border-color: #3e8ed0 !important;
+}
+
 .btn.btn-icon-info .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -550,6 +617,13 @@ button.background-info {
 .background-success,
 button.background-success {
   background-color: #40c489 !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #40c489;
+  color: #f8f9fa;
+  border-color: #40c489 !important;
 }
 
 .btn.btn-icon-success .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -563,6 +637,13 @@ button.background-warning {
   background-color: #ffe08a !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #ffe08a;
+  color: #212529;
+  border-color: #ffe08a !important;
+}
+
 .btn.btn-icon-warning .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -572,6 +653,13 @@ button.background-warning {
 .background-danger,
 button.background-danger {
   background-color: #f14668 !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #f14668;
+  color: #f8f9fa;
+  border-color: #f14668 !important;
 }
 
 .btn.btn-icon-danger .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -585,6 +673,13 @@ button.background-light-primary {
   background-color: #ebfffc !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-light-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #ebfffc;
+  color: #212529;
+  border-color: #ebfffc !important;
+}
+
 .btn.btn-icon-primary .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -594,6 +689,13 @@ button.background-light-primary {
 .background-light-link,
 button.background-light-link {
   background-color: #eef3fc !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-light-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #eef3fc;
+  color: #212529;
+  border-color: #eef3fc !important;
 }
 
 .btn.btn-icon-link .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -607,6 +709,13 @@ button.background-light-info {
   background-color: #eef6fc !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-light-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #eef6fc;
+  color: #212529;
+  border-color: #eef6fc !important;
+}
+
 .btn.btn-icon-info .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -616,6 +725,13 @@ button.background-light-info {
 .background-light-success,
 button.background-light-success {
   background-color: #effaf3 !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-light-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #effaf3;
+  color: #212529;
+  border-color: #effaf3 !important;
 }
 
 .btn.btn-icon-success .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -629,6 +745,13 @@ button.background-light-warning {
   background-color: #fffbeb !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-light-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #fffbeb;
+  color: #212529;
+  border-color: #fffbeb !important;
+}
+
 .btn.btn-icon-warning .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -638,6 +761,13 @@ button.background-light-warning {
 .background-light-danger,
 button.background-light-danger {
   background-color: #feecf0 !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-light-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #feecf0;
+  color: #212529;
+  border-color: #feecf0 !important;
 }
 
 .btn.btn-icon-danger .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -651,6 +781,13 @@ button.background-light-dark {
   background-color: rgba(27, 42, 78, 0.1) !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-light-dark:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light-dark:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: rgba(27, 42, 78, 0.1);
+  color: #f8f9fa;
+  border-color: rgba(27, 42, 78, 0.1) !important;
+}
+
 .btn.btn-icon-dark .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -660,6 +797,13 @@ button.background-light-dark {
 .background-dark-primary,
 button.background-dark-primary {
   background-color: #00947e !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-dark-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-dark-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #00947e;
+  color: #f8f9fa;
+  border-color: #00947e !important;
 }
 
 .btn.btn-icon-primary .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -673,6 +817,13 @@ button.background-dark-link {
   background-color: #2160c4 !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-dark-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-dark-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #2160c4;
+  color: #f8f9fa;
+  border-color: #2160c4 !important;
+}
+
 .btn.btn-icon-link .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -682,6 +833,13 @@ button.background-dark-link {
 .background-dark-info,
 button.background-dark-info {
   background-color: #1d72aa !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-dark-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-dark-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #1d72aa;
+  color: #f8f9fa;
+  border-color: #1d72aa !important;
 }
 
 .btn.btn-icon-info .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -695,6 +853,13 @@ button.background-dark-success {
   background-color: #257942 !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-dark-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-dark-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #257942;
+  color: #f8f9fa;
+  border-color: #257942 !important;
+}
+
 .btn.btn-icon-success .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -706,6 +871,13 @@ button.background-dark-warning {
   background-color: #947600 !important;
 }
 
+.box-checkbox .opera-checkbox.checkbox-background-dark-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-dark-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #947600;
+  color: #f8f9fa;
+  border-color: #947600 !important;
+}
+
 .btn.btn-icon-warning .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -715,6 +887,13 @@ button.background-dark-warning {
 .background-dark-danger,
 button.background-dark-danger {
   background-color: #cc0f35 !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-dark-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-dark-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #cc0f35;
+  color: #f8f9fa;
+  border-color: #cc0f35 !important;
 }
 
 .btn.btn-icon-danger .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -993,6 +1172,19 @@ blockquote {
   width: 100%;
 }
 
+.flex-stack {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.list-style-none {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -1132,6 +1324,10 @@ small {
   marging: 0px !important;
 }
 
+.mg0 {
+  margin: 0 !important;
+}
+
 .mt-0 {
   margin-top: 0 !important;
 }
@@ -1146,6 +1342,10 @@ small {
 
 .mr-0 {
   margin-right: 0 !important;
+}
+
+.pd0 {
+  padding: 0 !important;
 }
 
 .pt-0 {
@@ -1164,6 +1364,10 @@ small {
   padding-right: 0 !important;
 }
 
+.mg1 {
+  margin: 0.25rem !important;
+}
+
 .mt-1 {
   margin-top: 0.25rem !important;
 }
@@ -1178,6 +1382,10 @@ small {
 
 .mr-1 {
   margin-right: 0.25rem !important;
+}
+
+.pd1 {
+  padding: 0.25rem !important;
 }
 
 .pt-1 {
@@ -1196,6 +1404,10 @@ small {
   padding-right: 0.25rem !important;
 }
 
+.mg2 {
+  margin: 0.5rem !important;
+}
+
 .mt-2 {
   margin-top: 0.5rem !important;
 }
@@ -1210,6 +1422,10 @@ small {
 
 .mr-2 {
   margin-right: 0.5rem !important;
+}
+
+.pd2 {
+  padding: 0.5rem !important;
 }
 
 .pt-2 {
@@ -1228,6 +1444,10 @@ small {
   padding-right: 0.5rem !important;
 }
 
+.mg3 {
+  margin: 1rem !important;
+}
+
 .mt-3 {
   margin-top: 1rem !important;
 }
@@ -1242,6 +1462,10 @@ small {
 
 .mr-3 {
   margin-right: 1rem !important;
+}
+
+.pd3 {
+  padding: 1rem !important;
 }
 
 .pt-3 {
@@ -1260,6 +1484,10 @@ small {
   padding-right: 1rem !important;
 }
 
+.mg4 {
+  margin: 1.5rem !important;
+}
+
 .mt-4 {
   margin-top: 1.5rem !important;
 }
@@ -1274,6 +1502,10 @@ small {
 
 .mr-4 {
   margin-right: 1.5rem !important;
+}
+
+.pd4 {
+  padding: 1.5rem !important;
 }
 
 .pt-4 {
@@ -1292,6 +1524,10 @@ small {
   padding-right: 1.5rem !important;
 }
 
+.mg5 {
+  margin: 3rem !important;
+}
+
 .mt-5 {
   margin-top: 3rem !important;
 }
@@ -1306,6 +1542,10 @@ small {
 
 .mr-5 {
   margin-right: 3rem !important;
+}
+
+.pd5 {
+  padding: 3rem !important;
 }
 
 .pt-5 {
@@ -1426,6 +1666,9 @@ hr {
   --bs-colors-pink: #d63384;
   --bs-colors-teal: #20c997;
   --bs-colors-cyan: #0dcaf0;
+  --bs-colors-success: #40c489;
+  --bs-colors-warning: #ffe08a;
+  --bs-colors-danger: #f14668;
   --bs-text-white: white;
   --bs-text-black: #0a0a0a;
   --bs-text-dark: #191d34;
@@ -3848,6 +4091,7 @@ label {
 
 .form-box {
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .form-box .form-control::-webkit-input-placeholder {
@@ -3895,6 +4139,25 @@ label {
   transition: all 0.2s ease;
 }
 
+.form-box textarea.form-control:not([autoresize="true"]) {
+  height: auto !important;
+}
+
+.form-box textarea.form-control[autoresize="true"] {
+  resize: none;
+}
+
+.form-box .textarea-count {
+  position: absolute;
+  right: 0px;
+  -webkit-transform: translate(-10px, -30px);
+          transform: translate(-10px, -30px);
+}
+
+.form-box .textarea-count.text-danger {
+  color: #f14668 !important;
+}
+
 .form-box .form-control:focus {
   color: #8492A6;
   background-color: #FFF;
@@ -3920,5 +4183,247 @@ label {
   background-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.form-box .form-control.is-valid {
+  border-color: #40c489;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2336B37E' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  padding-right: calc(1.5em + 1.5rem);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.375rem) center;
+  background-size: calc(0.75em + 0.75rem) calc(0.75em + 0.75rem);
+}
+
+.form-box .form-control.is-warning {
+  border-color: #ffe08a;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAW1JREFUSEu9lrtKA0EUhr+zmyiiQhpBNGBhOsVKCNiIPoSP4HP4HD5CHkAsxIiIEBAs1C4WIopgoaBizF5GZjbZ9bKDk2Lces75/vnPZVbw/Inn/FgBShFwziwRMyTUgAmEqhGkiIB3Qp6JeOSAB9khLRP7C2ASHzPPOA1SJhG7iAFMR7zxQZc2dz9B3wCqRcgCiygaKMKR7BMShC43XMsWyTA2BxjlJ9QRlglHTF4oiQm5ZK+4SQE4o0qfNWD6T1tsV1Mo4IUxTmXV1Cnz16jvMEfMilW9YgrYNREB26S8WjgxwgX73Ot6ZIA2FSosEVAnICgNdAWkpITc0uRKhCQDaHtimqTUrPa4ArRNwhM9OrJBXAAi1k2v2/11tUgb36PCka5DBmgxRp3NfJDKIK430LEBfUIO/xGga+DVIpciu451aZG9t6nvQctnwdeqyNeFz2U3mAd/63rYJF4fnK+d6O3JdG1313Pe/yo+AfSC1Bkr7b5dAAAAAElFTkSuQmCC");
+  padding-right: calc(1.5em + 1.5rem);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.375rem) center;
+  background-size: calc(0.75em + 0.75rem) calc(0.75em + 0.75rem);
+}
+
+.form-box .form-control.is-danger {
+  border-color: #f14668;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23FF5630' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23FF5630' stroke='none'/%3e%3c/svg%3e");
+  padding-right: calc(1.5em + 1.5rem);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.375rem) center;
+  background-size: calc(0.75em + 0.75rem) calc(0.75em + 0.75rem);
+}
+
+.form-box .form-control:disabled {
+  background: #e9ecef;
+}
+
+.form-box.box-checkbox, .form-box.box-radio {
+  position: relative;
+  z-index: 1;
+  display: block;
+  min-height: 1.7rem;
+  padding-left: 1.75rem;
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+.form-box.box-checkbox:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.form-box .opera-checkbox {
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  width: 1rem;
+  height: 1.35rem;
+  opacity: 0;
+}
+
+.form-box .opera-checkbox-label {
+  line-height: 1.9;
+  font-size: .9rem;
+}
+
+.form-box .opera-checkbox-label {
+  position: relative;
+  margin-bottom: 0;
+  vertical-align: top;
+}
+
+.form-box .opera-checkbox-label::before {
+  border-radius: 0.25rem;
+}
+
+.form-box .opera-checkbox-label::before, .form-box .custom-file-label, .form-box .custom-select {
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.form-box .opera-checkbox-label:not(.no-custom-check)::before {
+  position: absolute;
+  top: 0.35rem;
+  left: -1.75rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  content: "";
+  background-color: #E5E9F2;
+  border: #EFF2F7 solid 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form-box .opera-checkbox-label:not(.no-custom-check)::after {
+  position: absolute;
+  top: 0.35rem;
+  left: -1.75rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  content: "";
+  background: no-repeat 50% / 50% 50%;
+}
+
+.form-box .opera-checkbox:not(:disabled):active ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  /*color: #FFF;
+        background-color: #c599ff;
+        border-color: #c599ff;*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form-box .opera-checkbox:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  /*color: #FFF;
+        border-color: #6300e6;
+        background-color: #6300e6;*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form-box.box-radio .opera-checkbox-label::before {
+  border-radius: 50%;
+}
+
+.form-box.box-checkbox .opera-checkbox:checked ~ .opera-checkbox-label:not(.no-custom-check)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23FFF' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
+}
+
+.form-box.box-radio .opera-checkbox:checked ~ .opera-checkbox-label:not(.no-custom-check)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23FFF'/%3e%3c/svg%3e");
+}
+
+.form-box .box-radio-card {
+  border-width: 1px;
+  border-style: dashed;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  border: 1px dashed #ced4da;
+  border-radius: .65rem;
+}
+
+.form-box .box-radio-card .opera-checkbox-label:after,
+.form-box .box-radio-card .opera-checkbox-label:before {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.form-box .box-radio-card .box-radio-pt1 {
+  margin-left: 40px;
+}
+
+.form-box.box-radio .box-radio-card.opera-checkbox-label:before,
+.form-box.box-radio .box-radio-card.opera-checkbox-label:after,
+.form-box.box-checkbox .box-radio-card.opera-checkbox-label:after,
+.form-box.box-checkbox .box-radio-card.opera-checkbox-label:before {
+  -webkit-transform: translate(50px, -50%) scale(1.5);
+          transform: translate(50px, -50%) scale(1.5);
+  top: 50%;
+}
+
+.form-box.box-radio .opera-checkbox:checked ~ .box-radio-card,
+.form-box.box-checkbox .opera-checkbox:checked ~ .box-radio-card {
+  border-color: #40c489;
+}
+
+.form-box .no-custom-check svg {
+  width: 4rem;
+  height: 4rem;
+}
+
+.form-box .no-custom-check .box-radio-pt1 {
+  margin-left: calc(20px);
+  line-height: 1;
+}
+
+.form-box .no-custom-check {
+  -webkit-box-pack: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: flex-start !important;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+.form-box.box-radio .opera-checkbox:checked ~ .no-custom-check {
+  background: #e4fff4 !important;
+}
+
+.form-box.box-radio .opera-checkbox:checked ~ .no-custom-check svg path {
+  fill: #20d489;
+}
+
+.form-box .icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.form-box .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 500;
+  color: #3f4254;
+  background-color: #f5f8fa;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: .65rem;
+}
+
+.form-box .icon svg {
+  height: 1.35rem !important;
+  width: 1.45rem !important;
+  margin-left: 1px;
+  -webkit-transition: fill .3s ease;
+  transition: fill .3s ease;
+}
+
+.list-style-none li .box-radio .box-radio-pt1 {
+  line-height: 1.6;
+}
+
+.list-style-none li .box-radio .box-radio-pt1 p {
+  margin-bottom: 0px;
+}
+
+.list-style-none li .opera-checkbox-label:not(.no-custom-check)::before,
+.list-style-none li .opera-checkbox-label:not(.no-custom-check)::after {
+  left: auto;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translate(-15px, -50%) scale(1.4);
+          transform: translate(-15px, -50%) scale(1.4);
 }
 /*# sourceMappingURL=opera.css.map */

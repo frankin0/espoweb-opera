@@ -7,25 +7,18 @@
     *  Form
     */
 var Mask = {
-    
-    init : function(options){
+    option: [],
+    init : function(options, me){
         var defaults = {
             dashItms: ['/', '-', ' ', '[', ']', '!', '@', '#', '$', '%', '&', '*', '(', ')', '=', '+', '/\/', '^', '?', '{', '}', ':', ';', ',', '_', '>', '<', '\'', '.']
         };
 
-        console.log(options);
-        /*var tempData = {};
-        for ( var index=0; index<options.length; index++ ) {
-            if ( options[index]) {
-
-                tempData.push(options );
-            }
-        }
-
-
-        options = options.push(defaults);//$.extend(defaults, options); */
-return;
-        return this.each(function(element){
+        const option = this.extend(defaults, options);
+        this.option = option;
+        
+        const _this = this;
+        
+        return this.each(me, function(element){
             //variables
             var i;
             
@@ -33,21 +26,22 @@ return;
                 if(element.dataset.mask){
                     element.setAttribute('maxlength', element.dataset.mask.length);
                     element.setAttribute('placeholder', element.dataset.mask);
-                    element.addEventListener('keydown', this.onKeyDownMask);
-                    element.addEventListener('input', this.onInputMask, false);
-                    element.ptrns = Mask.getPattern(element.dataset.mask);
+                    element['x_'] = 0;
+                    element['prevValue'] = "";
+                    element.addEventListener('keydown', _this.onKeyDownMask);
+                    element.addEventListener('input', _this.onInputMask, false);
+                    element.ptrns = _this.getPattern(element.dataset.mask, option);
                     let mask = element.dataset.mask;
                     
-                    console.log(element);
-                    //console.log(Mask.getPatternChars(mask), element.ptrns, mask);
+                    //console.log(_this.getPatternChars(mask), element.ptrns, mask);
                 }
             }
-            
+            i++;
         });
     },
     getPatternChars(mask){
         let arr = [];
-        Mask.getPattern(mask).forEach(element => {
+        this.getPattern(mask).forEach(element => {
             arr.push(mask.substr(element, 1));
         });
         
@@ -58,10 +52,9 @@ return;
         let dashIdxs = [];
     
         pattern.split("").forEach((char, idx) => {
-            if (Mask.dashItms.indexOf(char) == -1) {
+            if (this.option.dashItms.indexOf(char) == -1) {
                 return;
             }
-
     
             dashIdxs.push(idx);
         });
@@ -71,11 +64,11 @@ return;
     md(str){
         return m.trust(marked(str));
     },
-    onKeyDownMask(e) {
+    onKeyDownMask(e, me = Mask) {
         //console.log(e.target.ptrns);
         if (e.key === "Backspace" && e.target.ptrns.includes(e.target.value.length - 1)) {
             e.target.value = e.target.value.slice(0, -1);
-            Mask.x --;
+            this.x_ --;
         }
     },
     onInputMask(e, me = Mask){
@@ -86,20 +79,118 @@ return;
         let value = e.target.value;
 
         let mask = e.target.dataset.mask.replace(/[^a-zA-Z0-9 ]/g, "");
+
         if(mask.match(/^[0-9]+$/) != null){
-            e.target.value = e.target.value.replace(/[^0-9./]/g, '');
+            //e.target.value = e.target.value.replace(/[^0-9/]/g, '');
         }
-    
-        var xx = me.getPatternChars(e.target.dataset.mask);
+        
+        var maskchar = me.getPatternChars(e.target.dataset.mask);
         let stringL = value.length;
         
+        if(e.target.ptrns[0] === 0 && this.x_ == 0){
+            e.target.value = maskchar[0] + e.target.value.replace(/[^0-9/]/g, '');
+            this.x_++;
+        }else
         if (e.target.ptrns.includes(stringL)) {
-            console.log(Mask.x);
-            e.target.value += xx[Mask.x];
-            Mask.x++;
+            e.target.value += maskchar[this.x_].replace(/[^0-9/]+./g, '');
+            this.x_++;
         }
+    },
+    each: (me, callback) => {
+        me.element.forEach(i => {
+            callback(i, me.element);
+        });
+    },
+    extend: (defaults, options) => {
+        let arr = {
+            ...defaults,
+            ...options
+        };
+        
+        return arr;
     }
 };
+
+const Textarea = {
+    option: [],
+    init : function(options, me){
+        var defaults = {
+            minHeight: 45
+        };
+
+        const option = this.extend(defaults, options);
+        this.option = option;
+        
+        const _this = this;
+
+        
+        return this.each(me, function(element){
+            //variables
+            var i;
+
+            
+            if(element.localName === "textarea"){
+                if(element.attributes.autoresize){
+                    element.style.overflow = "hidden";
+                    
+                    element.style.height = (element.scrollHeight) + "px";
+    
+                    _this.option['minHeightOffset'] = element.clientHeight;
+                    element.addEventListener('input', _this.onKeyDown);
+                }else if(element.attributes.count){
+                    //set counter characters
+                    const nodeCount = document.createElement('span');
+                    nodeCount.className = 'badge background-light-primary textarea-count';
+                    nodeCount.innerHTML = "0/"+element.attributes.count.nodeValue;
+                    element.parentNode.appendChild(nodeCount);
+
+                    console.log(element.attributes.count, element.attributes.count.nodeValue);
+                    element.addEventListener('input', _this.inputCount);
+
+                }
+            }else{
+                console.error("This function is not supported on this html element!");
+            }
+
+        });
+
+    },
+    inputCount: (e) => {
+        const value = e.target.value;
+        const nodeCount = e.target.parentNode.querySelector('.badge');
+        nodeCount.innerHTML = e.target.value.length + "/"+ e.target.attributes.count.nodeValue;
+
+        if(e.target.value.length >= e.target.attributes.count.nodeValue){
+            nodeCount.classList.add('text-danger');
+        }else{
+            nodeCount.classList.remove('text-danger');
+        }
+    },
+    onKeyDown: (e) =>{
+        var lines = e.target.value.split(/\r|\r\n|\n/);
+        var count = lines.length;
+
+        if(count <= 1){
+            e.target.style.height = "";
+        }else{
+            e.target.style.height = "auto";
+            e.target.style.height = (e.target.scrollHeight) + "px";
+        }
+    },
+    each: (me, callback) => {
+        me.element.forEach(i => {
+            callback(i, me.element);
+        });
+    },
+    extend: (defaults, options) => {
+        let arr = {
+            ...defaults,
+            ...options
+        };
+        
+        return arr;
+    }
+}
 
 function $(selector){
     const self = {
@@ -127,11 +218,22 @@ function $(selector){
             if(Mask[options]){
                 Mask[options].apply(self, Array.prototype.slice.call(arguments, 1));
             }else if(typeof options === 'object' || !options){
-                Mask.init.apply(options);
+                //Mask.init.apply(options);
+                Mask.init(options, self);
             }else{
                 console.error('This method is not recognized [' + options + ']');
             }
-        }
+        },
+        textarea: (options) => {
+            if(Textarea[options]){
+                Textarea[options].apply(self, Array.prototype.slice.call(arguments, 1));
+            }else if(typeof options === 'object' || !options){
+                //Mask.init.apply(options);
+                Textarea.init(options, self);
+            }else{
+                console.error('This method is not recognized [' + options + ']');
+            }
+        },
     } 
 
     return self;
@@ -139,9 +241,9 @@ function $(selector){
 
 document.addEventListener("DOMContentLoaded", function(){
     // Handler when the DOM is fully loaded
-    $('input[data-mask]').mask({
-        test: 'ok'
-    })
+    $('input[data-mask]').mask()
+
+    $('textarea').textarea()
 });
 
 

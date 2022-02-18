@@ -21,6 +21,14 @@
                 background: $value !important;
             }
         }
+
+        @if $color-attr == "background" or $color-attr == "background-dark" or $color-attr == "background-light"{
+            .box-checkbox .opera-checkbox.checkbox-#{$color-attr}-#{$color}:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+            .box-radio .opera-checkbox.checkbox-#{$color-attr}-#{$color}:checked ~ .opera-checkbox-label:not(.no-custom-check)::before{
+                @include contrasted($value);
+                border-color: $value !important;
+            }
+        }
         
         @if $color-attr == "grays"{
             .background-#{$color-attr}-#{$color}{
