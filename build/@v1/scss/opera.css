@@ -4426,4 +4426,134 @@ label {
   -webkit-transform: translate(-15px, -50%) scale(1.4);
           transform: translate(-15px, -50%) scale(1.4);
 }
+
+select.select-hidden {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  opacity: 0;
+}
+
+.operaSelect {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  vertical-align: middle;
+}
+
+.operaSelect .operaSelect-selection {
+  background-color: #f5f8fa;
+  border-color: #f5f8fa;
+  color: #5e6278;
+  -webkit-transition: color .2s ease,background-color .2s ease;
+  transition: color .2s ease,background-color .2s ease;
+  cursor: pointer;
+}
+
+.form-select {
+  display: block;
+  width: 100%;
+  padding-top: .55rem;
+  padding-bottom: .55rem;
+  padding-left: 1rem;
+  -moz-padding-start: calc(1rem - 3px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #181c32;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%237E8299' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px 12px;
+  border: 1px solid #e4e6ef;
+  border-radius: .65rem;
+  -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.operaSelect-container {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  vertical-align: middle;
+}
+
+.operaSelect-container .operaSelect-dropdown {
+  border: 0;
+  -webkit-box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.1);
+          box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.1);
+  border-radius: .65rem;
+  background-color: #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  position: absolute;
+  z-index: 1051;
+  overflow: hidden;
+}
+
+.operaSelect-container .operaSelect-search {
+  padding: 15px;
+}
+
+.operaSelect-container .operaSelect-search .operaSelect-serch__field {
+  width: 100%;
+  background-color: #fff;
+  padding: .55rem .75rem;
+  color: #181c32;
+  border: 1px solid #e4e6ef;
+  border-radius: .65rem;
+  outline: 0 !important;
+}
+
+.operaSelect-container .operaSelect-list {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.operaSelect-container .operaSelect-list .operaSelect-item {
+  color: #5e6278;
+  -webkit-transition: color .2s ease,background-color .2s ease;
+  transition: color .2s ease,background-color .2s ease;
+  padding: .75rem 1.25rem;
+  margin: 0 0;
+  cursor: pointer;
+  transition: color .2s ease,background-color .2s ease;
+}
+
+.operaSelect-container .operaSelect-list .operaSelect-item:not([disabled]):hover {
+  background-color: #e4fff4;
+  color: #20d489;
+}
+
+.operaSelect-container .operaSelect-list .operaSelect-item[disabled] {
+  cursor: default;
+}
+
+.operaSelect-container .operaSelect-list .operaSelect-item[role="alert"] {
+  display: block !important;
+}
+
+.operaSelect-container .operaSelect-list .operaSelect-item.active {
+  background-color: #20d489;
+  color: #fff;
+}
+
+.operaSelect-container .operaSelect-list .operaSelect-item.hide {
+  display: none;
+}
 /*# sourceMappingURL=opera.css.map */
