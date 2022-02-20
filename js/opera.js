@@ -230,6 +230,7 @@ const Select = {
                 
                 createSelectComponentContainer.addEventListener('click', _this.handleClick, false);
                 document.addEventListener('click', _this.removeAllSelects)
+                document.addEventListener('scroll', _this.scrollPosition)
                 
                 i++;
             }else{
@@ -240,18 +241,30 @@ const Select = {
         });
 
     },
-    removeAllSelects: (e) => {
-        const operaSelect = document.getElementsByClassName('operaSelect');
+    removeAllSelects: (event) => {
         const operadropdown = document.getElementsByClassName('operaSelect-container');
-
-        for (let i = 0; i < operadropdown.length; i++) {
+        /*const operaSelect = document.getElementsByClassName('operaSelect');
+        
+        for (let i = 0; i < operaSelect.length; i++) {
             if(!e.path.includes(operadropdown[i]) && !e.path.includes(operaSelect[i])){
+                console.log('asd');
                 operadropdown[i].remove();
             }
-        }
+        }*/
         
+        if (!event.target.matches('.operaSelect-selection') && 
+            !event.target.matches('.operaSelect-label')) {
+            var dropdowns = document.getElementsByClassName("operaSelect-container");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              openDropdown.remove();
+            }
+          }
     },
     handleClick: (e) => {
+        //this.option['dataId'] = e.currentTarget.dataset.operaselectId;
+
         const dataId = e.currentTarget.dataset.operaselectId;
         let optionArr = [];
         const targetPosition = {
@@ -260,12 +273,15 @@ const Select = {
         const targetSize = {
             w: e.currentTarget.offsetWidth, h: e.currentTarget.offsetHeight
         }
+        //this.option['targetPosition'] = targetPosition;
+        //this.option['targetSize'] = targetSize;
 
         if(document.querySelector('#'+dataId)){
             return
         }
         const getSelectElement = document.querySelector('[data-operaselect-element-id="'+dataId+'"]');
 
+        
         const createSeclectList = document.createElement('div');
         createSeclectList.classList.add("operaSelect-container");
         createSeclectList.id = dataId;
@@ -273,11 +289,13 @@ const Select = {
         createSeclectList.style.position = "absolute";
         createSeclectList.style.top = (targetPosition.y + targetSize.h) + "px";
         createSeclectList.style.left = targetPosition.x + "px";
-
+        
         const dropdown = document.createElement('div');
         dropdown.classList.add('operaSelect-dropdown');
         dropdown.style.width = targetSize.w + "px";
         createSeclectList.appendChild(dropdown);
+        
+    
         
         if(getSelectElement.dataset.search == "true"){
             const search = document.createElement('div');
@@ -285,35 +303,41 @@ const Select = {
             search.innerHTML = "<input type='text' class='operaSelect-serch__field' />";
             dropdown.appendChild(search);
 
+            search.addEventListener('keyup', (input) => {
+                const list = document.querySelectorAll("#"+dataId+" ul li");
+                
+                const countHide = document.querySelectorAll("#"+dataId+" ul li.hide");
+
+                if(countHide.length == list.length){
+                    if(!document.querySelectorAll("#"+dataId+" ul li#none")[0]){
+                        const none = document.createElement('li');
+                        none.id="none";
+                        none.setAttribute("role", "alert");
+                        none.setAttribute("disabled", "true");
+                        none.classList.add('operaSelect-item');
+                        none.innerHTML = (getSelectElement.dataset.noResults == undefined ? "No results found" : getSelectElement.dataset.noResults);
+                        list[0].parentNode.appendChild(none);
+                    }
+                }else{
+                    if(document.querySelectorAll("#"+dataId+" ul li#none")[0]){
+                        document.querySelectorAll("#"+dataId+" ul li#none")[0].remove();
+                    }
+                }
+            });
+            
             search.addEventListener('input', (input) => {
                 const list = document.querySelectorAll("#"+dataId+" ul li");
                 
                 let searchs = input.target.value.toLowerCase();
-                let count = new Array();
                 for (let i of list) {
                     let item = i.innerHTML.toLowerCase();
-console.log(count , list.length);
-                    if(count.length == list.length){
-                        if(!document.querySelectorAll("#"+dataId+" ul li#none")[0]){
-                            const none = document.createElement('li');
-                            none.id="none";
-                            none.setAttribute("role", "alert");
-                            none.setAttribute("disabled", "true");
-                            none.classList.add('operaSelect-item');
-                            none.innerHTML = "No results found";
-                            list[0].parentNode.appendChild(none);
-                        }
-                    }else{
-                        if(document.querySelectorAll("#"+dataId+" ul li#none")[0]){
-                            document.querySelectorAll("#"+dataId+" ul li#none")[0].remove();
-                        }
-                    }
+
                     if (item.indexOf(searchs) == -1) {
                         i.classList.add("hide"); 
-                        count.push(i);
                     }else {
                         i.classList.remove("hide");
                     }
+
                 }
 
             });
@@ -348,15 +372,88 @@ console.log(count , list.length);
                     
                     elm.currentTarget.classList.add('active');
                     e.target.parentNode.dataset.selectedIndex = i;
-                    e.srcElement.children[0].innerText = elm.currentTarget.innerText;
+                    if(e.srcElement.children[0]){
+                        e.srcElement.children[0].innerText = elm.currentTarget.innerText;
+                    }else{
+                        e.srcElement.innerText = elm.currentTarget.innerText;
+                    }
+
+                    createSeclectList.remove();
                 });
+
+
             }
             
         }
 
+        setTimeout(()=>{
+            Select.scrollPosition()
+        }, 100);
+        
         document.body.appendChild(createSeclectList);
         
 
+    },
+    scrollPosition: () => { 
+        const operaSelect = document.querySelectorAll('.operaSelect');
+        operaSelect.forEach(element => {
+
+            const windowSize = {
+                w: window.innerWidth,
+                h: window.innerHeight,
+            };
+            const windowPosition = {
+                x: window.scrollX, y: window.scrollY
+            }
+            const targetPosition = {
+                x: element.offsetLeft, y: element.offsetTop
+            };
+            const targetSize = {
+                w: element.offsetWidth, h: element.offsetHeight
+            }
+    
+            
+            const getDropdown = document.querySelectorAll('.operaSelect-container');
+
+            
+            getDropdown.forEach(osc => {
+                if(osc.children[0]){
+                    //windowPosition.y = inizio schermata
+                    let endWindow = (windowPosition.y + windowSize.h);   //fine schermata
+                    let newPoint = (targetPosition.y - osc.children[0].offsetHeight);
+            
+                    ///////////////////////////////////////
+                /* const test =document.createElement('div')
+                    test.style.position = 'absolute';
+                    test.style.top =  (getDropdown.offsetTop) + "px";
+                    test.style.width = '100%';
+                    test.style.height = '2px';
+                    test.style.background = 'red';
+                    test.style.zIndex = "999999";
+                    document.body.appendChild(test)
+
+                    const test2 =document.createElement('div')
+                    test2.style.position = 'absolute';
+                    test2.style.top =  (endWindow) + "px";
+                    test2.style.width = '100%';
+                    test2.style.height = '2px';
+                    test2.style.background = 'red';
+                    test2.style.zIndex = "999999";
+                    document.body.appendChild(test2)*/
+                    ///////////////////////////////////////
+
+                    //se la lunghezza della pagina è > della fine della pagina e < della posizione della finestra  operaSelect-container
+                    if( endWindow < (osc.offsetTop + osc.children[0].offsetHeight)){
+                        osc.style.top = newPoint + "px";
+                    }else if(windowPosition.y > osc.offsetTop ){
+                        osc.style.top = (targetPosition.y + targetSize.h) + "px";
+                    }
+                }
+            });
+
+           
+        });
+        
     },
     random: (length = 8) => {
         return Math.random().toString(16).substr(2, length);
