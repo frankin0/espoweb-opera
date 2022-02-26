@@ -243,17 +243,13 @@ const Select = {
     },
     removeAllSelects: (event) => {
         const operadropdown = document.getElementsByClassName('operaSelect-container');
-        /*const operaSelect = document.getElementsByClassName('operaSelect');
-        
-        for (let i = 0; i < operaSelect.length; i++) {
-            if(!e.path.includes(operadropdown[i]) && !e.path.includes(operaSelect[i])){
-                console.log('asd');
-                operadropdown[i].remove();
-            }
-        }*/
-        
+
         if (!event.target.matches('.operaSelect-selection') && 
-            !event.target.matches('.operaSelect-label')) {
+            !event.target.matches('.operaSelect-label') && 
+            !event.target.matches('.operaSelect-serch__field') &&
+            !event.target.matches('.operaSelect-search') &&
+            !event.target.matches('.operaSelect-item') &&
+            !event.target.matches('.operaSelect-dropdown')) {
             var dropdowns = document.getElementsByClassName("operaSelect-container");
             var i;
             for (i = 0; i < dropdowns.length; i++) {
