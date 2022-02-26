@@ -51,7 +51,7 @@ p {
 
 @for $var from 1 to 10 {
     .text-#{$var * 100}{
-        font-weight: $var * 100;
+        font-weight: $var * 100 !important;
     }
 }
 

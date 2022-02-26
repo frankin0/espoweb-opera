@@ -216,10 +216,17 @@ const Select = {
                 element.setAttribute("data-operaselect-element-id", elementId);
 
                 createSelectComponentContainer.classList.add("operaSelect");
+                if(element.dataset.class){
+                   createSelectComponentContainer.classList.add(element.dataset.class);
+                }
                 createSelectComponentContainer.setAttribute("data-operaSelect-id", elementId);
                 createSelectComponentContainer.style.width = "100%";
-                createSelectComponentContainer.innerHTML = "<span class='operaSelect-selection form-select'>"+
-                    "<span class='operaSelect-label'>"+element.dataset.placeholder+"</span>" + 
+                if(element.dataset.multiple){
+                    createSelectComponentContainer.classList.add('display-flex', 'multiple-select');
+                }
+                createSelectComponentContainer.innerHTML =  "<span class='operaSelect-selection form-select'>"+
+                    (element.dataset.multiple ?"<ul class='no-list-style'></ul>" : "") +
+                    (element.dataset.multiple ? "<input type='text' class='operaSelect-transparentInput' placeholder='"+element.dataset.placeholder+"' />" : "<span class='operaSelect-label'>"+element.dataset.placeholder+"</span>") + 
                     "<span class='operaSelect-arrow'></span>" + 
                 "</span>"; 
 
@@ -229,6 +236,46 @@ const Select = {
                 element.classList.add("select-hidden");
                 
                 createSelectComponentContainer.addEventListener('click', _this.handleClick, false);
+                if(element.dataset.multiple){
+                    createSelectComponentContainer.childNodes[0].childNodes[1].addEventListener('keyup', (input) => {
+                        const list = document.querySelectorAll("#"+elementId+" ul li");
+                        
+                        const countHide = document.querySelectorAll("#"+elementId+" ul li.hide");
+        
+                        if(countHide.length == list.length){
+                            if(!document.querySelectorAll("#"+elementId+" ul li#none")[0]){
+                                const none = document.createElement('li');
+                                none.id="none";
+                                none.setAttribute("role", "alert");
+                                none.setAttribute("disabled", "true");
+                                none.classList.add('operaSelect-item');
+                                none.innerHTML = (getSelectElement.dataset.noResults == undefined ? "No results found" : getSelectElement.dataset.noResults);
+                                list[0].parentNode.appendChild(none);
+                            }
+                        }else{
+                            if(document.querySelectorAll("#"+elementId+" ul li#none")[0]){
+                                document.querySelectorAll("#"+elementId+" ul li#none")[0].remove();
+                            }
+                        }
+                    });
+                    createSelectComponentContainer.childNodes[0].childNodes[1].addEventListener('input', (input) => {
+                        const list = document.querySelectorAll("#"+elementId+" ul li");
+                        
+                        let searchs = input.target.value.toLowerCase();
+                        for (let i of list) {
+                            let item = i.innerHTML.toLowerCase();
+        
+                            if (item.indexOf(searchs) == -1) {
+                                i.classList.add("hide"); 
+                            }else {
+                                i.classList.remove("hide");
+                            }
+        
+                        }
+        
+                    });
+                }
+                
                 document.addEventListener('click', _this.removeAllSelects)
                 document.addEventListener('scroll', _this.scrollPosition)
                 
@@ -242,20 +289,21 @@ const Select = {
 
     },
     removeAllSelects: (event) => {
-        const operadropdown = document.getElementsByClassName('operaSelect-container');
 
         if (!event.target.matches('.operaSelect-selection') && 
             !event.target.matches('.operaSelect-label') && 
             !event.target.matches('.operaSelect-serch__field') &&
             !event.target.matches('.operaSelect-search') &&
             !event.target.matches('.operaSelect-item') &&
-            !event.target.matches('.operaSelect-dropdown')) {
-            var dropdowns = document.getElementsByClassName("operaSelect-container");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              openDropdown.remove();
-            }
+            !event.target.matches('.operaSelect-dropdown')&&
+            !event.target.matches('.operaSelect-group') &&
+            !event.target.matches('.operaSelect-transparentInput') &&
+            !event.target.matches('.rmn-node') ) {
+            var dropdowns = document.querySelectorAll(".operaSelect-container");
+            dropdowns.forEach(element => {
+                element.remove();
+            });
+            
           }
     },
     handleClick: (e) => {
@@ -275,8 +323,9 @@ const Select = {
         if(document.querySelector('#'+dataId)){
             return
         }
-        const getSelectElement = document.querySelector('[data-operaselect-element-id="'+dataId+'"]');
 
+
+        const getSelectElement = document.querySelector('[data-operaselect-element-id="'+dataId+'"]');
         
         const createSeclectList = document.createElement('div');
         createSeclectList.classList.add("operaSelect-container");
@@ -285,12 +334,16 @@ const Select = {
         createSeclectList.style.position = "absolute";
         createSeclectList.style.top = (targetPosition.y + targetSize.h) + "px";
         createSeclectList.style.left = targetPosition.x + "px";
+        if(getSelectElement.dataset.multiple){
+            createSeclectList.dataset.multiple = getSelectElement.dataset.multiple;
+        }
         
         const dropdown = document.createElement('div');
         dropdown.classList.add('operaSelect-dropdown');
         dropdown.style.width = targetSize.w + "px";
         createSeclectList.appendChild(dropdown);
         
+
     
         
         if(getSelectElement.dataset.search == "true"){
@@ -350,33 +403,106 @@ const Select = {
             if(element.value != ""){
 
                 const createItem = document.createElement('li');
-                createItem.classList.add('operaSelect-item');
-                if(e.currentTarget.dataset.selectedIndex == i){
-                    createItem.classList.add('active');
+
+                if(!element.attributes.disabled){
+                    createItem.classList.add('operaSelect-item');
+                }else{
+                    createItem.classList.add('operaSelect-group');
                 }
 
-                createItem.innerText = element.innerText;
-                createItem.dataset.id = element.value;
+                if(!getSelectElement.dataset.multiple){
+                    if(e.currentTarget.dataset.selectedIndex == i){
+                        createItem.classList.add('active');
+                    }
+                }else{
+                    const getSelectElementMultiple = document.querySelector('[data-operaselect-id="'+dataId+'"] ul');
+                    const listGetSelectElementMultiple = getSelectElementMultiple.childNodes;
+                    listGetSelectElementMultiple.forEach(element => {
+                        if(element.dataset.nodeid == i){
+                            createItem.classList.add('active');
+                        }
+                    });
+
+                    getSelectElementMultiple.arrayMultipleSect = new Array();
+                }
+
+                if(element.dataset.operaSelectImage){
+                    createItem.innerHTML = '<div class="avatar mr-2">'+
+                                                '<img src="https://landkit.goodthemes.co/assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">'+
+                                            '</div>' +element.innerText;
+                }else{
+                    createItem.innerText = element.innerText;
+                }
+                if(!element.attributes.disabled){
+                    createItem.dataset.id = element.value;
+                }
 
                 createlist.appendChild(createItem);
                 
-                createItem.addEventListener('click', (elm) => {
-                    getSelectElement.selectedIndex = i;
-                    for (let x = 0; x < elm.currentTarget.parentNode.children.length; x++) {
-                        elm.currentTarget.parentNode.children[x].classList.remove('active');
-                    }
+                if(!element.attributes.disabled){
+                    let setArtrayV = new Array();
+                    createItem.addEventListener('click', (elm) => {
+                        getSelectElement.selectedIndex = i;
+                        for (let x = 0; x < elm.currentTarget.parentNode.children.length; x++) {
+                            elm.currentTarget.parentNode.children[x].classList.remove('active');
+                        }
+                        
+                        
+                        if(!getSelectElement.dataset.multiple){
+                            elm.currentTarget.classList.add('active');
+                            e.target.parentNode.dataset.selectedIndex = i;
+                        }else{
+                            
+                        }
+
+                       
+
+                        if(e.srcElement.children[0]){ 
+
+                            if(getSelectElement.dataset.multiple){
+                                    e.target.childNodes[0].innerHTML += "<li data-nodeID='"+i+"'><span class='badge badge-md background-grays-200 text-dark text-500'><a href='#"+dataId+"-remove' class='rmn-node' title='Remove item'>x</a> "+elm.currentTarget.innerText+"</span></li>";
+
+                            }else{
+                                e.srcElement.children[0].innerText = elm.currentTarget.innerText;
+                            }
+                        }else{
+                            if(getSelectElement.dataset.multiple){
+                                    e.target.parentNode.childNodes[0].innerHTML += "<li data-nodeID='"+i+"'><span class='badge badge-md background-grays-200 text-dark text-500'><a href='#"+dataId+"-remove'  class='rmn-node' title='Remove item'>x</a> "+elm.currentTarget.innerText+"</span></li>";
+                            }else{
+                                e.srcElement.innerText = elm.currentTarget.innerText;
+                            }
+                        }
+                        
+                        
+                        if(getSelectElement.dataset.multiple){
+                            const getSelectElementMultiple = document.querySelector('[data-operaselect-id="'+dataId+'"] ul'); 
+                            const listGetSelectElementMultiple = getSelectElementMultiple.childNodes;
+                            
+                            listGetSelectElementMultiple.forEach(element => {
+                                getSelectElementMultiple.arrayMultipleSect.push(element.dataset.nodeid);
+                                
+                                
+                                if(element.dataset.nodeid == i && getSelectElementMultiple.arrayMultipleSect.includes(i)){
+                                    element.remove();
+                                }
+                            });
+                            
+
+                        }
+                        
+                        const removeNode = document.querySelector('.rmn-node');
+                        removeNode.addEventListener('click', (rmn) => {
+                            rmn.preventDefault();
+                            
+                        });
+
+                        createSeclectList.remove();
+                    });
+
                     
-                    elm.currentTarget.classList.add('active');
-                    e.target.parentNode.dataset.selectedIndex = i;
-                    if(e.srcElement.children[0]){
-                        e.srcElement.children[0].innerText = elm.currentTarget.innerText;
-                    }else{
-                        e.srcElement.innerText = elm.currentTarget.innerText;
-                    }
+                    
 
-                    createSeclectList.remove();
-                });
-
+                }
 
             }
             

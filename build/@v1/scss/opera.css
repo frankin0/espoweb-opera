@@ -1185,6 +1185,10 @@ blockquote {
   list-style: none;
 }
 
+.no-list-style {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -1243,39 +1247,39 @@ p {
 }
 
 .text-100 {
-  font-weight: 100;
+  font-weight: 100 !important;
 }
 
 .text-200 {
-  font-weight: 200;
+  font-weight: 200 !important;
 }
 
 .text-300 {
-  font-weight: 300;
+  font-weight: 300 !important;
 }
 
 .text-400 {
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .text-500 {
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 
 .text-600 {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 .text-700 {
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 .text-800 {
-  font-weight: 800;
+  font-weight: 800 !important;
 }
 
 .text-900 {
-  font-weight: 900;
+  font-weight: 900 !important;
 }
 
 small {
@@ -4452,6 +4456,62 @@ select.select-hidden {
   cursor: pointer;
 }
 
+.operaSelect .operaSelect-transparentInput {
+  background: transparent;
+  border: none;
+  outline: 0;
+  width: 100%;
+}
+
+.operaSelect ul {
+  padding: 0px;
+  margin: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.operaSelect ul li {
+  margin-right: 10px;
+}
+
+.operaSelect.multiple-select .operaSelect-selection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.operaSelect.multiple-select .badge {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.operaSelect.multiple-select a {
+  display: block;
+  height: .6rem;
+  width: .6rem;
+  margin-right: .5rem;
+  position: relative;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%235E6278'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  opacity: .5;
+  border: 0;
+  -webkit-transition: color .2s ease,background-color .2s ease;
+  transition: color .2s ease,background-color .2s ease;
+  top: 50%;
+  color: transparent;
+}
+
+.operaSelect.multiple-select a:hover {
+  opacity: 1;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2320D489'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
+  -webkit-transition: color .2s ease,background-color .2s ease;
+  transition: color .2s ease,background-color .2s ease;
+}
+
 .form-select {
   display: block;
   width: 100%;
@@ -4523,6 +4583,8 @@ select.select-hidden {
   list-style: none;
   padding: 0px;
   margin: 0px;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .operaSelect-container .operaSelect-list .operaSelect-item {
@@ -4555,5 +4617,28 @@ select.select-hidden {
 
 .operaSelect-container .operaSelect-list .operaSelect-item.hide {
   display: none;
+}
+
+.operaSelect-container .operaSelect-group {
+  display: block;
+  color: #3f4254;
+  font-weight: 500;
+  font-size: 115%;
+  padding: 0 1.25rem 0 1.25rem;
+  margin: 0 0 .25rem 0;
+  margin-top: 5px;
+}
+
+@media (min-width: 992px) {
+  .operaSelect-container .operaSelect-list::-webkit-scrollbar {
+    width: .4rem;
+    height: .4rem;
+  }
+  .operaSelect-container .operaSelect-list:hover::-webkit-scrollbar-thumb {
+    background-color: #e9edf1;
+  }
+  .operaSelect-container .operaSelect-list::-webkit-scrollbar-thumb {
+    background-color: #eff2f5;
+  }
 }
 /*# sourceMappingURL=opera.css.map */
