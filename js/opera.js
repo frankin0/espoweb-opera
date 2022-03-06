@@ -193,6 +193,7 @@ const Textarea = {
 
 const Select = {
     option: [],
+    getDoublesElementsArr: [],
     init : function(options, me){
         var defaults = {
             minHeight: 45
@@ -460,40 +461,36 @@ const Select = {
                         if(e.srcElement.children[0]){ 
 
                             if(getSelectElement.dataset.multiple){
+                                if(!Select.getDoublesElements(e.target.childNodes[0].childNodes, i)){
                                     e.target.childNodes[0].innerHTML += "<li data-nodeID='"+i+"'><span class='badge badge-md background-grays-200 text-dark text-500'><a href='#"+dataId+"-remove' class='rmn-node' title='Remove item'>x</a> "+elm.currentTarget.innerText+"</span></li>";
-
+                                }else{
+                                    Select.removeDoublesElements(e.target.childNodes[0].childNodes, i);
+                                }
                             }else{
                                 e.srcElement.children[0].innerText = elm.currentTarget.innerText;
                             }
                         }else{
                             if(getSelectElement.dataset.multiple){
+                                if(!Select.getDoublesElements(e.target.parentNode.childNodes[0].childNodes, i)){
                                     e.target.parentNode.childNodes[0].innerHTML += "<li data-nodeID='"+i+"'><span class='badge badge-md background-grays-200 text-dark text-500'><a href='#"+dataId+"-remove'  class='rmn-node' title='Remove item'>x</a> "+elm.currentTarget.innerText+"</span></li>";
+                                }else{
+                                    Select.removeDoublesElements(e.target.parentNode.childNodes[0].childNodes, i);
+                                }
                             }else{
                                 e.srcElement.innerText = elm.currentTarget.innerText;
                             }
                         }
                         
                         
-                        if(getSelectElement.dataset.multiple){
-                            const getSelectElementMultiple = document.querySelector('[data-operaselect-id="'+dataId+'"] ul'); 
-                            const listGetSelectElementMultiple = getSelectElementMultiple.childNodes;
-                            
-                            listGetSelectElementMultiple.forEach(element => {
-                                getSelectElementMultiple.arrayMultipleSect.push(element.dataset.nodeid);
-                                
-                                
-                                if(element.dataset.nodeid == i && getSelectElementMultiple.arrayMultipleSect.includes(i)){
-                                    element.remove();
-                                }
+                        const removeNode = document.querySelectorAll('.rmn-node');
+                        removeNode.forEach(elmt => {
+                            elmt.addEventListener('click', (rmn) => {
+                                rmn.preventDefault();
+                                //Select.getDoublesElementsArr.splice(rmn.target.parentElement.parentElement.dataset.nodeid, 1);
+                                rmn.target.parentElement.parentElement.remove();
+                                //console.log(elm.target.classList);
+                                //elm.currentTarget.classList.remove('active');
                             });
-                            
-
-                        }
-                        
-                        const removeNode = document.querySelector('.rmn-node');
-                        removeNode.addEventListener('click', (rmn) => {
-                            rmn.preventDefault();
-                            
                         });
 
                         createSeclectList.remove();
@@ -515,6 +512,43 @@ const Select = {
         document.body.appendChild(createSeclectList);
         
 
+    },
+    removeDoublesElements: (elems, i) => {
+        
+        elems.forEach(element => {
+            if(element.dataset.nodeid == i){
+                element.remove();
+                Select.getDoublesElementsArr.splice(i, 1);
+            }
+        });
+        
+    },
+    getDoublesElements: (children, n) => {
+        let Arr = Select.getDoublesElementsArr;
+
+        if(children.length == 0){
+            Arr = [];
+        }
+
+        children.forEach(element => {
+            
+            if(element.dataset.nodeid == n){ 
+                Arr.push(parseInt(element.dataset.nodeid));
+            }
+            //return element.dataset.nodeid;
+        });
+
+        Array.prototype.contains = function (obj) {
+            var i = this.length;
+            while (i--) {
+                if (this[i] === obj) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        console.log(Arr);
+        return Arr.contains(n);
     },
     scrollPosition: () => { 
         const operaSelect = document.querySelectorAll('.operaSelect');
@@ -595,6 +629,97 @@ const Select = {
     }
 }
 
+const Modal = {
+    option: [],
+    init : function(options, me){
+        var defaults = {
+            
+        };
+
+        const option = this.extend(defaults, options);
+        this.option = option;
+        
+        const _this = this;
+        
+        return this.each(me, function(element){
+            //variables
+            const id = element.dataset.modalTarget;
+            if(id){
+                if(id.includes(".") || id.includes("#")){
+                   
+                    element.addEventListener('click', _this.modalShow);
+                    
+
+                }else{
+                    console.error("Modal id not found!");
+                    return;
+                }
+            }
+        });
+    },
+    modalShow: (element) => {
+        const modal = document.querySelector(element.target.dataset.modalTarget);
+        modal.style.display = "block";
+        
+       
+
+        $('body').append('<div class="modal-backdrop fade"></div>', (element, selector, text) => {
+            setTimeout(() => {
+                element.classList.add('show');
+                modal.classList.add('show');
+                document.body.classList.add('modal-open');
+                document.body.style.overflow = "hidden";
+                document.body.style.paddingRight = "17px";
+            }, 1);
+        });
+
+        let ariaclosing = modal.dataset.ariaClosing || true;
+
+        if(ariaclosing == "true" || ariaclosing == true){
+            window.onclick = function(event) {
+                if(event.target == modal){
+                    Modal.modalClose(modal);
+                }
+            }
+        }
+
+        $('.modal [data-modal-dismiss="'+element.target.dataset.modalTarget+'"]').on('click', function(e){
+            e.preventDefault();
+
+            Modal.modalClose(modal);
+        });
+        
+    },
+    modalClose: (modal) => {
+        modal.classList.remove('show');
+        const modalBackdrop = document.querySelectorAll('.modal-backdrop');
+        modalBackdrop.forEach(element => {
+            element.classList.remove('show');
+        });
+        
+        setTimeout(() => {
+            $('.modal-backdrop').remove();
+            modal.style.display = "none";
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = "";
+            document.body.style.paddingRight  ="";
+        }, 100);
+    },
+    each: (me, callback) => {
+        me.element.forEach(i => {
+            callback(i, me.element);
+        });
+    },
+    extend: (defaults, options) => {
+        let arr = {
+            ...defaults,
+            ...options
+        };
+        
+        return arr;
+    }
+}
+
 function $(selector){
     const self = {
         element: document.querySelectorAll(selector), 
@@ -604,8 +729,72 @@ function $(selector){
                 callback(i, self.element);
             });
         },
-        on: (event, callback) => {
-            document.addEventListener(event, callback)
+        remove: () => {
+            self.element.forEach((element) => {
+                element.remove();
+            });
+        },
+        append: (elmn, callback = null)=> {
+            self.element.forEach((element) => {
+                //console.log(elmn, element);
+                try {
+                    element.insertAdjacentHTML('beforeend', elmn);
+                } catch (error) {
+                    console.error(error);
+                    return;
+                }
+
+                //var parser = new DOMParser();
+                //var doc = parser.parseFromString(elmn, 'text/html');
+                if(callback != null){
+                    let elementCreated = null;
+
+                    if(elmn.includes('class')){
+                        elementCreated = "." + elmn.match(/class="((?:\\.|[^"\\])*)"/)[1].split(" ")[0];
+                    }else if(elmn.includes('id')){
+                        elementCreated = "#" + elmn.match(/id="((?:\\.|[^"\\])*)"/)[1];
+                    }else{
+                        elementCreated = "";
+                    }
+                    
+                    //element created, selector, text declared
+                    callback(document.querySelector(elementCreated), element, elmn);
+                } 
+            })
+        },
+        prepend: (elmn, callback = null)=> {
+            self.element.forEach((element) => {
+                //console.log(elmn, element);
+                element.insertAdjacentHTML('afterbegin', elmn);
+                //https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
+
+                if(callback != null){
+                    let elementCreated = null;
+
+                    if(elmn.includes('class')){
+                        elementCreated = "." + elmn.match(/class="((?:\\.|[^"\\])*)"/)[1].split(" ")[0];
+                    }else if(elmn.includes('id')){
+                        elementCreated = "#" + elmn.match(/id="((?:\\.|[^"\\])*)"/)[1];
+                    }else{
+                        elementCreated = "";
+                    }
+                    
+                    //element created, selector, text declared
+                    callback(document.querySelector(elementCreated), element, elmn);
+                } 
+            })
+        },
+        on: (event, cbOrSelector, callback) => {
+            if(typeof cbOrSelector === 'function'){
+                self.element.forEach(e =>  e.addEventListener(event, cbOrSelector));
+            }else{
+                self.element.forEach(element => {
+                    element.addEventListener(event, e => {
+                        if(e.target.matches(cbOrSelector)) callback(e);
+                    })
+                });
+            }
+            //document.addEventListener(event, callback)
         },
         hide: () => {
             self.element.style.display = "none"
@@ -616,6 +805,12 @@ function $(selector){
             }else{
                 self.element.getAttribute(name, value);
             }
+        },
+        css: (styles) => {
+            for (let key in styles) {
+                self.style[key] = styles[key];
+            }
+            return self;
         },
         mask: (options) =>{
             if(Mask[options]){
@@ -646,11 +841,22 @@ function $(selector){
             }else{
                 console.error('This method is not recognized [' + options + ']');
             }
-        }
+        },
+        modal: (options) => {
+            if(Modal[options]){
+                Modal[options].apply(self, Array.prototype.slice.call(arguments, 1));
+            }else if(typeof options === 'object' || !options){
+                //Mask.init.apply(options);
+                Modal.init(options, self);
+            }else{
+                console.error('This method is not recognized [' + options + ']');
+            }
+        },
     } 
 
     return self;
 }
+
 
 document.addEventListener("DOMContentLoaded", function(){
     // Handler when the DOM is fully loaded
@@ -659,5 +865,7 @@ document.addEventListener("DOMContentLoaded", function(){
     $('textarea').textarea()
 
     $('select').select()
+
+    $('[data-modal-target]').modal()
 });
 
