@@ -4861,4 +4861,41 @@ select.select-hidden {
   -webkit-transition: opacity .15s linear;
   transition: opacity .15s linear;
 }
+
+.tooltip {
+  position: absolute;
+  z-index: 1080;
+  display: block;
+  margin: 0;
+  font-family: var(--bs-font-sans-serif);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
+  font-size: .925rem;
+  word-wrap: break-word;
+  opacity: 0;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+.tooltip.fade {
+  -webkit-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+}
+
+.tooltip.tooltip-auto[data-popper-placement^=top], .tooltip.tooltip-top {
+  padding: .4rem 0;
+}
 /*# sourceMappingURL=opera.css.map */

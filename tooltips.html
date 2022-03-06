@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-primary" data-tooltip-toggle="tooltip" data-tooltip-placement="top" title="Tooltip on right">
+                        Tooltip on right
+                    </button>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            
+            
+        </div>
+
+        <script src="./js/opera.js"></script>
+        <script>
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>

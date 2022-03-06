@@ -719,6 +719,82 @@ const Modal = {
         return arr;
     }
 }
+const Tooltip = {
+    option: [],
+    init : function(options, me){
+        var defaults = {
+            
+        };
+
+        const option = this.extend(defaults, options);
+        this.option = option;
+        
+        const _this = this;
+        
+        return this.each(me, function(element){
+            //variables
+            const id = element.dataset.tooltipToggle;
+            if(id){
+                element.addEventListener('mouseenter', _this.mouseenter);
+                //element.addEventListener('mouseleave', _this.mouseleave);
+            }else{
+                console.error("No tooltip found!");
+            }
+        });
+    },
+    mouseenter: (e) => {
+        console.log(e.target);
+        $('body').append("<div class='tooltip fade tooltip-top'>ok</div>", (element, selector, text) => {
+            setTimeout(() => {
+                //calcolo della posizione dell'elemento padre
+                const elnPosition = {
+                    x: e.target.offsetLeft,
+                    y: e.target.offsetTop / 2,
+                    w: e.target.offsetWidth / 2,
+                    h: e.target.offsetWidth / 2
+                };
+                const toltPosition = {
+                    w: element.offsetWidth / 2,
+                    h:element.offsetWidth / 2
+                };
+
+                let calcPosX = elnPosition.x + elnPosition.w;
+                let calcPosY = elnPosition.y - elnPosition.h;
+                console.log(elnPosition);
+
+                element.classList.add('show');
+                element.style.inset = "auto auto 0px 0px";
+                //element.style.transform = "translate("+calcPosX+"px, "+calcPosY+"px)";
+                element.style.left = calcPosX+"px";
+                element.style.top = calcPosY+"px";
+            }, 1);
+        });
+    },
+    mouseleave: (e) => {
+        const tooltips = document.querySelectorAll('.tooltip');
+        tooltips.forEach(element => {
+            element.classList.remove('show');
+        });
+        
+        setTimeout(() => {
+            $('.tooltip').remove();
+        }, 100);
+    },
+    each: (me, callback) => {
+        me.element.forEach(i => {
+            callback(i, me.element);
+        });
+    },
+    extend: (defaults, options) => {
+        let arr = {
+            ...defaults,
+            ...options
+        };
+        
+        return arr;
+    }
+}
+
 
 function $(selector){
     const self = {
@@ -748,11 +824,14 @@ function $(selector){
                 //var doc = parser.parseFromString(elmn, 'text/html');
                 if(callback != null){
                     let elementCreated = null;
+                    
 
                     if(elmn.includes('class')){
-                        elementCreated = "." + elmn.match(/class="((?:\\.|[^"\\])*)"/)[1].split(" ")[0];
+                        let cls = elmn.match(/class="((?:\\.|[^"\\])*)"/) || elmn.match(/class='((?:\\.|[^"\\])*)'/);
+                        elementCreated = "." + cls[1].split(" ")[0];
                     }else if(elmn.includes('id')){
-                        elementCreated = "#" + elmn.match(/id="((?:\\.|[^"\\])*)"/)[1];
+                        let cls = elmn.match(/id="((?:\\.|[^"\\])*)"/) || elmn.match(/id='((?:\\.|[^"\\])*)'/);
+                        elementCreated = "#" + cls[1];
                     }else{
                         elementCreated = "";
                     }
@@ -808,9 +887,9 @@ function $(selector){
         },
         css: (styles) => {
             for (let key in styles) {
-                self.style[key] = styles[key];
+                self.element.style[key] = styles[key];
             }
-            return self;
+            return self.element;
         },
         mask: (options) =>{
             if(Mask[options]){
@@ -852,6 +931,16 @@ function $(selector){
                 console.error('This method is not recognized [' + options + ']');
             }
         },
+        tooltips: (options) => {
+            if(Tooltip[options]){
+                Tooltip[options].apply(self, Array.prototype.slice.call(arguments, 1));
+            }else if(typeof options === 'object' || !options){
+                //Mask.init.apply(options);
+                Tooltip.init(options, self);
+            }else{
+                console.error('This method is not recognized [' + options + ']');
+            }
+        },
     } 
 
     return self;
@@ -867,5 +956,7 @@ document.addEventListener("DOMContentLoaded", function(){
     $('select').select()
 
     $('[data-modal-target]').modal()
+    
+    $('[data-tooltip-toggle]').tooltips()
 });
 
