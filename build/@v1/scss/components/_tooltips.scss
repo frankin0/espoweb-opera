@@ -4,7 +4,7 @@
     display: block;
     margin: 0;
     font-family: var(--bs-font-sans-serif);
-    font-style: normal;
+    font-style: normal; 
     font-weight: 400;
     line-height: 1.5;
     text-align: left;
@@ -17,9 +17,29 @@
     word-spacing: normal;
     white-space: normal;
     line-break: auto;
-    font-size: .925rem;
     word-wrap: break-word;
     opacity: 0;
+    background-color: color("grays", "200");
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+
+    
+    /* tooltip  after*/
+    .tooltip::after {
+        content: " ";
+        width: 0;
+        height: 0;
+        
+        border-style: solid;
+        border-width: 12px 12.5px 0 12.5px;
+        border-color: #333 transparent transparent transparent;
+
+        position: absolute;
+        left: 40%;
+
+    }
     
     &.show {
         opacity: 1;
@@ -28,6 +48,6 @@
         transition: opacity .15s linear;
     }
     &.tooltip-auto[data-popper-placement^=top], &.tooltip-top {
-        padding: .4rem 0;
+       // padding: .4rem 0;
     }
 }

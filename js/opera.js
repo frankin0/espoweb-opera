@@ -736,17 +736,20 @@ const Tooltip = {
             const id = element.dataset.tooltipToggle;
             if(id){
                 element.addEventListener('mouseenter', _this.mouseenter);
-                //element.addEventListener('mouseleave', _this.mouseleave);
+                element.addEventListener('mouseleave', _this.mouseleave);
             }else{
                 console.error("No tooltip found!");
             }
         });
     },
     mouseenter: (e) => {
-        console.log(e.target);
-        $('body').append("<div class='tooltip fade tooltip-top'>ok</div>", (element, selector, text) => {
+        e.preventDefault();
+        const id = Date.now();
+        e.target.dataset.tooltipID = "title-u"+id;
+        $('body').append("<div class='tooltip fade "+e.target.dataset.tooltipColor+"' id='title-u"+id+"'>"+e.target.dataset.title+"</div>", (element, selector, text) => {
             setTimeout(() => {
                 //calcolo della posizione dell'elemento padre
+                console.log(element);
                 const elnPosition = {
                     x: e.target.offsetLeft,
                     y: e.target.offsetTop / 2,
@@ -758,26 +761,44 @@ const Tooltip = {
                     h:element.offsetWidth / 2
                 };
 
-                let calcPosX = elnPosition.x + elnPosition.w;
-                let calcPosY = elnPosition.y - elnPosition.h;
-                console.log(elnPosition);
+                let calcPosX = elnPosition.x + elnPosition.w - toltPosition.w;
+                let calcPosY = elnPosition.y;
+                if(e.target.dataset.tooltipPlacement == "top"){
+                    calcPosY = elnPosition.y - 15;
+                }else if(e.target.dataset.tooltipPlacement == "bottom"){
+                    calcPosY = elnPosition.y + elnPosition.h;
+                }else if(e.target.dataset.tooltipPlacement == "left"){
+                    calcPosY = (elnPosition.y *2) + 5;
+                    calcPosX = elnPosition.x - (elnPosition.w  *2);
+                }else if(e.target.dataset.tooltipPlacement == "right"){
+                    calcPosY = (elnPosition.y *2) + 5;
+                    calcPosX = elnPosition.x + (elnPosition.w *2) + 15;
+                }else{
+                    console.error("Error position " + e.target.dataset.tooltipPlacement + " [top, right, left, bottom]");
+                    return;
+                }
 
+                element.classList.add("tooltip-" + e.target.dataset.tooltipPlacement);
                 element.classList.add('show');
-                element.style.inset = "auto auto 0px 0px";
+                //element.style.inset = "auto auto 0px 0px";
                 //element.style.transform = "translate("+calcPosX+"px, "+calcPosY+"px)";
                 element.style.left = calcPosX+"px";
                 element.style.top = calcPosY+"px";
+                element.style.bottom = "auto";
             }, 1);
         });
     },
     mouseleave: (e) => {
-        const tooltips = document.querySelectorAll('.tooltip');
+        document.getElementById(e.target.dataset.tooltipID).classList.remove("show");
+
+        /*const tooltips = document.querySelectorAll('.tooltip');
         tooltips.forEach(element => {
             element.classList.remove('show');
-        });
+        });*/
         
         setTimeout(() => {
-            $('.tooltip').remove();
+            //$('.tooltip').remove();
+            document.getElementById(e.target.dataset.tooltipID).remove();
         }, 100);
     },
     each: (me, callback) => {
@@ -812,33 +833,39 @@ function $(selector){
         },
         append: (elmn, callback = null)=> {
             self.element.forEach((element) => {
-                //console.log(elmn, element);
+                
+                const elID = "element-opera-"+Date.now(); 
+                let newelmn = elmn.replace('<div', '<div data-opera-id="'+elID+'"');
+                //console.log(newelmn, element);
                 try {
-                    element.insertAdjacentHTML('beforeend', elmn);
+                    element.insertAdjacentHTML('beforeend', newelmn);
+                    console.log();
+                    //var parser = new DOMParser();
+                    //var doc = parser.parseFromString(elmn, 'text/html');
+                    if(callback != null){
+                        let elementCreated = null;
+    
+                        if(newelmn.includes('class')){
+                            let cls = newelmn.match(/class="((?:\\.|[^"\\])*)"/) || newelmn.match(/class='((?:\\.|[^"\\])*)'/);
+                            elementCreated = "." + cls[1].split(" ")[0];
+                        }else if(newelmn.includes('id')){
+                            let cls = newelmn.match(/id="((?:\\.|[^"\\])*)"/) || newelmn.match(/id='((?:\\.|[^"\\])*)'/);
+                            elementCreated = "#" + cls[1];
+                        }else{
+                            elementCreated = "";
+                        }
+    
+                        //document.querySelector(elementCreated).dataset.operaId = elID;
+                        
+                        //element created, selector, text declared
+                        //console.log(document.querySelector("["+elID+"]"), elID);
+                        callback(element.lastChild, element, newelmn);
+                    } 
                 } catch (error) {
                     console.error(error);
                     return;
                 }
 
-                //var parser = new DOMParser();
-                //var doc = parser.parseFromString(elmn, 'text/html');
-                if(callback != null){
-                    let elementCreated = null;
-                    
-
-                    if(elmn.includes('class')){
-                        let cls = elmn.match(/class="((?:\\.|[^"\\])*)"/) || elmn.match(/class='((?:\\.|[^"\\])*)'/);
-                        elementCreated = "." + cls[1].split(" ")[0];
-                    }else if(elmn.includes('id')){
-                        let cls = elmn.match(/id="((?:\\.|[^"\\])*)"/) || elmn.match(/id='((?:\\.|[^"\\])*)'/);
-                        elementCreated = "#" + cls[1];
-                    }else{
-                        elementCreated = "";
-                    }
-                    
-                    //element created, selector, text declared
-                    callback(document.querySelector(elementCreated), element, elmn);
-                } 
             })
         },
         prepend: (elmn, callback = null)=> {

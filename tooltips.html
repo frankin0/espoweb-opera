@@ -15,11 +15,20 @@
     </head>
     <body>
         
-        <div class="container">
+        <div class="container" style=" margin-top: 50px;">
             <div class="row">
                 <div class="col code">
-                    <button class="btn btn-primary" data-tooltip-toggle="tooltip" data-tooltip-placement="top" title="Tooltip on right">
+                    <button class="btn btn-primary" data-tooltip-toggle="tooltip" data-tooltip-color="background-light" data-tooltip-placement="top" data-title="Tooltip on top">
+                        Tooltip on top
+                    </button>
+                    <button class="btn btn-primary" data-tooltip-toggle="tooltip" data-tooltip-color="background-light" data-tooltip-placement="bottom" data-title="Tooltip on bottom">
+                        Tooltip on bottom
+                    </button>
+                    <button class="btn btn-primary" data-tooltip-toggle="tooltip" data-tooltip-color="background-light" data-tooltip-placement="right" data-title="Tooltip on right">
                         Tooltip on right
+                    </button>
+                    <button class="btn btn-primary" data-tooltip-toggle="tooltip" data-tooltip-color="background-light" data-tooltip-placement="left" data-title="Tooltip on left">
+                        Tooltip on left
                     </button>
                 </div>
                 <div class="col">
@@ -33,6 +42,7 @@
 
         <script src="./js/opera.js"></script>
         <script>
+
             const code = document.querySelectorAll('.code');
 
             code.forEach(element => {

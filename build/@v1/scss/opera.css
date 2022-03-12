@@ -4881,9 +4881,26 @@ select.select-hidden {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: .925rem;
   word-wrap: break-word;
   opacity: 0;
+  background-color: #e9ecef;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  /* tooltip  after*/
+}
+
+.tooltip .tooltip::after {
+  content: " ";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 12.5px 0 12.5px;
+  border-color: #333 transparent transparent transparent;
+  position: absolute;
+  left: 40%;
 }
 
 .tooltip.show {
@@ -4893,9 +4910,5 @@ select.select-hidden {
 .tooltip.fade {
   -webkit-transition: opacity .15s linear;
   transition: opacity .15s linear;
-}
-
-.tooltip.tooltip-auto[data-popper-placement^=top], .tooltip.tooltip-top {
-  padding: .4rem 0;
 }
 /*# sourceMappingURL=opera.css.map */
