@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container" style=" margin-top: 50px;">
+            <div class="row">
+                <div class="col code">
+                    <ul class="pagination">
+                        <li class="page-item previous disabled" ><a href="#" class="page-link"><i class="previous"></i></a></li>
+                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">...</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">6</a></li>
+                        <li class="page-item next"><a href="#" class="page-link"><i class="next"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    <ul class="pagination">
+                        <li class="page-item previous disabled" ><a href="#" class="page-link">Previous</a></li>
+                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">...</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">6</a></li>
+                        <li class="page-item next"><a href="#" class="page-link">Next</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    <ul class="pagination pagination-round">
+                        <li class="page-item previous disabled" ><a href="#" class="page-link">Previous</a></li>
+                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">...</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">6</a></li>
+                        <li class="page-item next"><a href="#" class="page-link">Next</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+            
+        </div>
+
+        <script src="./js/opera.js"></script>
+
+        <script>
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>

@@ -42,6 +42,7 @@
             attrText = options.attrText || 'data-tooltip',
             attrPlacement = options.attrPlacement || 'data-tooltip-placement',
             attrColor = options.attrColor || 'data-tooltip-color',
+            attrDismiss = options.attrDismiss || 'data-tooltip-dismiss',
             once = options.once || 0,
             displayed = options.display || 1,
             isTouch = false,
@@ -61,6 +62,9 @@
                 element.addEventListener('mouseover', () => enter(element), false);
 
                 element.addEventListener('mouseout', off, false);
+
+                const clicktodismiss = element.getAttribute(attrDismiss);
+                if(clicktodismiss) element.addEventListener('click', pull, false);
             }else{
                 element.addEventListener('touchstart', () => enter(element), false);
 
@@ -74,8 +78,11 @@
                 if(element.tooltipped < displayed && element.getAttribute(attrText)){
                     pull();
                     
+                    if(element.getAttribute('data-tooltip-delay')) self.delay = element.getAttribute('data-tooltip-delay');
+                    if(element.getAttribute('data-tooltip-duration')) self.duration = element.getAttribute('data-tooltip-duration');
+                    
                     self.timeoff = setTimeout(() => {
-                        
+
                         //get a title
                         text = element.getAttribute(attrText).trim();
                         bgColor = element.getAttribute(attrColor).trim();
@@ -108,13 +115,13 @@
 
                         if(placement == "top"){
                             //sign top position
-                            top = rect.top - (ttips.offsetHeight + ttips.offsetHeight / 2.5);
+                            top = rect.top - (ttips.offsetHeight + ttips.offsetHeight / 2.5) +5;
                         }else if(placement == "bottom"){
                             //sign bottom position
-                            top = (rect.top ) + (rect.height + ttips.offsetHeight / 2.5);
+                            top = (rect.top ) + (rect.height + ttips.offsetHeight / 2.5) - 5;
                         }else if(placement == "right" || placement == "left"){
                             //sign right position
-                            top = rect.top + 7;
+                            top = rect.top;
                         }
 
                         
@@ -201,7 +208,7 @@
 
             window.addEventListener('scroll', pull, false);
             window.addEventListener('resizze', pull, false);
-            document.addEventListener('click', pull, false);
+            //document.addEventListener('click', pull, false);
 
             //console.log(elements, option, self);
             

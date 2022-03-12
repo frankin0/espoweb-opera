@@ -15,7 +15,7 @@
     </head>
     <body>
         
-        <div class="container" style=" margin-top: 250px;">
+        <div class="container" style=" margin-top: 50px;">
             <div class="row">
                 <div class="col code">
                     <button class="btn btn-primary" data-tooltip="Tooltip on top" data-tooltip-color="background-light" data-tooltip-placement="top">
@@ -36,23 +36,56 @@
                 </div>
             </div> 
 
-            
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-primary" data-tooltip="Tooltip on top" data-tooltip-color="background-dark" data-tooltip-placement="top">
+                        Tooltip on top
+                    </button>
+                    <button class="btn btn-primary" data-tooltip="Tooltip on bottom" data-tooltip-color="background-dark" data-tooltip-placement="bottom">
+                        Tooltip on bottom
+                    </button>
+                    <button class="btn btn-primary" data-tooltip="Tooltip on right" data-tooltip-color="background-dark" data-tooltip-placement="right">
+                        Tooltip on right
+                    </button>
+                    <button class="btn btn-primary" data-tooltip="Tooltip on left" data-tooltip-color="background-dark" data-tooltip-placement="left">
+                        Tooltip on left
+                    </button>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-primary" data-tooltip="Example tooltip" data-tooltip-color="background-dark" data-tooltip-placement="top" data-tooltip-dismiss="click">
+                        Click to dismiss
+                    </button>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-primary" data-tooltip="Example tooltip" data-tooltip-color="background-dark" data-tooltip-placement="top" data-tooltip-delay="1000">
+                        Show delay 1000ms
+                    </button>
+                    <button class="btn btn-primary" data-tooltip="Example tooltip" data-tooltip-color="background-dark" data-tooltip-placement="top" data-tooltip-duration="1000">
+                        Show duration 1000ms
+                    </button>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
             
         </div>
 
-        <!--<script src="./js/opera.js"></script>-->
-        <script src="./js/tooltip_.js"></script>
+        <script src="./js/opera.js"></script>
 
         <script>
-            var tooltips = new tooltip( document.querySelectorAll('[data-tooltip]'), {
-                duration: 1500, //durata del popup dall'evento
-                delay: 100,
-                display: 100 //popup mostrati nella pagina
-            });
-
-
             const code = document.querySelectorAll('.code');
 
             code.forEach(element => {
