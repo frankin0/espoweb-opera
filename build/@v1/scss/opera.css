@@ -4862,8 +4862,46 @@ select.select-hidden {
   transition: opacity .15s linear;
 }
 
+[data-tooltip] {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+html:not(.is-mobile):not(.is-tablet):not(.is-touch) .tooltip {
+  -webkit-animation: tooltip-scale-in 0.15s both ease-out;
+          animation: tooltip-scale-in 0.15s both ease-out;
+}
+
+@-webkit-keyframes tooltip-scale-in {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+@keyframes tooltip-scale-in {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
 .tooltip {
-  position: absolute;
+  position: fixed;
   z-index: 1080;
   display: block;
   margin: 0;
@@ -4882,13 +4920,15 @@ select.select-hidden {
   white-space: normal;
   line-break: auto;
   word-wrap: break-word;
-  opacity: 0;
   background-color: #e9ecef;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset;
           box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset;
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 14px;
+  pointer-events: none;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   /* tooltip  after*/
 }
 
@@ -4910,5 +4950,17 @@ select.select-hidden {
 .tooltip.fade {
   -webkit-transition: opacity .15s linear;
   transition: opacity .15s linear;
+}
+
+.tooltip-copy {
+  display: block;
+  font-size: 0.75em;
+  line-height: inherit;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 /*# sourceMappingURL=opera.css.map */

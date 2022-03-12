@@ -735,8 +735,8 @@ const Tooltip = {
             //variables
             const id = element.dataset.tooltipToggle;
             if(id){
-                element.addEventListener('mouseenter', _this.mouseenter);
-                element.addEventListener('mouseleave', _this.mouseleave);
+                element.addEventListener('mouseover', _this.mouseenter);
+                element.addEventListener('mouseout', _this.mouseleave);
             }else{
                 console.error("No tooltip found!");
             }
@@ -780,16 +780,16 @@ const Tooltip = {
 
                 element.classList.add("tooltip-" + e.target.dataset.tooltipPlacement);
                 element.classList.add('show');
-                //element.style.inset = "auto auto 0px 0px";
-                //element.style.transform = "translate("+calcPosX+"px, "+calcPosY+"px)";
                 element.style.left = calcPosX+"px";
                 element.style.top = calcPosY+"px";
                 element.style.bottom = "auto";
             }, 1);
         });
     },
-    mouseleave: (e) => {
+    mouseleave: (e) => { console.log(e.target.id, e.target.dataset.tooltipID);
+        //document.getElementById(e.target.id).classList.remove("show");
         document.getElementById(e.target.dataset.tooltipID).classList.remove("show");
+        
 
         /*const tooltips = document.querySelectorAll('.tooltip');
         tooltips.forEach(element => {
@@ -797,7 +797,7 @@ const Tooltip = {
         });*/
         
         setTimeout(() => {
-            //$('.tooltip').remove();
+            //document.getElementById(e.target.id).remove();
             document.getElementById(e.target.dataset.tooltipID).remove();
         }, 100);
     },
@@ -983,7 +983,11 @@ document.addEventListener("DOMContentLoaded", function(){
     $('select').select()
 
     $('[data-modal-target]').modal()
+
+    var tooltips = new tooltip( document.querySelectorAll('[data-tooltip]'), {
+        once: true
+    });
     
-    $('[data-tooltip-toggle]').tooltips()
+    //$('[data-tooltip-toggle]').tooltips()
 });
 
