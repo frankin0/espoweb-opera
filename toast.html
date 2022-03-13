@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container" style=" margin-top: 50px;">
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-primary" onClick="showToast('default')">Show Toast</button>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+            
+        </div>
+
+        <!--<script src="./js/opera.js"></script>-->
+        <script src="./js/toast_.js"></script>
+
+        <script>
+
+            function showToast(pos){
+                alert(pos);
+            }
+
+            new Toast({
+                text: 'Welcome to Toast'
+            }).show();
+
+            new Toast({
+                text: 'Another toast left'
+            }).show();
+
+            new Toast({
+                text: 'Welcome to Toast',
+                anchor: {
+                    horizontal: 'right', //[left, center, right]
+                    vertical: 'top' //[top, bottom]
+                }
+            }).show();
+
+            new Toast({
+                text: 'Welcome to Toast',
+                anchor: {
+                    horizontal: 'center', //[left, center, right]
+                    vertical: 'top' //[top, bottom]
+                }
+            }).show();
+
+            //bottom
+            new Toast({
+                text: 'Welcome to Toast',
+                anchor: {
+                    horizontal: 'left', //[left, center, right]
+                    vertical: 'bottom' //[top, bottom]
+                }
+            }).show();
+
+            new Toast({
+                text: 'Welcome to Toast',
+                anchor: {
+                    horizontal: 'right', //[left, center, right]
+                    vertical: 'bottom' //[top, bottom]
+                }
+            }).show();
+
+            new Toast({
+                text: 'Welcome to Toast',
+                anchor: {
+                    horizontal: 'center', //[left, center, right]
+                    vertical: 'bottom' //[top, bottom]
+                }
+            }).show();
+
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>

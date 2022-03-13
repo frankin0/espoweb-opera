@@ -1,0 +1,64 @@
+.toast-container{
+    position: fixed;
+
+
+    //top-left top-right top-center
+    &.toast-top-left{
+        top: 4px;
+        left: 4px;
+    }
+    &.toast-top-center{
+        top: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &.toast-top-right{
+        top: 4px;
+        right: 4px;
+    }
+    
+    //bottom-left bottom-right bottom -center
+    &.toast-bottom-left{
+        bottom: 4px;
+        left: 4px;
+    }
+    &.toast-bottom-center{
+        bottom: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &.toast-bottom-right{
+        bottom: 4px;
+        right: 4px;
+    }
+
+    @media (min-width: 600px){
+        & .toast{
+            flex-grow: initial;
+            min-width: 288px;
+        }
+    }
+
+    & .toast{
+        color: #fff;
+        padding: 6px 16px;
+        font-size: 0.875rem;
+        box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+        align-items: center;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-weight: 400;
+        line-height: 1.43;
+        border-radius: 4px;
+        background-color: rgb(49, 49, 49);
+
+        transition: margin-bottom 300ms ease 0ms;
+
+        & .toast-message{
+            display: flex;
+            padding: 8px 0;
+            align-items: center;
+        }
+    }
+
+
+}
