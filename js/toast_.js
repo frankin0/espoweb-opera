@@ -67,6 +67,7 @@
 
             this.options = {};
 
+            this.toastElement = null;
             this.toastElements = [];
 
 
@@ -127,12 +128,11 @@
         show: function(){
              // Creating the DOM object for the toast
             this.containerToast = this.buildContainerToast();
-            this.toastElements = this.buildToast();
+            this.toastElement = this.buildToast();
+            this.toastElements = document.querySelectorAll(".toast") 
 
+            console.log(this.toastElement);
             //Create container toast in body
-            console.log(this.toastElements);
-
-
             const getContainerElementNumber = document.querySelectorAll(".toast-"+ this.options.anchor.vertical + "-" + this.options.anchor.horizontal).length;
             if(getContainerElementNumber == 0)
                 document.body.appendChild(this.containerToast)
