@@ -11,6 +11,12 @@
             .row{
                 margin-top: 20px;
             }
+            .toast.toastHeader{
+                background:#fddc6c;
+                color: #000;
+                font-weight: bold;
+                padding: 8px 8px 8px 16px;
+            }
         </style>
     </head>
     <body>
@@ -18,7 +24,54 @@
         <div class="container" style=" margin-top: 50px;">
             <div class="row">
                 <div class="col code">
-                    <button class="btn btn-primary" onClick="showToast('default')">Show Toast</button>
+                    <button class="btn btn-primary" onClick="showToast('top', 'left')">Show Top-Left Toast</button>
+                    <button class="btn btn-primary" onClick="showToast('top', 'right')">Show Top-Right Toast</button>
+                    <button class="btn btn-primary" onClick="showToast('top', 'center')">Show Top-Center Toast</button>
+                    <button class="btn btn-primary" onClick="showToast('bottom', 'left')">Show Bottom-Left Toast</button>
+                    <button class="btn btn-primary" onClick="showToast('bottom', 'right')">Show Bottom-Right Toast</button>
+                    <button class="btn btn-primary" onClick="showToast('bottom', 'center')">Show Bottom-Center Toast</button>
+
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-primary" onClick="showToastDismiss('top', 'left')">Toast Dismiss</button>
+                    <button class="btn btn-primary" onClick="showToastAction('top', 'left')">Toast Action</button>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+            
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-success" onClick="variant('success')">Success</button>
+                    <button class="btn btn-danger" onClick="variant('danger')">Error</button>
+                    <button class="btn btn-warning" onClick="variant('warning')">Warning</button>
+                    <button class="btn btn-info" onClick="variant('info')">Info</button>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-danger" id="simulateProgrammatically" on-loss>Simulate connection loss</button>
+                    <button class="btn btn-primary" disabled id="simulateProgrammaticallyOn" on-line>Back online</button>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col code">
+                    <button class="btn btn-primary" onClick="customToast()">Custom Toast</button>
                 </div>
                 <div class="col-md-12 mt-4">
                     <pre><code></code></pre>
@@ -31,59 +84,143 @@
         <script src="./js/toast_.js"></script>
 
         <script>
+            let n = 1;
 
-            function showToast(pos){
-                alert(pos);
+            function customToast(){
+                new Toast({
+                    text: "No connection!",
+                    persist: true,
+                    custom: {
+                        headerStyle: {
+                            background: '#fddc6c'
+                        },
+                        headerClass: "toastHeader",
+                        header: "Report Complete",
+                        mainStyle: {
+                            background: '#fff'
+                        },
+                        main: "<p>PDF ready</p><button>Download now</button>"
+                    },
+                    anchor:{
+                        horizontal: 'right', //[left, center, right]
+                        vertical: 'bottom' //[top, bottom]
+                    }
+                }).show();
             }
 
-            new Toast({
-                text: 'Welcome to Toast'
-            }).show();
+            let test = new Toast({
+                    text: "No connection!",
+                    variant: 'danger',
+                    persist: true,
+                    anchor:{
+                        horizontal: 'center', //[left, center, right]
+                        vertical: 'bottom' //[top, bottom]
+                    }
+                });
 
-            new Toast({
-                text: 'Another toast left'
-            }).show();
+            document.getElementById('simulateProgrammatically').addEventListener('click', function(e){
+                test.show();
+                e.currentTarget.disabled = true;
+                document.getElementById('simulateProgrammaticallyOn').disabled = false;
+            })
 
-            new Toast({
-                text: 'Welcome to Toast',
-                anchor: {
-                    horizontal: 'right', //[left, center, right]
-                    vertical: 'top' //[top, bottom]
+            document.getElementById('simulateProgrammaticallyOn').addEventListener('click', function(e){
+                e.currentTarget.disabled = true;
+                document.getElementById('simulateProgrammatically').disabled = false;
+                test.hide();
+            })
+
+            function simulateProgrammatically(action){
+                
+                if(action == "true"){
+                   
+
+                    console.log(this);
+                }else{
+
                 }
-            }).show();
+            }
 
-            new Toast({
-                text: 'Welcome to Toast',
-                anchor: {
-                    horizontal: 'center', //[left, center, right]
-                    vertical: 'top' //[top, bottom]
-                }
-            }).show();
+            function variant(a){
+                new Toast({
+                    text: "Your notification here.",
+                    variant: a,
+                }).show();
 
-            //bottom
-            new Toast({
-                text: 'Welcome to Toast',
-                anchor: {
-                    horizontal: 'left', //[left, center, right]
-                    vertical: 'bottom' //[top, bottom]
-                }
-            }).show();
+            }
 
-            new Toast({
-                text: 'Welcome to Toast',
-                anchor: {
-                    horizontal: 'right', //[left, center, right]
-                    vertical: 'bottom' //[top, bottom]
-                }
-            }).show();
+            function showToast(a, b){
+                new Toast({
+                    text: a + ' ' + b + ' ' + n,
+                    anchor: {
+                        horizontal: b, //[left, center, right]
+                        vertical: a //[top, bottom]
+                    },
+                    duration: 2000
+                }).show();
 
-            new Toast({
-                text: 'Welcome to Toast',
-                anchor: {
-                    horizontal: 'center', //[left, center, right]
-                    vertical: 'bottom' //[top, bottom]
-                }
-            }).show();
+                n++;
+            }
+
+            function showToastDismiss(a, b){
+                new Toast({
+                    text: a + ' ' + b + ' ' + n,
+                    anchor: {
+                        horizontal: b, //[left, center, right]
+                        vertical: a //[top, bottom]
+                    },
+                    dismissButton: '<button class="btn btn-primary btn-linked btn-small" on-close>Close</button>',
+                    onClose: function(e){
+                        console.log(this, e);
+                    },
+                    persist: true
+                }).show();
+
+                n++;
+            }
+            function showToastAction(a, b){
+                new Toast({
+                    text: a + ' ' + b + ' ' + n,
+                    anchor: {
+                        horizontal: b, //[left, center, right]
+                        vertical: a //[top, bottom]
+                    },
+                    dismissButton: '<button class="btn btn-primary btn-linked btn-small" on-close>Close</button>',
+                    action: '<button class="btn btn-danger btn-linked btn-small" on-action>Alert</button>',
+                    onClose: function(e){
+                        console.log(this, e);
+                    },
+                    onAction: function(e){
+                        alert("Action clicked");
+                    },
+                    persist: true
+                }).show();
+
+                n++;
+            }
+
+            function showCustomToast(a, b){
+                new Toast({
+                    text: a + ' ' + b + ' ' + n,
+                    anchor: {
+                        horizontal: b, //[left, center, right]
+                        vertical: a //[top, bottom]
+                    },
+
+                    dismissButton: '<button class="btn btn-primary btn-linked btn-small" on-close>Close</button>',
+                    action: '<button class="btn btn-danger btn-linked btn-small" on-action>Alert</button>',
+                    onClose: function(e){
+                        console.log(this, e);
+                    },
+                    onAction: function(e){
+                        alert("Action clicked");
+                    },
+                    persist: true
+                }).show();
+
+                n++;
+            }
+
 
             const code = document.querySelectorAll('.code');
 

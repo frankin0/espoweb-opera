@@ -38,20 +38,23 @@
     version = "1.0";
 
     Toast.defaults = {
+        action: false,
         text: 'Messaggio di test',
         duration: 3000,
         maxToast: 3,
         classNames: '',
+        offset: 6,
         anchor: {
             horizontal: 'left', //[left, center, right]
             vertical: 'top' //[top, bottom]
         },
-        persist: true,
-        custom: function(){},
+        persist: false,
+        custom: null,
         callback: function(){},
         onClose: function(){},
-        onEnter: function(){},
+        onOnline: function(){},
         variant: 'default',
+        dismissButton: false,
         style: {
             background: ''
         }
@@ -68,7 +71,6 @@
             this.options = {};
 
             this.toastElement = null;
-            this.toastElements = [];
 
 
             this.options.text = options.text || Toast.defaults.text;    //Display message
@@ -78,13 +80,15 @@
             this.options.anchor = options.anchor || Toast.defaults.anchor;    //Position display
             this.options.persist = options.persist || Toast.defaults.persist;    //Persist toast if connection loast popup
             this.options.custom = options.custom || Toast.defaults.custom;    //Custom displayed Toast
-            this.options.callback = options.callback || Toast.defaults.callback;    //Callback after display
+            this.options.onAction = options.onAction || Toast.defaults.onAction;    //Callback after display
             this.options.onClose = options.onClose || Toast.defaults.onClose;    //Callback before request to get close
-            this.options.onEnter = options.onEnter || Toast.defaults.onEnter;    //Callnback before the transition is enterign
-            this.options.variant = options.variant || Toast.defaults.variant;    //Used display different variant of Toast [default, error, success, warning, info] 
+            this.options.onOnline = options.onOnline || Toast.defaults.onOnline;    //Optional option onOnline event
+            this.options.variant = options.variant || Toast.defaults.variant;    //Used display different variant of Toast [default, danger, success, warning, info] 
+            this.options.offset = options.offset || Toast.defaults.offset;    //Space between toasts
+            this.options.dismissButton = options.dismissButton || Toast.defaults.dismissButton;    //Show dismiss button
+            this.options.action = options.action || Toast.defaults.action;    //Show action button
 
-
-           // console.log(this.options);
+            //console.log(this);
 
             return this;
         },
@@ -106,7 +110,7 @@
                     this.options.anchor.vertical == "bottom") contentDiv.classList.add("toast-"+ this.options.anchor.vertical + "-" + this.options.anchor.horizontal);
             }
 
-            
+
             return contentDiv;
 
         },
@@ -117,70 +121,217 @@
             //make a conainer toast
             toast = document.createElement('div');
             toast.classList.add("toast");
-            toast.innerHTML = "<div class='toast-message'>"+this.options.text+"</div>";
+            if(this.options.variant == "success"){
+                toast.classList.add("background-success");
+                toast.innerHTML = '<i class="icon-success"></i>';
+            }else if(this.options.variant == "danger"){
+                toast.innerHTML = '<i class="icon-danger"></i>';
+                toast.classList.add("background-danger");
+            }else if(this.options.variant == "warning"){
+                toast.classList.add("background-warning");
+                toast.innerHTML = '<i class="icon-warning"></i>';
+            }else if(this.options.variant == "info"){
+                toast.innerHTML = '<i class="icon-info"></i>';
+                toast.classList.add("background-info");
+            }else{
+                toast.innerHTML = '';
+            }
+            if(this.options.custom){
+                if(this.options.custom.headerStyle){
+                    Object.values(this.options.custom.headerStyle).map((style, index)=>{
+                        let key = Object.keys(this.options.custom.headerStyle)[index];
+
+                        toast.style[key] = style;
+                    });
+                }
 
 
+                toast.innerHTML += "<div class='toast-message "+this.options.custom.headerClass ? this.options.custom.headerClass : "" +"'>"+this.options.custom.header+"</div>";
+                
+                if(this.options.custom.main){
+                    toast.innerHTML += "<div class='toast-main'>"+this.options.custom.main+"</div>";
+                }
+            }else{
+                toast.innerHTML += "<div class='toast-message'>"+this.options.text+"</div>";
+            }
+            if(this.options.action != "" || this.options.action !== false){
+                if(this.options.action.includes('on-action')){
+                    toast.innerHTML += "<div class='toast-button'>"+this.options.action+"</div>";
+                }else throw "No button action sected"
+            }
+            if(this.options.dismissButton != "" || this.options.dismissButton !== false){
+                if(this.options.dismissButton.includes('on-close')){
+                    toast.innerHTML += "<div class='toast-button'>"+this.options.dismissButton+"</div>";
+                }else throw "No button close sected"
+            }
 
+            
             return toast;
         },
 
         //Display the toast
         show: function(){
-             // Creating the DOM object for the toast
-            this.containerToast = this.buildContainerToast();
+            // Creating the DOM object for the toast
+            this.containerToast  = this.buildContainerToast();
             this.toastElement = this.buildToast();
-            this.toastElements = document.querySelectorAll(".toast") 
 
-            console.log(this.toastElement);
             //Create container toast in body
-            const getContainerElementNumber = document.querySelectorAll(".toast-"+ this.options.anchor.vertical + "-" + this.options.anchor.horizontal).length;
-            if(getContainerElementNumber == 0)
-                document.body.appendChild(this.containerToast)
+            var rootElement;
+            rootElement = document.body;
 
+
+            if(!rootElement) throw "Root element is not defined";
+
+            rootElement.appendChild(this.containerToast)
+
+           
             //create Element toast in container toasts
-            this.containerToast.appendChild(this.toastElements);
+            this.containerToast.appendChild(this.toastElement);
 
+            if(this.options.dismissButton != "" || this.options.dismissButton !== false){
+                if(this.options.dismissButton.includes('on-close')){
+                    this.toastElement.querySelector('[on-close]').addEventListener('click', function(event){
+                        event.stopPropagation();
+                        
+                        this.options.onClose.call(this, event);
+                        this.hide();
+                    }.bind(this));
+                }
+            }
+
+            if(this.options.action != "" || this.options.action !== false){
+                if(this.options.action.includes('on-action')){
+                    this.toastElement.querySelector('[on-action]').addEventListener('click', function(event){
+                        event.stopPropagation();
+                        
+                        this.options.onAction.call(this, event);
+                    }.bind(this));
+                }
+            }
+
+            //Reposition the toasts in multiple solution
+            this.position();
 
             //if the option persist is active not remove toast
             if(!this.options.persist){
                 //get duration toast
                 if(this.options.duration > 0){
-                    this.toastElements.timeOut = window.setTimeout(function(){
+                    this.toastElement.timeOut = window.setTimeout(function(){
                         //remove the toast from DOM
-                        this.removeElement(this.toastElements);
+                        this.removeElement(this.toastElement);
                     }.bind(this), this.options.duration);
                 }
             }
 
 
             //console.log("mostra", this.containerToast);
+            return this;
         },
 
         hide: function(){
-            if(this.toastElements.timeOut){
-                clearTimeout(this.toastElements.timeOut);
+            if(this.toastElement.timeOut){
+                clearTimeout(this.toastElement.timeOut);
             }
 
-            this.removeElement(this.toastElements);
+            this.removeElement(this.toastElement);
         },
 
         removeElement: function(toastElements){
 
-            //toastElements.classList.add("toast")
+            toastElements.parentNode.classList.add("toast-hide")
 
             window.setTimeout(function(){
 
-
                 //Remove teh element from the DOM
                 if (toastElements.parentNode) {
-                    toastElements.parentNode.removeChild(toastElements);
+                    toastElements.parentNode.remove();
                 }
 
                 //Callback the element toast from the DOM
-                this.options.callback.call(toastElements);
+                this.options.onClose.call(toastElements);
+
+                this.position();
             }.bind(this), 400);
 
             //console.log(toastElements);
+        },
+
+        position: function (){
+
+            //Get all toast on the DOM
+            const toastElements = document.querySelectorAll('.toast-container');
+
+            var offsetToast = {
+                tl: this.options.offset,
+                tr: this.options.offset,
+                bl: this.options.offset, 
+                br: this.options.offset,
+                bc: this.options.offset,
+                tc: this.options.offset
+            };
+
+            for (let i = 0; i < toastElements.length; i++) {
+                
+                var height = toastElements[i].offsetHeight;
+                let width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+                toastElements[i].classList.add('toast-reposition');
+
+                //Show toast in center if screen with less than or equal to 360px
+                if(width <= 360){ 
+                    //Setting the position
+                    if(toastElements[i].classList.contains('toast-top-left') === true){
+                        toastElements[i].style.top = offsetToast.tc + "px";
+                        offsetToast.tc += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-top-right') === true){
+                        toastElements[i].style.top = offsetToast.tc + "px";
+                        offsetToast.tc += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-bottom-left') === true){
+                        toastElements[i].style.bottom = offsetToast.bc + "px";
+                        offsetToast.bc += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-bottom-right') === true){
+                        toastElements[i].style.bottom = offsetToast.bc + "px";
+                        offsetToast.bc += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-bottom-center') === true){
+                        toastElements[i].style.bottom = offsetToast.bc + "px";
+                        offsetToast.bc += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-top-center') === true){
+                        toastElements[i].style.top = offsetToast.tc + "px";
+                        offsetToast.tc += height + this.options.offset;
+                    }else{
+                        toastElements[i].style.top = offsetToast.tc + "px";
+                        offsetToast.tc += height + this.options.offset;
+                    }
+
+                }else{
+                    if(toastElements[i].classList.contains('toast-top-left') === true){
+                        // Setting the position
+                        toastElements[i].style.top = offsetToast.tl + "px";
+                        offsetToast.tl += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-top-right') === true){
+                        toastElements[i].style.top = offsetToast.tr + "px";
+                        offsetToast.tr += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-bottom-left') === true){
+                        toastElements[i].style.bottom = offsetToast.bl + "px";
+                        offsetToast.bl += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-bottom-right') === true){
+                        toastElements[i].style.bottom = offsetToast.br + "px";
+                        offsetToast.br += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-bottom-center') === true){
+                        toastElements[i].style.bottom = offsetToast.bc + "px";
+                        offsetToast.bc += height + this.options.offset;
+                    }else if(toastElements[i].classList.contains('toast-top-center') === true){
+                        toastElements[i].style.top = offsetToast.tc + "px";
+                        offsetToast.tc += height + this.options.offset;
+                    }else{
+                        toastElements[i].style.top = offsetToast.tl + "px";
+                        offsetToast.tl += height + this.options.offset;
+                    }
+
+                }
+
+            }
+
+            return this;
         }
     }
 

@@ -5094,13 +5094,132 @@ html:not(.is-mobile):not(.is-tablet):not(.is-touch) .tooltip {
   border-color: transparent;
 }
 
+@-webkit-keyframes anim-trans-left {
+  from {
+    -webkit-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes anim-trans-left {
+  from {
+    -webkit-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@-webkit-keyframes anim-trans-right {
+  from {
+    -webkit-transform: translate(100%, 0);
+            transform: translate(100%, 0);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes anim-trans-right {
+  from {
+    -webkit-transform: translate(100%, 0);
+            transform: translate(100%, 0);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@-webkit-keyframes anim-trans-center-top {
+  from {
+    -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%);
+  }
+  to {
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+
+@keyframes anim-trans-center-top {
+  from {
+    -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%);
+  }
+  to {
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+
+@-webkit-keyframes anim-trans-center-bottom {
+  from {
+    -webkit-transform: translate(-50%, 100%);
+            transform: translate(-50%, 100%);
+  }
+  to {
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+
+@keyframes anim-trans-center-bottom {
+  from {
+    -webkit-transform: translate(-50%, 100%);
+            transform: translate(-50%, 100%);
+  }
+  to {
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+
 .toast-container {
   position: fixed;
+  -webkit-transition: -webkit-transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: -webkit-transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms, -webkit-transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+.toast-container.toast-reposition {
+  -webkit-transition: 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+.toast-container.toast-top-left.toast-hide, .toast-container.toast-bottom-left.toast-hide {
+  -webkit-transform: translateX(-104%);
+          transform: translateX(-104%);
+}
+
+.toast-container.toast-top-right.toast-hide, .toast-container.toast-bottom-right.toast-hide {
+  -webkit-transform: translateX(104%);
+          transform: translateX(104%);
+}
+
+.toast-container.toast-top-center.toast-hide {
+  -webkit-transform: translate(-50%, -150%);
+          transform: translate(-50%, -150%);
+}
+
+.toast-container.toast-bottom-center.toast-hide {
+  -webkit-transform: translate(-50%, 150%);
+          transform: translate(-50%, 150%);
 }
 
 .toast-container.toast-top-left {
   top: 4px;
   left: 4px;
+  -webkit-animation: anim-trans-left 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+          animation: anim-trans-left 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
 .toast-container.toast-top-center {
@@ -5108,16 +5227,22 @@ html:not(.is-mobile):not(.is-tablet):not(.is-touch) .tooltip {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  -webkit-animation: anim-trans-center-top 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+          animation: anim-trans-center-top 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
 .toast-container.toast-top-right {
   top: 4px;
   right: 4px;
+  -webkit-animation: anim-trans-right 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+          animation: anim-trans-right 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
 .toast-container.toast-bottom-left {
   bottom: 4px;
   left: 4px;
+  -webkit-animation: anim-trans-left 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+          animation: anim-trans-left 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
 .toast-container.toast-bottom-center {
@@ -5125,11 +5250,15 @@ html:not(.is-mobile):not(.is-tablet):not(.is-touch) .tooltip {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  -webkit-animation: anim-trans-center-bottom 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+          animation: anim-trans-center-bottom 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
 .toast-container.toast-bottom-right {
   bottom: 4px;
   right: 4px;
+  -webkit-animation: anim-trans-right 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+          animation: anim-trans-right 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
 @media (min-width: 600px) {
@@ -5155,17 +5284,54 @@ html:not(.is-mobile):not(.is-tablet):not(.is-touch) .tooltip {
   line-height: 1.43;
   border-radius: 4px;
   background-color: #313131;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-transition: margin-bottom 300ms ease 0ms;
   transition: margin-bottom 300ms ease 0ms;
 }
 
 .toast-container .toast .toast-message {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   padding: 8px 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
+}
+
+.toast-container .toast.background-warning {
+  color: #000 !important;
+}
+
+.toast-container .toast .icon-success {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDZlNWUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZWNrLWNpcmNsZSI+PHBhdGggZD0iTTIyIDExLjA4VjEyYTEwIDEwIDAgMSAxLTUuOTMtOS4xNCI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjIyIDQgMTIgMTQuMDEgOSAxMS4wMSI+PC9wb2x5bGluZT48L3N2Zz4=");
+  background-size: cover;
+  width: 21px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.toast-container .toast .icon-warning {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4MzcxNDEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWFsZXJ0LW9jdGFnb24iPjxwb2x5Z29uIHBvaW50cz0iNy44NiAyIDE2LjE0IDIgMjIgNy44NiAyMiAxNi4xNCAxNi4xNCAyMiA3Ljg2IDIyIDIgMTYuMTQgMiA3Ljg2IDcuODYgMiI+PC9wb2x5Z29uPjxsaW5lIHgxPSIxMiIgeTE9IjgiIHgyPSIxMiIgeTI9IjEyIj48L2xpbmU+PGxpbmUgeDE9IjEyIiB5MT0iMTYiIHgyPSIxMi4wMSIgeTI9IjE2Ij48L2xpbmU+PC9zdmc+");
+  background-size: cover;
+  width: 21px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.toast-container .toast .icon-danger {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM3NDI3MzYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXgtb2N0YWdvbiI+PHBvbHlnb24gcG9pbnRzPSI3Ljg2IDIgMTYuMTQgMiAyMiA3Ljg2IDIyIDE2LjE0IDE2LjE0IDIyIDcuODYgMjIgMiAxNi4xNCAyIDcuODYgNy44NiAyIj48L3BvbHlnb24+PGxpbmUgeDE9IjE1IiB5MT0iOSIgeDI9IjkiIHkyPSIxNSI+PC9saW5lPjxsaW5lIHgxPSI5IiB5MT0iOSIgeDI9IjE1IiB5Mj0iMTUiPjwvbGluZT48L3N2Zz4=");
+  background-size: cover;
+  width: 21px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.toast-container .toast .icon-info {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyYTUwNmUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWluZm8iPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIj48L2NpcmNsZT48bGluZSB4MT0iMTIiIHkxPSIxNiIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48bGluZSB4MT0iMTIiIHkxPSI4IiB4Mj0iMTIuMDEiIHkyPSI4Ij48L2xpbmU+PC9zdmc+");
+  background-size: cover;
+  width: 21px;
+  height: 20px;
+  margin-right: 5px;
 }
 /*# sourceMappingURL=opera.css.map */
