@@ -1,6 +1,6 @@
 /*!
- * Tooltip - Javascript 0.1.0 (https://opera.espoweb.it/)
- * Copyright 2017 Hesam Bayat (https://espoweb.it/)
+ * Toast - Javascript 0.1.0 (https://opera.espoweb.it/)
+ * Copyright 2022 espoweb.it (https://espoweb.it/)
  * Licensed under MIT ()
  */
 ;(function (root, factory) {

@@ -1,6 +1,6 @@
 /*!
- * Tooltip - Javascript 0.1.0 (https://opera.espoweb.it/)
- * Copyright 2017 Hesam Bayat (https://espoweb.it/)
+ * Toast - Javascript 0.1.0 (https://opera.espoweb.it/)
+ * Copyright 2022 espoweb.it (https://espoweb.it/)
  * Licensed under MIT ()
  */
 ;(function (root, factory) {
@@ -35,7 +35,7 @@
     var Toast = function(options){
         return new Toast.lib.init(options);
     },
-    version = "1.0";
+    version = "1.5";
 
     Toast.defaults = {
         action: false,
@@ -280,7 +280,6 @@
 
 
             Toast.numbers[this.options.anchor.vertical + "-" + this.options.anchor.horizontal] ++;
-            console.log(Toast.numbers);
             return this;
         },
 
