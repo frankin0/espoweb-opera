@@ -31,7 +31,8 @@
         "components/_modal.scss",
         "components/_tooltips.scss",
         "components/_pagination.scss",
-        "components/_toast.scss"
+        "components/_toast.scss",
+        "components/_tabs.scss"
     ],
     "names": [],
     "file": "opera.css"
