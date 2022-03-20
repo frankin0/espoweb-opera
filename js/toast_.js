@@ -60,6 +60,15 @@
         }
     };
 
+    Toast.numbers = {
+        'top-left': 0,
+        'top-right': 0,
+        'top-center': 0,
+        'bottom-left': 0,
+        'bottom-right': 0,
+        'bottom-center': 0,
+    };
+
     Toast.lib = Toast.prototype = {
         toast: version,
         constructor: Toast,
@@ -90,11 +99,14 @@
 
             //console.log(this);
 
+            if(Toast.numbers[this.options.anchor.vertical + "-" + this.options.anchor.horizontal] >= this.options.maxToast) return;
+
             return this;
         },
         buildContainerToast: function(contentDiv, toast){
             if(!this.options) throw "Toast is not inizialized";
 
+            if(Toast.numbers[this.options.anchor.vertical + "-" + this.options.anchor.horizontal] >= this.options.maxToast) return;
 
             //make a conainer toast
             contentDiv = document.createElement('div');
@@ -117,6 +129,7 @@
         buildToast: function(toast){
             if(!this.options) throw "Toast is not inizialized";
 
+            if(Toast.numbers[this.options.anchor.vertical + "-" + this.options.anchor.horizontal] >= this.options.maxToast) return;
 
             //make a conainer toast
             toast = document.createElement('div');
@@ -137,19 +150,21 @@
                 toast.innerHTML = '';
             }
             if(this.options.custom){
-                if(this.options.custom.headerStyle){
-                    Object.values(this.options.custom.headerStyle).map((style, index)=>{
-                        let key = Object.keys(this.options.custom.headerStyle)[index];
+                if(this.options.custom.style){
+                    Object.values(this.options.custom.style).map((style, index)=>{
+                        let key = Object.keys(this.options.custom.style)[index];
 
                         toast.style[key] = style;
                     });
                 }
 
+                //toast.classList.add(this.options.custom.class);
+                toast.className += " " + this.options.custom.class;
 
-                toast.innerHTML += "<div class='toast-message "+this.options.custom.headerClass ? this.options.custom.headerClass : "" +"'>"+this.options.custom.header+"</div>";
+                this.HTMLElements(this.options.custom.header, toast);
                 
                 if(this.options.custom.main){
-                    toast.innerHTML += "<div class='toast-main'>"+this.options.custom.main+"</div>";
+                    this.HTMLElements(this.options.custom.main, toast);
                 }
             }else{
                 toast.innerHTML += "<div class='toast-message'>"+this.options.text+"</div>";
@@ -169,8 +184,48 @@
             return toast;
         },
 
+        //Decode html elements JSON Framework by espoweb
+        HTMLElements: function(data, parent = document.body, val = 0){
+            if(!data) throw "Data HTMLElements not found!";
+
+            let makeElement = HTMLElement;
+
+            data.forEach(elements => {
+                const keys = Object.keys(elements);
+                const values = Object.values(elements);
+                
+                for (let i = 0; i < keys.length; i++) {
+                    const element = keys[i];
+                    const value = values[i];
+                    
+                    makeElement = document.createElement(element);
+                    
+
+                    Object.keys(value).map((attr, index) => {
+                        if(attr == "HTMLElements"){
+                            val++;
+                            if(typeof Object.values(value)[index] == "object"){
+                                this.HTMLElements(Object.values(value)[index], makeElement, val);
+                            }else makeElement.innerHTML = Object.values(value)[index];
+                            
+                        }else if(attr == "onClick" ){ 
+                            makeElement.addEventListener('click', Object.values(value)[index]);
+                        }else makeElement.setAttribute(attr, Object.values(value)[index]);
+                    });
+
+                }
+
+                return parent.appendChild(makeElement);
+            });
+
+
+        },
+
         //Display the toast
         show: function(){
+
+            if(Toast.numbers[this.options.anchor.vertical + "-" + this.options.anchor.horizontal] >= this.options.maxToast) return;
+
             // Creating the DOM object for the toast
             this.containerToast  = this.buildContainerToast();
             this.toastElement = this.buildToast();
@@ -224,7 +279,8 @@
             }
 
 
-            //console.log("mostra", this.containerToast);
+            Toast.numbers[this.options.anchor.vertical + "-" + this.options.anchor.horizontal] ++;
+            console.log(Toast.numbers);
             return this;
         },
 
@@ -251,6 +307,7 @@
                 this.options.onClose.call(toastElements);
 
                 this.position();
+                Toast.numbers[this.options.anchor.vertical + "-" + this.options.anchor.horizontal] --;
             }.bind(this), 400);
 
             //console.log(toastElements);
