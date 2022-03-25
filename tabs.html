@@ -16,48 +16,84 @@
     <body>
         
         <div class="container">
-            <div class="row">
 
             <div class="row">
-                <div class="col code">
-                    <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+                <div class="col-12 code mb-5">
+                    <ul class="nav nav-tabs mb-2 fs-6">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Link 1</a>
+                            <a class="nav-link active" data-op-toggle="tab" href="#tab1" data-tab="tab-1">Link 1</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Link 2</a>
+                            <a class="nav-link" data-op-toggle="tab" href="#tab2" data-tab="tab-1">Link 2</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Link 3</a>
+                            <a class="nav-link" data-op-toggle="tab" href="#tab3" data-tab="tab-1">Link 3</a>
                         </li>
                     </ul>
                     
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel">
+                    <div class="tab" id="tab-1">
+                        <div class="tab-item fade show active" id="tab1" role="tabpanel">
                             Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
                         </div>
-                        <div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel">
+                        <div class="tab-item fade" id="tab2" role="tabpanel">
                             Nulla est ullamco ut irure incididunt nulla Lorem Lorem minim irure officia enim reprehenderit.
                         </div>
-                        <div class="tab-pane fade" id="kt_tab_pane_3" role="tabpanel">
+                        <div class="tab-item fade" id="tab3" role="tabpanel">
                             Sint sit mollit irure quis est nostrud cillum consequat Lorem esse do quis dolor esse fugiat sunt do.
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-12">
                     <pre><code></code></pre>
                 </div>
             </div> 
 
-            
+            <div class="row">
+                <div class="col-12 code mb-5">
+                    <div class="card shadow-dark">
+                        <div class="card-header card-header-stretch">
+                            <h3 class="card-title">Title asd</h3>
+                            <div class="card-toolbar">
+                                <ul class="nav nav-tabs mb-2 fs-6">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-op-toggle="tab" href="#tab4" data-tab="tab-2">Link 1</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-op-toggle="tab" href="#tab5" data-tab="tab-2">Link 2</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-op-toggle="tab" href="#tab6" data-tab="tab-2">Link 3</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body pt-2 pd4 grays-700">
+                            <div class="tab pt-0 pd3" id="tab-2">
+                                <div class="tab-item fade show active" id="tab4" role="tabpanel">
+                                    Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
+                                </div>
+                                <div class="tab-item fade" id="tab5" role="tabpanel">
+                                    Nulla est ullamco ut irure incididunt nulla Lorem Lorem minim irure officia enim reprehenderit.
+                                </div>
+                                <div class="tab-item fade" id="tab6" role="tabpanel">
+                                    Sint sit mollit irure quis est nostrud cillum consequat Lorem esse do quis dolor esse fugiat sunt do.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
             
         </div>
 
         <!--<script src="./js/opera.js"></script>-->
-        <script src="./js/tabs_.js"></script>
+        <script src="./js/op_toggle_.js"></script>
         <script>
 
-            new Tabs( document.querySelectorAll('[data-bs-toggle]'), {});
+            new OpToggle( document.querySelectorAll('[data-op-toggle]'));
 
 
             const code = document.querySelectorAll('.code');

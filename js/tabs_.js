@@ -57,12 +57,16 @@
 
             this.options.text = options.text || Tabs.defaults.text;    //Display message
 
-            console.log(this);
 
-            
+            elements.forEach(element => {
+                    const toggle = element.dataset.toggle;
+                    console.log(element, toggle);
+            });
 
             return this;
         },
+
+
     }
 
     Tabs.lib.init.prototype = Tabs.lib;
