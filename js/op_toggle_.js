@@ -40,6 +40,8 @@
 
     OpToggle.defaults = {};
 
+    OpToggle.closeDropdown;
+
 
     OpToggle.lib = OpToggle.prototype = {
         toast: version,
@@ -63,12 +65,115 @@
                     element.addEventListener('click', this.tabHandleClick);
                     //console.log(toggle, idTab, document.getElementById(idTab));
                     
-                }
+                }else 
+                if(toggle == "collapse-nav"){
+                    element.addEventListener('click', this.collapseHandleClick);
+                }else
+                    //Toggle dropdown
+                if(toggle == "dropdown"){
+                    
+                    const trigger = element.dataset.opTrigger;
+                    const idDropdown = element.id;
+
+
+                    if(trigger == "hover"){
+                        element.addEventListener('click', (e) => { e.preventDefault(); });
+
+
+                        element.addEventListener('mouseenter', this.dropdownMouseEnter);
+                        element.addEventListener('mouseleave', this.dropdownMouseLeave);
+                    }else if(trigger == "click"){
+
+
+                        element.addEventListener('click', this.dropdownMouseClick);
+                    }else throw "Error: unknown trigger selected!";
+                }else throw "Error: not toggle name function found!";
 
             });
 
             return this;
         },
+
+        stopCloseTimeout: function(){
+            OpToggle.closeDropdown = setTimeout(() => this.closeDropdown(), 50);
+        },
+        closeDropdown: function(){
+            console.log("close");
+        },
+        dropdownMouseEnter: function(e){
+            OpToggle.lib.stopCloseTimeout();
+            
+            //get dropdown ID
+            const id = e.target.id;
+            //get related dropdown menu
+            const dropdownname = document.querySelector("[data-dropdown-id='"+id+"'");
+
+
+            //remove active dropdownMenu
+            
+
+            /*
+
+
+            //Search all dropdown end remove .show class style
+            const dropdownMenu = document.querySelectorAll('.dropdown-menu');
+            dropdownMenu.forEach(element => {
+                element.classList.remove('show');
+            });
+
+
+            //dropdownname.style.display = "block";
+            //setTimeout(() =>{
+                //}, 0)
+                
+           // setTimeout(() =>{
+                dropdownname.classList.add('show');
+                //clearTimeout();
+            //}, 50);
+            console.log(e, 'mouseneter', dropdownname);*/
+        },
+
+        dropdownMouseLeave: function(e){
+
+            clearTimeout(OpToggle.closeDropdown);
+
+            /*const id = e.target.id;
+            const dropdownname = document.querySelector("[data-dropdown-id='"+id+"'");
+
+            console.log(e.target.nextElementSibling);
+
+
+            const dropdownMenu = document.querySelectorAll('.dropdown-menu');
+            dropdownMenu.forEach(element => {
+                element.classList.remove('show');
+
+                setTimeout(() =>{
+                    //element.style.display = "none";
+                }, 50);
+                
+            });
+            //const dropdownname = document.querySelector("[data-dropdown-id='"+id+"'");
+            //dropdownname.classList.remove('show');
+            //console.log(e, 'mouseleave', dropdownname);*/
+        },
+
+        dropdownMouseClick: function(e){
+            console.log(e, 'click');
+        },
+
+        collapseHandleClick: function(e){
+            const parentNavbar = this.parentNode;
+
+            if(parentNavbar.classList.contains('navbar')){
+                if(parentNavbar.querySelector('.navbar-collapse').classList.contains('show')){
+                    parentNavbar.querySelector('.navbar-collapse').classList.remove('show');
+                }else{
+                    parentNavbar.querySelector('.navbar-collapse').classList.add('show');
+                }
+            }
+
+        },
+        //Tab function click
         tabHandleClick: function(el){
             el.preventDefault();
             const idTab = el.target.href.split("#")[1];
