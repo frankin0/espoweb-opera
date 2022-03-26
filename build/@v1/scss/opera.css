@@ -5544,6 +5544,16 @@ nav {
     padding-right: 0px;
     font-weight: 400;
   }
+  .navbar .navbar-collapse.show .navbar-nav .dropdown-menu {
+    width: calc(100% - 20px);
+    left: 0px;
+    position: fixed;
+    top: 0px;
+    margin: 10px;
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px);
+    border-radius: 10px;
+  }
 }
 
 .navbar .collapse:not(.show) {
