@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12 code mb-5">
+                    <div class="navbar">
+                        <div class="navbar-brand">
+                            <img src="opera.png" class="navbar-brand-img" alt="">
+                        </div>
+                        <div class="navbar-collapse">
+
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item dropdown">
+                                    <a href="" class="nav-link" id="navbarLandings" data-bs-toggle="dropdown">Landing</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarLandings">
+                                        asfd
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <a href="" class="btn btn-primary">Buy now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+            
+        </div>
+
+        <script src="./js/opera.js"></script>
+        <!--<script src="./js/op_toggle_.js"></script>-->
+        <script>
+
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>
