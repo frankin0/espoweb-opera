@@ -35,13 +35,13 @@ ol, ul {
     max-width: 100%;
 }
 
-.display-block{
+.display-block, .block{
     display: block !important;
 }
-.display-none{
+.display-none, .none{
     display: none !important;
 }
-.display-flex{
+.display-flex, .flex{
     display: flex !important;
 }
 .display-inline-grid{
@@ -138,13 +138,13 @@ blockquote {
     margin-bottom: 1rem;
 }
 
-.position-relative {
+.relative, .position-relative{
     position: relative;
 }
-.position-absolute {
+.absolute, .position-absolute{
     position: absolute;
 }
-.position-inherit{
+.inherit, .position-inherit{
     position: inherit;
 }
 .justify-content-between {

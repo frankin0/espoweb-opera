@@ -1032,15 +1032,15 @@ ol, ul {
   max-width: 100%;
 }
 
-.display-block {
+.display-block, .block {
   display: block !important;
 }
 
-.display-none {
+.display-none, .none {
   display: none !important;
 }
 
-.display-flex {
+.display-flex, .flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
@@ -1159,15 +1159,15 @@ blockquote {
   margin-bottom: 1rem;
 }
 
-.position-relative {
+.relative, .position-relative {
   position: relative;
 }
 
-.position-absolute {
+.absolute, .position-absolute {
   position: absolute;
 }
 
-.position-inherit {
+.inherit, .position-inherit {
   position: inherit;
 }
 
@@ -1657,6 +1657,30 @@ hr {
 
 .rounded {
   border-radius: 0.375rem !important;
+}
+
+.rounded-0 {
+  border-radius: 0rem;
+}
+
+.rounded-1 {
+  border-radius: 0.375rem;
+}
+
+.rounded-2 {
+  border-radius: 0.75rem;
+}
+
+.rounded-3 {
+  border-radius: 1.125rem;
+}
+
+.rounded-4 {
+  border-radius: 1.5rem;
+}
+
+.rounded-5 {
+  border-radius: 1.875rem;
 }
 
 :root {
