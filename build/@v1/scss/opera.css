@@ -42,6 +42,10 @@ button.grays-100 {
   background-color: #f8f9fa !important;
 }
 
+.text-grays-100 {
+  color: #f8f9fa !important;
+}
+
 .btn.btn-icon-100 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -55,6 +59,10 @@ button.grays-200 {
 
 .background-grays-200 {
   background-color: #e9ecef !important;
+}
+
+.text-grays-200 {
+  color: #e9ecef !important;
 }
 
 .btn.btn-icon-200 .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -72,6 +80,10 @@ button.grays-300 {
   background-color: #dee2e6 !important;
 }
 
+.text-grays-300 {
+  color: #dee2e6 !important;
+}
+
 .btn.btn-icon-300 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -85,6 +97,10 @@ button.grays-400 {
 
 .background-grays-400 {
   background-color: #ced4da !important;
+}
+
+.text-grays-400 {
+  color: #ced4da !important;
 }
 
 .btn.btn-icon-400 .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -102,6 +118,10 @@ button.grays-500 {
   background-color: #adb5bd !important;
 }
 
+.text-grays-500 {
+  color: #adb5bd !important;
+}
+
 .btn.btn-icon-500 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -115,6 +135,10 @@ button.grays-600 {
 
 .background-grays-600 {
   background-color: #6c757d !important;
+}
+
+.text-grays-600 {
+  color: #6c757d !important;
 }
 
 .btn.btn-icon-600 .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -132,6 +156,10 @@ button.grays-700 {
   background-color: #495057 !important;
 }
 
+.text-grays-700 {
+  color: #495057 !important;
+}
+
 .btn.btn-icon-700 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -147,6 +175,10 @@ button.grays-800 {
   background-color: #343a40 !important;
 }
 
+.text-grays-800 {
+  color: #343a40 !important;
+}
+
 .btn.btn-icon-800 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -160,6 +192,10 @@ button.grays-900 {
 
 .background-grays-900 {
   background-color: #212529 !important;
+}
+
+.text-grays-900 {
+  color: #212529 !important;
 }
 
 .btn.btn-icon-900 .svg-icon svg [fill]:not(.permanent):not(g) {

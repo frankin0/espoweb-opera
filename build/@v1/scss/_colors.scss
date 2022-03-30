@@ -34,6 +34,9 @@
             .background-#{$color-attr}-#{$color}{
                 background-color: $value !important;
             }
+            .text-#{$color-attr}-#{$color}{
+                color: $value !important;
+            }
         }
 
         .btn.btn-icon-#{$color} .svg-icon svg [fill]:not(.permanent):not(g) {
