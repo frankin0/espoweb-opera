@@ -1361,6 +1361,30 @@ small {
   margin-left: auto !important;
 }
 
+.mr-auto {
+  margin-left: auto !important;
+}
+
+.mb-auto {
+  margin-left: auto !important;
+}
+
+.pt-auto {
+  margin-top: auto !important;
+}
+
+.pl-auto {
+  margin-left: auto !important;
+}
+
+.pr-auto {
+  margin-left: auto !important;
+}
+
+.pb-auto {
+  margin-left: auto !important;
+}
+
 .pt-14 {
   padding-top: 12rem !important;
 }
