@@ -1732,6 +1732,7 @@ function $(selector){
 }));
 
 document.addEventListener("DOMContentLoaded", function(){
+    console.log("Opera Project Status:");
     // Handler when the DOM is fully loaded
     $('input[data-mask]').mask()
 
@@ -1751,5 +1752,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     new OpToggle( document.querySelectorAll('[data-op-toggle]'));
 
+    console.log(": -- Online");
 });
 
