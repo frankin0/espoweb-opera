@@ -139,28 +139,35 @@ blockquote {
 }
 
 .position-relative {
-    position: relative;
+    position: relative !important;
 }
 .position-absolute {
-    position: absolute;
+    position: absolute !important;
 }
 .position-inherit{
-    position: inherit;
+    position: inherit !important;
 }
 .justify-content-between {
     justify-content: space-between !important;
 }
 
 .fullwidth{
-    width: 100%;
+    width: 100% !important;
 }
 .flex-stack {
     justify-content: space-between;
     align-items: center;
 }
 .list-style-none{
-    list-style: none;
+    list-style: none !important;
 }
 .no-list-style{
-    list-style: none;
+    list-style: none !important;
+}
+
+.overflow-hidden{
+    overflow: hidden !important;
+}
+.overflow-auto{
+    overflow: auto !important;
 }
