@@ -1,6 +1,6 @@
 
 /**
- * OperaJS V Build 1
+ * OperaJS V Build 1.2
  */
 
 /*
@@ -647,9 +647,10 @@ const Modal = {
             if(id){
                 if(id.includes(".") || id.includes("#")){
                    
-                    element.addEventListener('click', _this.modalShow);
+                    element.addEventListener('click', ()=>{
+                        _this.modalShow(element);
+                    });
                     
-
                 }else{
                     console.error("Modal id not found!");
                     return;
@@ -658,7 +659,7 @@ const Modal = {
         });
     },
     modalShow: (element) => {
-        const modal = document.querySelector(element.target.dataset.modalTarget);
+        const modal = document.querySelector(element.dataset.modalTarget);
         modal.style.display = "block";
         
        
@@ -683,7 +684,7 @@ const Modal = {
             }
         }
 
-        $('.modal [data-modal-dismiss="'+element.target.dataset.modalTarget+'"]').on('click', function(e){
+        $('.modal [data-modal-dismiss="'+element.dataset.modalTarget+'"]').on('click', function(e){
             e.preventDefault();
 
             Modal.modalClose(modal);
