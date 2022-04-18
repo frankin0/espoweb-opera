@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col code">
                     <button type="button" class="btn btn-primary" data-modal-target="#test">
-                        Launch demo modal Basic
+                       <span>Launch demo modal Basic</span> 
                     </button>
                     
                     <div class="modal fade" tabindex="-1" id="test" data-aria-closing="true">
@@ -198,7 +198,11 @@
         </div>
 
         <script src="./js/opera.js"></script>
+        <!--<script src="./js/modal_.js"></script>-->
         <script>
+
+            //new Modal(document.querySelectorAll('[data-modal-target]'));
+
             const code = document.querySelectorAll('.code');
 
             code.forEach(element => {

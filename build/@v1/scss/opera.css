@@ -42,6 +42,10 @@ button.grays-100 {
   background-color: #f8f9fa !important;
 }
 
+.text-grays-100 {
+  color: #f8f9fa !important;
+}
+
 .btn.btn-icon-100 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -55,6 +59,10 @@ button.grays-200 {
 
 .background-grays-200 {
   background-color: #e9ecef !important;
+}
+
+.text-grays-200 {
+  color: #e9ecef !important;
 }
 
 .btn.btn-icon-200 .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -72,6 +80,10 @@ button.grays-300 {
   background-color: #dee2e6 !important;
 }
 
+.text-grays-300 {
+  color: #dee2e6 !important;
+}
+
 .btn.btn-icon-300 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -85,6 +97,10 @@ button.grays-400 {
 
 .background-grays-400 {
   background-color: #ced4da !important;
+}
+
+.text-grays-400 {
+  color: #ced4da !important;
 }
 
 .btn.btn-icon-400 .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -102,6 +118,10 @@ button.grays-500 {
   background-color: #adb5bd !important;
 }
 
+.text-grays-500 {
+  color: #adb5bd !important;
+}
+
 .btn.btn-icon-500 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -115,6 +135,10 @@ button.grays-600 {
 
 .background-grays-600 {
   background-color: #6c757d !important;
+}
+
+.text-grays-600 {
+  color: #6c757d !important;
 }
 
 .btn.btn-icon-600 .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -132,6 +156,10 @@ button.grays-700 {
   background-color: #495057 !important;
 }
 
+.text-grays-700 {
+  color: #495057 !important;
+}
+
 .btn.btn-icon-700 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -147,6 +175,10 @@ button.grays-800 {
   background-color: #343a40 !important;
 }
 
+.text-grays-800 {
+  color: #343a40 !important;
+}
+
 .btn.btn-icon-800 .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
@@ -160,6 +192,10 @@ button.grays-900 {
 
 .background-grays-900 {
   background-color: #212529 !important;
+}
+
+.text-grays-900 {
+  color: #212529 !important;
 }
 
 .btn.btn-icon-900 .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -668,6 +704,24 @@ button.background-danger {
   fill: #f14668;
 }
 
+.background-transparent,
+button.background-transparent {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-transparent:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-transparent:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: rgba(0, 0, 0, 0);
+  color: #f8f9fa;
+  border-color: rgba(0, 0, 0, 0) !important;
+}
+
+.btn.btn-icon-transparent .svg-icon svg [fill]:not(.permanent):not(g) {
+  -webkit-transition: fill .3s ease;
+  transition: fill .3s ease;
+  fill: rgba(0, 0, 0, 0);
+}
+
 .background-light-primary,
 button.background-light-primary {
   background-color: #ebfffc !important;
@@ -1032,15 +1086,15 @@ ol, ul {
   max-width: 100%;
 }
 
-.display-block {
+.display-block, .block {
   display: block !important;
 }
 
-.display-none {
+.display-none, .none {
   display: none !important;
 }
 
-.display-flex {
+.display-flex, .flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
@@ -1159,15 +1213,15 @@ blockquote {
   margin-bottom: 1rem;
 }
 
-.position-relative {
+.relative, .position-relative {
   position: relative;
 }
 
-.position-absolute {
+.absolute, .position-absolute {
   position: absolute;
 }
 
-.position-inherit {
+.inherit, .position-inherit {
   position: inherit;
 }
 
@@ -1323,6 +1377,30 @@ small {
 
 .ml-auto {
   margin-left: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+.pt-auto {
+  padding-top: auto !important;
+}
+
+.pl-auto {
+  padding-left: auto !important;
+}
+
+.pr-auto {
+  padding-right: auto !important;
+}
+
+.pb-auto {
+  padding-bottom: auto !important;
 }
 
 .pt-14 {
@@ -1659,6 +1737,30 @@ hr {
   border-radius: 0.375rem !important;
 }
 
+.rounded-0 {
+  border-radius: 0rem !important;
+}
+
+.rounded-1 {
+  border-radius: 0.375rem !important;
+}
+
+.rounded-2 {
+  border-radius: 0.75rem !important;
+}
+
+.rounded-3 {
+  border-radius: 1.125rem !important;
+}
+
+.rounded-4 {
+  border-radius: 1.5rem !important;
+}
+
+.rounded-5 {
+  border-radius: 1.875rem !important;
+}
+
 :root {
   --bs-grays-100: #f8f9fa;
   --bs-grays-200: #e9ecef;
@@ -1714,6 +1816,7 @@ hr {
   --bs-background-success: #40c489;
   --bs-background-warning: #ffe08a;
   --bs-background-danger: #f14668;
+  --bs-background-transparent: rgba(0, 0, 0, 0);
   --bs-background-light-primary: #ebfffc;
   --bs-background-light-link: #eef3fc;
   --bs-background-light-info: #eef6fc;
@@ -3519,6 +3622,65 @@ hr {
   color: #f14668;
 }
 
+.btn-transparent.btn-loading:after {
+  border-color: transparent transparent #f8f9fa #f8f9fa;
+}
+
+.btn-transparent {
+  background-color: rgba(0, 0, 0, 0);
+  color: #f8f9fa;
+  border-color: transparent !important;
+}
+
+.btn-transparent:hover:not(:disabled), .btn-transparent .is-hover:not(:disabled) {
+  background-color: black;
+  color: #f8f9fa;
+}
+
+.btn-transparent:active, .btn-transparent .is-active {
+  background-color: black;
+  color: #f8f9fa;
+}
+
+.btn.btn-transparent.btn-outlined {
+  background-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0) !important;
+  border-width: 1px;
+  border-style: dashed;
+}
+
+.btn.btn-transparent.btn-outlined:hover,
+.btn.btn-transparent.btn-outlined.is-hover {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0) !important;
+}
+
+.btn.btn-transparent.btn-linked {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0);
+}
+
+.btn.btn-transparent.btn-linked:hover,
+.btn.btn-transparent.btn-linked.is-hover {
+  background-color: rgba(0, 0, 0, 0.045);
+}
+
+.btn-transparent.btn-cartoon {
+  color: black;
+  background-color: rgba(245, 245, 245, 0);
+}
+
+.btn-transparent.btn-light {
+  color: #212529;
+  background-color: transparent;
+}
+
+.btn-transparent.btn-light:hover {
+  background-color: rgba(245, 245, 245, 0);
+  color: rgba(0, 0, 0, 0);
+}
+
 .block {
   padding-bottom: 1.5rem;
 }
@@ -3930,6 +4092,11 @@ hr {
 
 .badge.background-danger {
   background-color: #f14668;
+  color: #f8f9fa;
+}
+
+.badge.background-transparent {
+  background-color: rgba(0, 0, 0, 0);
   color: #f8f9fa;
 }
 

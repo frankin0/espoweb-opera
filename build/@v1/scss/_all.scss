@@ -35,13 +35,13 @@ ol, ul {
     max-width: 100%;
 }
 
-.display-block{
+.display-block, .block{
     display: block !important;
 }
-.display-none{
+.display-none, .none{
     display: none !important;
 }
-.display-flex{
+.display-flex, .flex{
     display: flex !important;
 }
 .display-inline-grid{
@@ -138,36 +138,29 @@ blockquote {
     margin-bottom: 1rem;
 }
 
-.position-relative {
-    position: relative !important;
+.relative, .position-relative{
+    position: relative;
 }
-.position-absolute {
-    position: absolute !important;
+.absolute, .position-absolute{
+    position: absolute;
 }
-.position-inherit{
-    position: inherit !important;
+.inherit, .position-inherit{
+    position: inherit;
 }
 .justify-content-between {
     justify-content: space-between !important;
 }
 
 .fullwidth{
-    width: 100% !important;
+    width: 100%;
 }
 .flex-stack {
     justify-content: space-between;
     align-items: center;
 }
 .list-style-none{
-    list-style: none !important;
+    list-style: none;
 }
 .no-list-style{
-    list-style: none !important;
-}
-
-.overflow-hidden{
-    overflow: hidden !important;
-}
-.overflow-auto{
-    overflow: auto !important;
+    list-style: none;
 }
