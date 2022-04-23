@@ -1,6 +1,6 @@
 {
   "name": "react-espoweb-opera",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A espoweb graphic framework ",
   "private": false,
   "main": "lib/index.js",
