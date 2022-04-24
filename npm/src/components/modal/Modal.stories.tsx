@@ -8,6 +8,9 @@ export default {
 	title: 'Components/Modal',
 	component: Modal,
 	argTypes: {
+        scrollBarWidth:{
+            control: 'number'
+        },
         activate: {
             control: 'boolean'
         },
@@ -29,6 +32,7 @@ Default.args = {
     //types: 'primary',
     activate: false,
     id: 'test',
+    scrollBarWidth: 17,
     children: (
         <>
             <div className="modal-header">

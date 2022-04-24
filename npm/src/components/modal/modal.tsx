@@ -1,4 +1,4 @@
-import React, { ReactNode, MouseEventHandler} from 'react';
+import React, { ReactNode, MouseEventHandler, useEffect, useState, ChangeEvent} from 'react';
 //import {  StyledWrapper } from './styled';
 import '../../opera.css';   //test
 
@@ -11,52 +11,111 @@ export interface ModalProps{
     closing?: boolean,
     children?: ReactNode;
     activate?: boolean;
+    scrollBarWidth?: number,
+    onClickButton?: React.MouseEventHandler<HTMLDivElement>;
 }
+
+interface BackPdropProps {
+    id?: string,
+    activate?: boolean,
+    scrollBarWidth?: number
+}
+
+const createElementbackdrop: React.ForwardRefRenderFunction<HTMLDivElement, BackPdropProps> = (props) => {
+    
+    const {
+        id = 'none',
+        activate = false,
+        scrollBarWidth
+    } = props;
+
+    
+    
+    const [ show, setShow ] = useState(false);
+
+    useEffect(() => {
+
+        if(activate){
+            setTimeout(() => {
+                setShow(true);
+                document.body.classList.add('modal-open');
+                document.body.style.overflow = "hidden";
+                document.body.style.paddingRight = scrollBarWidth + "px";
+            }, 1);
+        }else{
+            setShow(false);
+        }
+
+    });
+
+    return (
+        <div data-opera-id={"element-opera-" + id} className={["modal-backdrop", "fade", show ? "show" : ""].join(" ")}></div>
+    );
+};
 
 const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (props, ref) =>{
 
-    const {
+    let {
         id,
         size = "",
         className,
         children,
         closing = true,
         activate = false,
+        onClickButton,
+        scrollBarWidth = 17
     } = props;
 
 
-    if(activate){
-        const createElementbackdrop = document.createElement('div');
-        createElementbackdrop.classList.add('modal-backdrop', 'fade');
-        document.body.appendChild(createElementbackdrop);
-        
-        setTimeout(() => {
-            createElementbackdrop.classList.add('show');
-            document.body.classList.add('modal-open');
-            document.body.style.overflow = "hidden";
-            document.body.style.paddingRight = "17px";
-        }, 1);
-    }else{
-        document.getElementsByClassName('modal-backdrop')[0].remove();
-    }
-
-
+    
     if(id == null || id == undefined) throw "Error not id found!";
+    
+    let activate_update = activate;
 
+    const [ showbackdrop, setShowbackdrop ] = useState<boolean>(false);
+
+    const [ showModalAnim, setShowModalAnim ] = useState<boolean>(false);
+
+    useEffect(() => {
+        if(activate_update){
+            //show modal
+            setShowbackdrop(true);
+            setTimeout(() => {
+                setShowModalAnim(true);
+            }, 1);
+        }else{    
+            //close modal
+            setShowModalAnim(false);
+            setTimeout(() => {
+                setShowbackdrop(false);
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = "";
+                document.body.style.paddingRight  ="";
+            }, 100);
+        }
+    });
+
+
+    
     return (
-        <div 
-            id={id}
-            ref={ref}
-            style={activate ? {display: 'block'} : {}}
-            className={[className, "modal", 'fade', activate ? 'show' : '', size].join(" ")}
-            data-aria-closing={closing}
-        >
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    {children}
+        <>
+            <div 
+                id={id}
+                ref={ref}
+                style={showbackdrop ? {display: 'block'} : {}}
+                className={[className, "modal", 'fade', showModalAnim ? 'show' : '', size].join(" ")}
+                data-aria-closing={closing}
+                onClick={onClickButton}
+            >
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        {children}
+                    </div>
                 </div>
             </div>
-        </div>
+
+            {showbackdrop ? React.createElement(createElementbackdrop, {id: id, activate: activate_update, scrollBarWidth: scrollBarWidth}) : ""}
+        </>
     );
 }
 
