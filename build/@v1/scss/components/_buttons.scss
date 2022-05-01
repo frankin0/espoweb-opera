@@ -42,7 +42,7 @@
     border: 1px solid transparent;
     padding: .8125rem 1.25rem;
     //font-size: 1.0625rem;
-    border-radius: .375rem;
+    border-radius: .3125rem;
     background-color: #fff;
     color: color(grays, "900");
     outline: 0!important;
@@ -153,6 +153,23 @@
                     }@else{
                         @include hoverColor($value);
                     }
+                }
+
+                &:hover:not(:disabled), .is-hover:not(:disabled){
+                    @if $color == "white" && $color == "dark" && $color == "black" {
+                        @include lightColor($value);
+                    }@else{
+                        @include hoverColor($value);
+                    }
+                }
+
+                &.btn-anim:hover:not(:disabled), .is-hover.btn-anim:not(:disabled){
+                    @if $color == "white" && $color == "dark" && $color == "black" {
+                        @include lightColorWithAnim($value);
+                    }@else{
+                        @include hoverWithAnimColor($value);
+                    }
+                    transition: all .2s ease-in-out;
                 }
         
                 &:active, .is-active{

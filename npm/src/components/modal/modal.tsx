@@ -21,7 +21,7 @@ interface BackPdropProps {
     scrollBarWidth?: number
 }
 
-const createElementbackdrop: React.ForwardRefRenderFunction<HTMLDivElement, BackPdropProps> = (props) => {
+const CreateElementbackdrop: React.ForwardRefRenderFunction<HTMLDivElement, BackPdropProps> = (props) => {
     
     const {
         id = 'none',
@@ -41,6 +41,7 @@ const createElementbackdrop: React.ForwardRefRenderFunction<HTMLDivElement, Back
                 document.body.classList.add('modal-open');
                 document.body.style.overflow = "hidden";
                 document.body.style.paddingRight = scrollBarWidth + "px";
+                clearTimeout();
             }, 1);
         }else{
             setShow(false);
@@ -82,6 +83,7 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (props
             setShowbackdrop(true);
             setTimeout(() => {
                 setShowModalAnim(true);
+                clearTimeout();
             }, 1);
         }else{    
             //close modal
@@ -91,6 +93,7 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (props
                 document.body.classList.remove('modal-open');
                 document.body.style.overflow = "";
                 document.body.style.paddingRight  ="";
+                clearTimeout();
             }, 100);
         }
     });
@@ -114,7 +117,7 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (props
                 </div>
             </div>
 
-            {showbackdrop ? React.createElement(createElementbackdrop, {id: id, activate: activate_update, scrollBarWidth: scrollBarWidth}) : ""}
+            {showbackdrop ? React.createElement(CreateElementbackdrop, {id: id, activate: activate_update, scrollBarWidth: scrollBarWidth}) : ""}
         </>
     );
 }
