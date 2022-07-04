@@ -147,6 +147,9 @@ blockquote {
 .inherit, .position-inherit{
     position: inherit;
 }
+.fixed, .position-fixed{
+    position: inherit;
+}
 .justify-content-between {
     justify-content: space-between !important;
 }
