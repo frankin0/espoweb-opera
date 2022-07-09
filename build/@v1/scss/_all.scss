@@ -29,7 +29,10 @@ dl, ol, ul {
 ol, ul {
     padding-left: 2rem;
 }
-
+.full-width{
+    width: 100%;
+    max-width: 100%;
+}
 .img-fluid, .img-thumbnail {
     height: auto;
     max-width: 100%;
