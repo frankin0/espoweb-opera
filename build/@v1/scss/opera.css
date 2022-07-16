@@ -306,24 +306,24 @@ button.text-black {
 
 .text-dark,
 button.text-dark {
-  color: #191d34 !important;
+  color: whitesmoke !important;
 }
 
 .btn.btn-icon-dark .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: #191d34;
+  fill: whitesmoke;
 }
 
 .text-light,
 button.text-light {
-  color: whitesmoke !important;
+  color: #191d34 !important;
 }
 
 .btn.btn-icon-light .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: whitesmoke;
+  fill: #191d34;
 }
 
 .text-primary,
@@ -562,38 +562,38 @@ button.background-black {
 
 .background-dark,
 button.background-dark {
-  background-color: #191d34 !important;
+  background-color: whitesmoke !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: #191d34;
-  color: #f8f9fa;
-  border-color: #191d34 !important;
-}
-
-.btn.btn-icon-dark .svg-icon svg [fill]:not(.permanent):not(g) {
-  -webkit-transition: fill .3s ease;
-  transition: fill .3s ease;
-  fill: #191d34;
-}
-
-.background-light,
-button.background-light {
-  background-color: whitesmoke !important;
-}
-
-.box-checkbox .opera-checkbox.checkbox-background-light:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
-.box-radio .opera-checkbox.checkbox-background-light:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
   background-color: whitesmoke;
   color: #212529;
   border-color: whitesmoke !important;
 }
 
-.btn.btn-icon-light .svg-icon svg [fill]:not(.permanent):not(g) {
+.btn.btn-icon-dark .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
   fill: whitesmoke;
+}
+
+.background-light,
+button.background-light {
+  background-color: #191d34 !important;
+}
+
+.box-checkbox .opera-checkbox.checkbox-background-light:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+.box-radio .opera-checkbox.checkbox-background-light:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
+  background-color: #191d34;
+  color: #f8f9fa;
+  border-color: #191d34 !important;
+}
+
+.btn.btn-icon-light .svg-icon svg [fill]:not(.permanent):not(g) {
+  -webkit-transition: fill .3s ease;
+  transition: fill .3s ease;
+  fill: #191d34;
 }
 
 .background-primary,
@@ -1079,6 +1079,11 @@ dl, ol, ul {
 
 ol, ul {
   padding-left: 2rem;
+}
+
+.full-width {
+  width: 100%;
+  max-width: 100%;
 }
 
 .img-fluid, .img-thumbnail {
@@ -1798,8 +1803,8 @@ hr {
   --op-colors-danger: #f14668;
   --op-text-white: white;
   --op-text-black: #0a0a0a;
-  --op-text-dark: #191d34;
-  --op-text-light: whitesmoke;
+  --op-text-dark: whitesmoke;
+  --op-text-light: #191d34;
   --op-text-primary: #00d1b2;
   --op-text-link: #485fc7;
   --op-text-info: #3e8ed0;
@@ -1820,8 +1825,8 @@ hr {
   --op-text-dark-danger: #cc0f35;
   --op-background-white: white;
   --op-background-black: #0a0a0a;
-  --op-background-dark: #191d34;
-  --op-background-light: whitesmoke;
+  --op-background-dark: whitesmoke;
+  --op-background-light: #191d34;
   --op-background-primary: #00d1b2;
   --op-background-link: #485fc7;
   --op-background-info: #3e8ed0;
@@ -3003,6 +3008,18 @@ hr {
           align-items: center;
 }
 
+.flex-align-items-center {
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+}
+
+.flex-content-end {
+  -webkit-box-pack: end !important;
+      -ms-flex-pack: end !important;
+          justify-content: flex-end !important;
+}
+
 @media (min-width: 576px) {
   .flex-sm-root {
     -webkit-box-flex: 1;
@@ -3493,101 +3510,26 @@ hr {
 }
 
 .btn-dark.btn-loading:after {
-  border-color: transparent transparent #f8f9fa #f8f9fa;
-}
-
-.btn-dark {
-  background-color: #191d34;
-  color: #f8f9fa;
-  border-color: transparent !important;
-}
-
-.btn-dark:hover:not(:disabled), .btn-dark .is-hover:not(:disabled) {
-  background-color: #13172e;
-  color: #f8f9fa;
-}
-
-.btn-dark:hover:not(:disabled), .btn-dark .is-hover:not(:disabled) {
-  background-color: #13172e;
-  color: #f8f9fa;
-}
-
-.btn-dark.btn-anim:hover:not(:disabled), .btn-dark .is-hover.btn-anim:not(:disabled) {
-  background-color: #13172e;
-  color: #f8f9fa;
-  -webkit-box-shadow: 0 4px 11px rgba(19, 23, 46, 0.35);
-          box-shadow: 0 4px 11px rgba(19, 23, 46, 0.35);
-  -webkit-transform: translateY(-3px);
-          transform: translateY(-3px);
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-}
-
-.btn-dark:active, .btn-dark .is-active {
-  background-color: #0c1027;
-  color: #f8f9fa;
-}
-
-.btn.btn-dark.btn-outlined {
-  background-color: transparent !important;
-  border-color: #191d34 !important;
-  border-width: 1px;
-  border-style: dashed;
-}
-
-.btn.btn-dark.btn-outlined:hover,
-.btn.btn-dark.btn-outlined.is-hover {
-  color: #191d34;
-  background-color: rgba(25, 29, 52, 0.05) !important;
-  border-color: #191d34 !important;
-}
-
-.btn.btn-dark.btn-linked {
-  background-color: transparent;
-  color: #191d34;
-}
-
-.btn.btn-dark.btn-linked:hover,
-.btn.btn-dark.btn-linked.is-hover {
-  background-color: rgba(0, 0, 0, 0.045);
-}
-
-.btn-dark.btn-cartoon {
-  color: #190000;
-  background-color: #f1f2f8;
-}
-
-.btn-dark.btn-light {
-  color: #212529;
-  background-color: transparent;
-}
-
-.btn-dark.btn-light:hover {
-  background-color: #f1f2f8;
-  color: #191d34;
-}
-
-.btn-light.btn-loading:after {
   border-color: transparent transparent #212529 #212529;
 }
 
-.btn-light {
+.btn-dark {
   background-color: whitesmoke;
   color: #212529;
   border-color: transparent !important;
 }
 
-.btn-light:hover:not(:disabled), .btn-light .is-hover:not(:disabled) {
+.btn-dark:hover:not(:disabled), .btn-dark .is-hover:not(:disabled) {
   background-color: #efefef;
   color: #212529;
 }
 
-.btn-light:hover:not(:disabled), .btn-light .is-hover:not(:disabled) {
+.btn-dark:hover:not(:disabled), .btn-dark .is-hover:not(:disabled) {
   background-color: #efefef;
   color: #212529;
 }
 
-.btn-light.btn-anim:hover:not(:disabled), .btn-light .is-hover.btn-anim:not(:disabled) {
+.btn-dark.btn-anim:hover:not(:disabled), .btn-dark .is-hover.btn-anim:not(:disabled) {
   background-color: #efefef;
   color: #212529;
   -webkit-box-shadow: 0 4px 11px rgba(239, 239, 239, 0.35);
@@ -3598,28 +3540,103 @@ hr {
   transition: all .2s ease-in-out;
 }
 
-.btn-light:active, .btn-light .is-active {
+.btn-dark:active, .btn-dark .is-active {
   background-color: #e8e8e8;
   color: #212529;
 }
 
-.btn.btn-light.btn-outlined {
+.btn.btn-dark.btn-outlined {
   background-color: transparent !important;
   border-color: whitesmoke !important;
   border-width: 1px;
   border-style: dashed;
 }
 
-.btn.btn-light.btn-outlined:hover,
-.btn.btn-light.btn-outlined.is-hover {
+.btn.btn-dark.btn-outlined:hover,
+.btn.btn-dark.btn-outlined.is-hover {
   color: whitesmoke;
   background-color: rgba(245, 245, 245, 0.05) !important;
   border-color: whitesmoke !important;
 }
 
-.btn.btn-light.btn-linked {
+.btn.btn-dark.btn-linked {
   background-color: transparent;
   color: whitesmoke;
+}
+
+.btn.btn-dark.btn-linked:hover,
+.btn.btn-dark.btn-linked.is-hover {
+  background-color: rgba(0, 0, 0, 0.045);
+}
+
+.btn-dark.btn-cartoon {
+  color: #f5b8c1;
+  background-color: whitesmoke;
+}
+
+.btn-dark.btn-light {
+  color: #212529;
+  background-color: transparent;
+}
+
+.btn-dark.btn-light:hover {
+  background-color: whitesmoke;
+  color: whitesmoke;
+}
+
+.btn-light.btn-loading:after {
+  border-color: transparent transparent #f8f9fa #f8f9fa;
+}
+
+.btn-light {
+  background-color: #191d34;
+  color: #f8f9fa;
+  border-color: transparent !important;
+}
+
+.btn-light:hover:not(:disabled), .btn-light .is-hover:not(:disabled) {
+  background-color: #13172e;
+  color: #f8f9fa;
+}
+
+.btn-light:hover:not(:disabled), .btn-light .is-hover:not(:disabled) {
+  background-color: #13172e;
+  color: #f8f9fa;
+}
+
+.btn-light.btn-anim:hover:not(:disabled), .btn-light .is-hover.btn-anim:not(:disabled) {
+  background-color: #13172e;
+  color: #f8f9fa;
+  -webkit-box-shadow: 0 4px 11px rgba(19, 23, 46, 0.35);
+          box-shadow: 0 4px 11px rgba(19, 23, 46, 0.35);
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.btn-light:active, .btn-light .is-active {
+  background-color: #0c1027;
+  color: #f8f9fa;
+}
+
+.btn.btn-light.btn-outlined {
+  background-color: transparent !important;
+  border-color: #191d34 !important;
+  border-width: 1px;
+  border-style: dashed;
+}
+
+.btn.btn-light.btn-outlined:hover,
+.btn.btn-light.btn-outlined.is-hover {
+  color: #191d34;
+  background-color: rgba(25, 29, 52, 0.05) !important;
+  border-color: #191d34 !important;
+}
+
+.btn.btn-light.btn-linked {
+  background-color: transparent;
+  color: #191d34;
 }
 
 .btn.btn-light.btn-linked:hover,
@@ -3628,8 +3645,8 @@ hr {
 }
 
 .btn-light.btn-cartoon {
-  color: #f5b8c1;
-  background-color: whitesmoke;
+  color: #190000;
+  background-color: #f1f2f8;
 }
 
 .btn-light.btn-light {
@@ -3638,8 +3655,8 @@ hr {
 }
 
 .btn-light.btn-light:hover {
-  background-color: whitesmoke;
-  color: whitesmoke;
+  background-color: #f1f2f8;
+  color: #191d34;
 }
 
 .btn-primary.btn-loading:after {
@@ -4542,13 +4559,13 @@ hr {
 }
 
 .badge.background-dark {
-  background-color: #191d34;
-  color: #f8f9fa;
+  background-color: whitesmoke;
+  color: #212529;
 }
 
 .badge.background-light {
-  background-color: whitesmoke;
-  color: #212529;
+  background-color: #191d34;
+  color: #f8f9fa;
 }
 
 .badge.background-primary {
@@ -4655,7 +4672,7 @@ hr {
 .badge.background-light-dark {
   color: #212529;
   background-color: transparent;
-  color: #191d34 !important;
+  color: whitesmoke !important;
 }
 
 .badge.background-light-dark:hover {
@@ -6159,7 +6176,7 @@ nav {
 }
 
 .navbar.background-dark .nav-item .nav-link {
-  color: whitesmoke;
+  color: #191d34;
 }
 
 .navbar .navbar-toggler {
@@ -6415,7 +6432,7 @@ nav {
 }
 
 .navbar .dropdown-menu .dropdown-image h4 {
-  color: whitesmoke;
+  color: #191d34;
   font-size: 1.1875rem;
 }
 
