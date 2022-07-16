@@ -39,6 +39,12 @@
     justify-content: space-between;
     align-items: center
 }
+.flex-align-items-center{
+    align-items: center!important;
+} 
+.flex-content-end{
+    justify-content: flex-end!important;
+}
 
 @media (min-width:576px) {
     .flex-sm-root {
