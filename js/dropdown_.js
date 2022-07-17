@@ -142,9 +142,15 @@
         },
         handleClickOutSide: function(event){
             const closeDropdown = document.querySelector('.op-dropdown.show');
+            const trigger = document.querySelector('[data-op-dropdown]');
             if(closeDropdown === null) return;
+            //data-op-dropdown-outsideclose
 
-            if (event.target.closest(".op-dropdown") != null || event.target.closest("[data-op-dropdown]") != null) return
+            const outsideclose = trigger.dataset.opDropdownOutsideclose;
+            console.log(outsideclose);
+            let outsidePermission = outsideclose === true ? event.target.closest(".op-dropdown") != null : true
+            
+            if ( outsidePermission || event.target.closest("[data-op-dropdown]") != null) return
 
             closeDropdown.classList.remove('show');
         },
