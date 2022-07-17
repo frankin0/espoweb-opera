@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="container">
+            <div class="row">
+                
+                <div class="col code">
+                    <button class="btn btn-primary" data-op-dropdown="#dropdown-view" data-op-dropdown-position="bottom-center" data-op-dropdown-inset="0,2">DropDown</button>
+                    <div class="op-dropdown op-dropdown-anim-back-top background-dark" id="dropdown-view">
+                        <div class="op-dropdown-item">
+                            <a href="#" class="menu-link text-600">Mostra</a>
+                            <a href="#" class="menu-link text-600">Rinomina</a>
+                            <a href="#" class="menu-link text-600">Scarica Cartella</a> 
+                            <a href="#" class="menu-link text-600">Sposta Cartella</a>
+                            <a href="#" class="menu-link text-danger text-600">Elimina</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+
+        <!--<div id="asd2" style="position: fixed; inset: 0px auto auto 0px; width: 100%; height: 1px; background: blue;"></div>
+        <div id="asd3" style="position: fixed; inset: 0px auto auto 0px; width: 100%; height: 1px; background:indigo;"></div>
+        <div id="asd" style="position: absolute; top: 0; left: 0px; width: 100%; height: 1px; background: red;"></div>-->
+
+            
+            
+        </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        
+        <script src="./js/dropdown_.js"></script>
+        <script>
+
+            var dropdown = new Dropdown( document.querySelectorAll('[data-op-dropdown]'), {
+                duration: 1500, //durata del popup dall'evento
+                delay: 100,
+                display: 100 //popup mostrati nella pagina
+            });
+
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>
