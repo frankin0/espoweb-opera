@@ -1,5 +1,4 @@
 .dropdown-menu {
-    background-clip: padding-box;
     background-color: #fff;
     border: 0 solid rgba(22,28,45,.15);
     border-radius: .375rem;
@@ -33,6 +32,9 @@
     animation: menu-sub-dropdown-animation-fade-in .3s ease 1,menu-sub-dropdown-animation-move-up .3s ease 1;
 }
 
+.op-dropdown .op-dropdown-body {
+    position: relative;
+}
 
 .op-dropdown .op-dropdown-item{
     display: block;

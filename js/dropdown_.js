@@ -147,11 +147,12 @@
             //data-op-dropdown-outsideclose
 
             const outsideclose = trigger.dataset.opDropdownOutsideclose;
-            console.log(outsideclose);
-            let outsidePermission = outsideclose === true ? event.target.closest(".op-dropdown") != null : true
+            let outsidePermission = outsideclose == undefined ? true : outsideclose
             
-            if ( outsidePermission || event.target.closest("[data-op-dropdown]") != null) return
-
+            if ( event.target.closest("[data-op-dropdown]") != null) return
+            
+            if(outsidePermission === "false") return;
+            
             closeDropdown.classList.remove('show');
         },
         
