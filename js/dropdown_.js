@@ -3,6 +3,7 @@
  * Copyright 2022 espoweb.it (https://espoweb.it/)
  * Licensed under MIT ()
  */
+
 ;(function (root, factory) {
 
     if (typeof define === 'function' && define.amd) {
@@ -40,9 +41,7 @@
 
     Dropdown.defaults = {};
 
-    Dropdown.closeDropdown;
-
-
+    
     Dropdown.lib = Dropdown.prototype = {
         toast: version,
         constructor: Dropdown,
@@ -60,7 +59,7 @@
 
             elements.forEach(element => {
                 const drp = element.dataset.opDropdown;
-                const pos = element.dataset.opDropdownPosition;
+                const dropdownPos = element.dataset.opDropdownPosition;
                 const inset = element.dataset.opDropdownInset;
                 let insetX, insetY;
                 if(inset){
@@ -84,8 +83,29 @@
                     dropDownCard.style.zIndex =  105;
                     
                     
-                    let posX = elPos.left + insetX;
+                    const splitDropPos = dropdownPos.split('-'); // bottom[0]-left[1]
+                    const dropDownCardRect = dropDownCard.getBoundingClientRect();
+
+                    let sdpa, sbpb;
+                    if(splitDropPos[0] == "bottom"){
+                        sdpa = 0;
+                    }else if(splitDropPos[0] == "top"){
+                        sdpa = 0;
+                    }else {
+                        sdpa = 0;
+                    }
+
+                    if(splitDropPos[1] == "left"){
+                        sbpb = - dropDownCardRect.width;
+                    }else if(splitDropPos[1] == "right"){
+                        sbpb = 0;
+                    }else {
+                        sbpb = 0;
+                    }
+
+                    let posX = elPos.left + insetX - dropDownCardRect.width;
                     let posY = (elPos.top + elPos.height) + insetY;
+                    //console.log(dropDownCard, element);
                     
                     dropDownCard.style.transform = 'translate('+posX+'px, '+posY+'px)';  //x , y
                     
@@ -129,15 +149,34 @@
         },
 
         handleClick: function(e){
-            
+            e.preventDefault();
             const drp = e.currentTarget.dataset.opDropdown;
+            const inset = e.currentTarget.dataset.opDropdownInset;
+                let insetX, insetY;
+                if(inset){
+                    insetX = (inset.split(',').length == 2 ? parseInt(inset.split(',')[0]) : 0);
+                    insetY = (inset.split(',').length == 2 ? parseInt(inset.split(',')[1]) : 0);
+                }else{
+                    insetX = 0;
+                    insetY = 0;
+                }
             const drpElement = document.querySelector(drp);
             
             if(drpElement.classList.contains('show')){
                 drpElement.classList.remove('show');
             }else{
                 drpElement.classList.add('show');
+
+                const drpElementRect = drpElement.getBoundingClientRect();
+                if(drpElementRect.y + drpElementRect.height > window.innerHeight){
+                    const element = e.currentTarget.getBoundingClientRect();
+                    
+                    drpElement.style.transform = 'translate('+element.left+'px, '+ (element.top - drpElementRect.height - insetY) +'px)';
+                    console.log(drpElementRect.top - drpElementRect.height - element.height, drpElementRect.top - drpElementRect.height);
+                }
+
             }
+
 
         },
         handleClickOutSide: function(event){
@@ -156,9 +195,18 @@
             closeDropdown.classList.remove('show');
         },
         
-
+        
         
 
+    }
+
+    Dropdown.getTranslateXY = function(element) {
+        const style = window.getComputedStyle(element)
+        const matrix = new DOMMatrixReadOnly(style.transform)
+        return {
+            translateX: matrix.m41,
+            translateY: matrix.m42
+        }
     }
 
 
