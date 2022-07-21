@@ -152,6 +152,7 @@
             e.preventDefault();
             const drp = e.currentTarget.dataset.opDropdown;
             const inset = e.currentTarget.dataset.opDropdownInset;
+            const position = e.currentTarget.dataset.opDropdownPosition;
                 let insetX, insetY;
                 if(inset){
                     insetX = (inset.split(',').length == 2 ? parseInt(inset.split(',')[0]) : 0);
@@ -168,12 +169,41 @@
                 drpElement.classList.add('show');
 
                 const drpElementRect = drpElement.getBoundingClientRect();
-                if(drpElementRect.y + drpElementRect.height > window.innerHeight){
-                    const element = e.currentTarget.getBoundingClientRect();
-                    
-                    drpElement.style.transform = 'translate('+element.left+'px, '+ (element.top - drpElementRect.height - insetY) +'px)';
-                    console.log(drpElementRect.top - drpElementRect.height - element.height, drpElementRect.top - drpElementRect.height);
+                const element = e.currentTarget.getBoundingClientRect();
+
+                //posizionamento alla scelta "position" left or right , top or bottom
+                const splitDropPos = position.split('-'); // bottom[0]-left[1]
+                let psx = 0, psy = 0;
+                if(splitDropPos[0] === "bottom"){
+                    psy = (element.top + element.height + insetY);
+                } else if(splitDropPos[0] === "top"){
+
+                } else {
+
                 }
+
+                if(splitDropPos[1] === "left"){
+                    psx = element.left + insetX;
+                } else if(splitDropPos[1] === "right"){ 
+                    psx = element.left - drpElementRect.width + element.width + insetX;
+                } else {
+                    psx = 0;
+                }
+                
+                //posizionamento in base alla posizione del dropdown nella finestra asse Y
+                if(drpElementRect.y + drpElementRect.height > window.innerHeight){
+                    drpElement.style.transform = 'translate('+psx+'px, '+ (element.top - drpElementRect.height - insetY) +'px)';
+                }else{
+                    drpElement.style.transform = 'translate('+psx+'px, '+ psy +'px)';
+                }
+                
+                
+
+                //positionamento in base alla posizione del dropdown nella finestra asse X
+                
+                
+
+                
 
             }
 
