@@ -40,9 +40,7 @@
 
     Dropdown.defaults = {};
 
-    Dropdown.closeDropdown;
-
-
+    
     Dropdown.lib = Dropdown.prototype = {
         toast: version,
         constructor: Dropdown,
@@ -60,8 +58,10 @@
 
             elements.forEach(element => {
                 const drp = element.dataset.opDropdown;
-                const pos = element.dataset.opDropdownPosition;
+                const dropdownPos = element.dataset.opDropdownPosition;
                 const inset = element.dataset.opDropdownInset;
+                const opDropdownOutsideclose = element.dataset.opDropdownOutsideclose;
+                const opDropdownOutsideblock = element.dataset.opDropdownOutsideblock;
                 let insetX, insetY;
                 if(inset){
                     insetX = (inset.split(',').length == 2 ? parseInt(inset.split(',')[0]) : 0);
@@ -75,6 +75,8 @@
 
                 if(drp){
 
+                    
+
                     element.addEventListener('click', this.handleClick)
                     document.addEventListener('click', this.handleClickOutSide)
 
@@ -84,29 +86,43 @@
                     dropDownCard.style.zIndex =  105;
                     
                     
-                    let posX = elPos.left + insetX;
+                    dropDownCard.setAttribute('op-close', opDropdownOutsideclose !== undefined ? true : false);
+                    dropDownCard.setAttribute('op-block', opDropdownOutsideblock !== undefined ? true : false);
+
+                    const splitDropPos = dropdownPos.split('-'); // bottom[0]-left[1]
+                    const dropDownCardRect = dropDownCard.getBoundingClientRect();
+
+
+                    let posX = elPos.left + insetX - dropDownCardRect.width;
                     let posY = (elPos.top + elPos.height) + insetY;
+                    //console.log(dropDownCard, element);
                     
                     dropDownCard.style.transform = 'translate('+posX+'px, '+posY+'px)';  //x , y
                     
 
                     document.addEventListener('scroll', (e) => {
-                        let y = window.scrollY;
-                        let x = window.scrollX;
                         
                         const elPos = element.getBoundingClientRect();
                         
-                        let posX = elPos.x + insetX;
-                        let posY = (elPos.y + elPos.height) + insetY;
-                        
-                        
+                        let posX, posY;
 
                         const dropDownCardRect = dropDownCard.getBoundingClientRect();
-                        /*document.getElementById("asd").style.top = window.innerHeight + window.scrollY - 10 + "px";
 
-                        document.getElementById("asd2").style.transform = "translate(0, "+(dropDownCardRect.y + dropDownCardRect.height + insetY)+"px)";
-                        document.getElementById("asd3").style.transform = "translate(0, "+(dropDownCardRect.y  + insetY)+"px)";*/
-
+                        if(splitDropPos[0] == "bottom"){
+                            posY = (elPos.y + elPos.height) + insetY;
+                        }else if(splitDropPos[0] == "top"){
+                            posY = (elPos.y + elPos.height) + insetY;
+                        }else {
+                            posY = (elPos.y + elPos.height) + insetY;
+                        }
+    
+                        if(splitDropPos[1] === "left"){
+                            posX = elPos.left + insetX;
+                        } else if(splitDropPos[1] === "right"){ 
+                            posX = elPos.left - dropDownCardRect.width + elPos.width + insetX;
+                        } else {
+                            posX = 0;
+                        }
 
                         if(window.innerHeight  <= elPos.y + elPos.height + insetY + dropDownCardRect.height){   //dropdown locked bottom screen
                             //dropDownCard.style.transform = 'translate('+posX+'px, '+posY - (dropDownCardRect.height + insetY) +'px)';  //x , y
@@ -129,35 +145,100 @@
         },
 
         handleClick: function(e){
-            
+            e.preventDefault();
+
+            //close all dropdown if opened
+            const closeDropdown = document.querySelectorAll('.op-dropdown.show');
+            closeDropdown.forEach(function(item) {
+                item.classList.remove('show');
+            });
+
             const drp = e.currentTarget.dataset.opDropdown;
+            const inset = e.currentTarget.dataset.opDropdownInset;
+            const position = e.currentTarget.dataset.opDropdownPosition;
+                let insetX, insetY;
+                if(inset){
+                    insetX = (inset.split(',').length == 2 ? parseInt(inset.split(',')[0]) : 0);
+                    insetY = (inset.split(',').length == 2 ? parseInt(inset.split(',')[1]) : 0);
+                }else{
+                    insetX = 0;
+                    insetY = 0;
+                }
             const drpElement = document.querySelector(drp);
             
             if(drpElement.classList.contains('show')){
                 drpElement.classList.remove('show');
             }else{
                 drpElement.classList.add('show');
+
+                const drpElementRect = drpElement.getBoundingClientRect();
+                const element = e.currentTarget.getBoundingClientRect();
+
+                //posizionamento alla scelta "position" left or right , top or bottom
+                const splitDropPos = position.split('-'); // bottom[0]-left[1]
+                let psx = 0, psy = 0;
+                if(splitDropPos[0] === "bottom"){
+                    psy = (element.top + element.height + insetY);
+                } else if(splitDropPos[0] === "top"){
+
+                } else {
+
+                }
+
+                if(splitDropPos[1] === "left"){
+                    psx = element.left + insetX;
+                } else if(splitDropPos[1] === "right"){ 
+                    psx = element.left - drpElementRect.width + element.width + insetX;
+                } else {
+                    psx = 0;
+                }
+                
+                //posizionamento in base alla posizione del dropdown nella finestra asse Y
+                if(drpElementRect.y + drpElementRect.height > window.innerHeight){
+                    drpElement.style.transform = 'translate('+psx+'px, '+ (element.top - drpElementRect.height - insetY) +'px)';
+                }else{
+                    drpElement.style.transform = 'translate('+psx+'px, '+ psy +'px)';
+                }
+                
+                
+
+                //positionamento in base alla posizione del dropdown nella finestra asse X
+                
+                
+
+                
+
             }
+
 
         },
         handleClickOutSide: function(event){
-            const closeDropdown = document.querySelector('.op-dropdown.show');
-            const trigger = document.querySelector('[data-op-dropdown]');
-            if(closeDropdown === null) return;
+            const closeDropdown = document.querySelectorAll('.op-dropdown.show');
+            if(closeDropdown.length === 0) return;
             //data-op-dropdown-outsideclose
 
-            const outsideclose = trigger.dataset.opDropdownOutsideclose;
-            console.log(outsideclose);
-            let outsidePermission = outsideclose === true ? event.target.closest(".op-dropdown") != null : true
+            if ( event.target.closest("[data-op-dropdown]") != null || event.target.closest("[op-block='true']") != null && event.target.closest("[op-close='true']") != null) return;
             
-            if ( outsidePermission || event.target.closest("[data-op-dropdown]") != null) return
-
-            closeDropdown.classList.remove('show');
+            //closeDropdown.classList.remove('show');
+            // selecting all elements
+            // Using forEach loop
+            closeDropdown.forEach(function(item) {
+                item.classList.remove('show');
+            });
         },
         
-
+        
         
 
+    }
+
+    Dropdown.getTranslateXY = function(element) {
+        const style = window.getComputedStyle(element)
+        const matrix = new DOMMatrixReadOnly(style.transform)
+        return {
+            translateX: matrix.m41,
+            translateY: matrix.m42
+        }
     }
 
 
