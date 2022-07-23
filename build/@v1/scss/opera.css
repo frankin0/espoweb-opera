@@ -954,110 +954,110 @@ button.background-light-dark {
 
 .background-dark-primary,
 button.background-dark-primary {
-  background-color: rgba(0, 148, 126, 0.3) !important;
+  background-color: rgba(0, 148, 126, 0.2) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: rgba(0, 148, 126, 0.3);
+  background-color: rgba(0, 148, 126, 0.2);
   color: #f8f9fa;
-  border-color: rgba(0, 148, 126, 0.3) !important;
+  border-color: rgba(0, 148, 126, 0.2) !important;
 }
 
 .btn.btn-icon-primary .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: rgba(0, 148, 126, 0.3);
+  fill: rgba(0, 148, 126, 0.2);
 }
 
 .background-dark-link,
 button.background-dark-link {
-  background-color: rgba(33, 96, 196, 0.3) !important;
+  background-color: rgba(33, 96, 196, 0.2) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: rgba(33, 96, 196, 0.3);
+  background-color: rgba(33, 96, 196, 0.2);
   color: #f8f9fa;
-  border-color: rgba(33, 96, 196, 0.3) !important;
+  border-color: rgba(33, 96, 196, 0.2) !important;
 }
 
 .btn.btn-icon-link .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: rgba(33, 96, 196, 0.3);
+  fill: rgba(33, 96, 196, 0.2);
 }
 
 .background-dark-info,
 button.background-dark-info {
-  background-color: rgba(29, 114, 170, 0.3) !important;
+  background-color: rgba(29, 114, 170, 0.2) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: rgba(29, 114, 170, 0.3);
+  background-color: rgba(29, 114, 170, 0.2);
   color: #f8f9fa;
-  border-color: rgba(29, 114, 170, 0.3) !important;
+  border-color: rgba(29, 114, 170, 0.2) !important;
 }
 
 .btn.btn-icon-info .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: rgba(29, 114, 170, 0.3);
+  fill: rgba(29, 114, 170, 0.2);
 }
 
 .background-dark-success,
 button.background-dark-success {
-  background-color: rgba(37, 121, 66, 0.3) !important;
+  background-color: rgba(37, 121, 66, 0.2) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: rgba(37, 121, 66, 0.3);
+  background-color: rgba(37, 121, 66, 0.2);
   color: #f8f9fa;
-  border-color: rgba(37, 121, 66, 0.3) !important;
+  border-color: rgba(37, 121, 66, 0.2) !important;
 }
 
 .btn.btn-icon-success .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: rgba(37, 121, 66, 0.3);
+  fill: rgba(37, 121, 66, 0.2);
 }
 
 .background-dark-warning,
 button.background-dark-warning {
-  background-color: rgba(148, 118, 0, 0.3) !important;
+  background-color: rgba(148, 118, 0, 0.2) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: rgba(148, 118, 0, 0.3);
+  background-color: rgba(148, 118, 0, 0.2);
   color: #f8f9fa;
-  border-color: rgba(148, 118, 0, 0.3) !important;
+  border-color: rgba(148, 118, 0, 0.2) !important;
 }
 
 .btn.btn-icon-warning .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: rgba(148, 118, 0, 0.3);
+  fill: rgba(148, 118, 0, 0.2);
 }
 
 .background-dark-danger,
 button.background-dark-danger {
-  background-color: rgba(204, 15, 53, 0.3) !important;
+  background-color: rgba(204, 15, 53, 0.2) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: rgba(204, 15, 53, 0.3);
+  background-color: rgba(204, 15, 53, 0.2);
   color: #f8f9fa;
-  border-color: rgba(204, 15, 53, 0.3) !important;
+  border-color: rgba(204, 15, 53, 0.2) !important;
 }
 
 .btn.btn-icon-danger .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: rgba(204, 15, 53, 0.3);
+  fill: rgba(204, 15, 53, 0.2);
 }
 
 .background-gr-primary,
@@ -1945,12 +1945,12 @@ hr {
   --op-background-light-warning: #fffbeb;
   --op-background-light-danger: #feecf0;
   --op-background-light-dark: rgba(27, 42, 78, 0.1);
-  --op-background-dark-primary: rgba(0, 148, 126, 0.3);
-  --op-background-dark-link: rgba(33, 96, 196, 0.3);
-  --op-background-dark-info: rgba(29, 114, 170, 0.3);
-  --op-background-dark-success: rgba(37, 121, 66, 0.3);
-  --op-background-dark-warning: rgba(148, 118, 0, 0.3);
-  --op-background-dark-danger: rgba(204, 15, 53, 0.3);
+  --op-background-dark-primary: rgba(0, 148, 126, 0.2);
+  --op-background-dark-link: rgba(33, 96, 196, 0.2);
+  --op-background-dark-info: rgba(29, 114, 170, 0.2);
+  --op-background-dark-success: rgba(37, 121, 66, 0.2);
+  --op-background-dark-warning: rgba(148, 118, 0, 0.2);
+  --op-background-dark-danger: rgba(204, 15, 53, 0.2);
   --op-background-gr-primary: linear-gradient(50deg, #00947E 0, #247A4D 100%);
   --op-background-gr-dark: linear-gradient(50deg, #273444 0, #272b44 100%);
   --op-background-gr-link: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%);
