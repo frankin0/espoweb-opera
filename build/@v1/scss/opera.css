@@ -204,10 +204,26 @@ button.grays-900 {
   fill: #212529;
 }
 
+.background-colors-blue {
+  background-color: #0d6efd !important;
+}
+
+.text-colors-blue {
+  color: #0d6efd !important;
+}
+
 .btn.btn-icon-blue .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
   fill: #0d6efd;
+}
+
+.background-colors-indigo {
+  background-color: #6610f2 !important;
+}
+
+.text-colors-indigo {
+  color: #6610f2 !important;
 }
 
 .btn.btn-icon-indigo .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -216,10 +232,26 @@ button.grays-900 {
   fill: #6610f2;
 }
 
+.background-colors-purple {
+  background-color: #6f42c1 !important;
+}
+
+.text-colors-purple {
+  color: #6f42c1 !important;
+}
+
 .btn.btn-icon-purple .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
   fill: #6f42c1;
+}
+
+.background-colors-red {
+  background-color: #dc3545 !important;
+}
+
+.text-colors-red {
+  color: #dc3545 !important;
 }
 
 .btn.btn-icon-red .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -228,10 +260,26 @@ button.grays-900 {
   fill: #dc3545;
 }
 
+.background-colors-orange {
+  background-color: #fd7e14 !important;
+}
+
+.text-colors-orange {
+  color: #fd7e14 !important;
+}
+
 .btn.btn-icon-orange .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
   fill: #fd7e14;
+}
+
+.background-colors-yellow {
+  background-color: #ffc107 !important;
+}
+
+.text-colors-yellow {
+  color: #ffc107 !important;
 }
 
 .btn.btn-icon-yellow .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -240,10 +288,26 @@ button.grays-900 {
   fill: #ffc107;
 }
 
+.background-colors-green {
+  background-color: #198754 !important;
+}
+
+.text-colors-green {
+  color: #198754 !important;
+}
+
 .btn.btn-icon-green .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
   fill: #198754;
+}
+
+.background-colors-pink {
+  background-color: #d63384 !important;
+}
+
+.text-colors-pink {
+  color: #d63384 !important;
 }
 
 .btn.btn-icon-pink .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -252,10 +316,26 @@ button.grays-900 {
   fill: #d63384;
 }
 
+.background-colors-teal {
+  background-color: #20c997 !important;
+}
+
+.text-colors-teal {
+  color: #20c997 !important;
+}
+
 .btn.btn-icon-teal .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
   fill: #20c997;
+}
+
+.background-colors-cyan {
+  background-color: #0dcaf0 !important;
+}
+
+.text-colors-cyan {
+  color: #0dcaf0 !important;
 }
 
 .btn.btn-icon-cyan .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -264,16 +344,40 @@ button.grays-900 {
   fill: #0dcaf0;
 }
 
+.background-colors-success {
+  background-color: #40c489 !important;
+}
+
+.text-colors-success {
+  color: #40c489 !important;
+}
+
 .btn.btn-icon-success .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
   fill: #40c489;
 }
 
+.background-colors-warning {
+  background-color: #ffe08a !important;
+}
+
+.text-colors-warning {
+  color: #ffe08a !important;
+}
+
 .btn.btn-icon-warning .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
   fill: #ffe08a;
+}
+
+.background-colors-danger {
+  background-color: #f14668 !important;
+}
+
+.text-colors-danger {
+  color: #f14668 !important;
 }
 
 .btn.btn-icon-danger .svg-icon svg [fill]:not(.permanent):not(g) {
@@ -850,110 +954,110 @@ button.background-light-dark {
 
 .background-dark-primary,
 button.background-dark-primary {
-  background-color: #00947e !important;
+  background-color: rgba(0, 148, 126, 0.3) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-primary:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: #00947e;
+  background-color: rgba(0, 148, 126, 0.3);
   color: #f8f9fa;
-  border-color: #00947e !important;
+  border-color: rgba(0, 148, 126, 0.3) !important;
 }
 
 .btn.btn-icon-primary .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: #00947e;
+  fill: rgba(0, 148, 126, 0.3);
 }
 
 .background-dark-link,
 button.background-dark-link {
-  background-color: #2160c4 !important;
+  background-color: rgba(33, 96, 196, 0.3) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-link:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: #2160c4;
+  background-color: rgba(33, 96, 196, 0.3);
   color: #f8f9fa;
-  border-color: #2160c4 !important;
+  border-color: rgba(33, 96, 196, 0.3) !important;
 }
 
 .btn.btn-icon-link .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: #2160c4;
+  fill: rgba(33, 96, 196, 0.3);
 }
 
 .background-dark-info,
 button.background-dark-info {
-  background-color: #1d72aa !important;
+  background-color: rgba(29, 114, 170, 0.3) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-info:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: #1d72aa;
+  background-color: rgba(29, 114, 170, 0.3);
   color: #f8f9fa;
-  border-color: #1d72aa !important;
+  border-color: rgba(29, 114, 170, 0.3) !important;
 }
 
 .btn.btn-icon-info .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: #1d72aa;
+  fill: rgba(29, 114, 170, 0.3);
 }
 
 .background-dark-success,
 button.background-dark-success {
-  background-color: #257942 !important;
+  background-color: rgba(37, 121, 66, 0.3) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-success:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: #257942;
+  background-color: rgba(37, 121, 66, 0.3);
   color: #f8f9fa;
-  border-color: #257942 !important;
+  border-color: rgba(37, 121, 66, 0.3) !important;
 }
 
 .btn.btn-icon-success .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: #257942;
+  fill: rgba(37, 121, 66, 0.3);
 }
 
 .background-dark-warning,
 button.background-dark-warning {
-  background-color: #947600 !important;
+  background-color: rgba(148, 118, 0, 0.3) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-warning:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: #947600;
+  background-color: rgba(148, 118, 0, 0.3);
   color: #f8f9fa;
-  border-color: #947600 !important;
+  border-color: rgba(148, 118, 0, 0.3) !important;
 }
 
 .btn.btn-icon-warning .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: #947600;
+  fill: rgba(148, 118, 0, 0.3);
 }
 
 .background-dark-danger,
 button.background-dark-danger {
-  background-color: #cc0f35 !important;
+  background-color: rgba(204, 15, 53, 0.3) !important;
 }
 
 .box-checkbox .opera-checkbox.checkbox-background-dark-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
 .box-radio .opera-checkbox.checkbox-background-dark-danger:checked ~ .opera-checkbox-label:not(.no-custom-check)::before {
-  background-color: #cc0f35;
+  background-color: rgba(204, 15, 53, 0.3);
   color: #f8f9fa;
-  border-color: #cc0f35 !important;
+  border-color: rgba(204, 15, 53, 0.3) !important;
 }
 
 .btn.btn-icon-danger .svg-icon svg [fill]:not(.permanent):not(g) {
   -webkit-transition: fill .3s ease;
   transition: fill .3s ease;
-  fill: #cc0f35;
+  fill: rgba(204, 15, 53, 0.3);
 }
 
 .background-gr-primary,
@@ -1841,12 +1945,12 @@ hr {
   --op-background-light-warning: #fffbeb;
   --op-background-light-danger: #feecf0;
   --op-background-light-dark: rgba(27, 42, 78, 0.1);
-  --op-background-dark-primary: #00947e;
-  --op-background-dark-link: #2160c4;
-  --op-background-dark-info: #1d72aa;
-  --op-background-dark-success: #257942;
-  --op-background-dark-warning: #947600;
-  --op-background-dark-danger: #cc0f35;
+  --op-background-dark-primary: rgba(0, 148, 126, 0.3);
+  --op-background-dark-link: rgba(33, 96, 196, 0.3);
+  --op-background-dark-info: rgba(29, 114, 170, 0.3);
+  --op-background-dark-success: rgba(37, 121, 66, 0.3);
+  --op-background-dark-warning: rgba(148, 118, 0, 0.3);
+  --op-background-dark-danger: rgba(204, 15, 53, 0.3);
   --op-background-gr-primary: linear-gradient(50deg, #00947E 0, #247A4D 100%);
   --op-background-gr-dark: linear-gradient(50deg, #273444 0, #272b44 100%);
   --op-background-gr-link: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%);
