@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="build/@v1/scss/opera.css">
+        <style>
+            .row{
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+
+
+            <div class="row">
+                <div class="col-12 code mb-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                         <thead>
+                          <tr class="grays-800 text-600 ptb-3">
+                           <th>Name</th>
+                           <th>Position</th>
+                           <th>Office</th>
+                           <th>Age</th>
+                           <th>Start date</th>
+                           <th>Salary</th>
+                          </tr>
+                         </thead>
+                         <tbody>
+                          <tr class="ptb-2">
+                           <td>Tiger Nixon</td>
+                           <td>System Architect</td>
+                           <td>Edinburgh</td>
+                           <td>61</td>
+                           <td>2011/04/25</td>
+                           <td>$320,800</td>
+                          </tr>
+                          <tr class=" ptb-2">
+                           <td>Garrett Winters</td>
+                           <td>Accountant</td>
+                           <td>Tokyo</td>
+                           <td>63</td>
+                           <td>2011/07/25</td>
+                           <td>$170,750</td>
+                          </tr>
+                         </tbody>
+                        </table>
+                       </div>
+                </div>
+                <div class="col-12">
+                    <pre><code></code></pre>
+                </div>
+            </div> 
+            
+        </div>
+
+        <script src="./js/opera.js"></script>
+        <!--<script src="./js/op_toggle_.js"></script>-->
+        <script>
+
+            const code = document.querySelectorAll('.code');
+
+            code.forEach(element => {
+                element.parentElement.children[1].children[0].children[0].innerText = element.innerHTML;
+            });
+        </script>
+    </body>
+</html>
