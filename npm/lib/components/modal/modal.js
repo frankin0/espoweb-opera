@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-var createElementbackdrop = function (props) {
+//import {  StyledWrapper } from './styled';
+import '../../opera.css'; //test
+var CreateElementbackdrop = function (props) {
     var _a = props.id, id = _a === void 0 ? 'none' : _a, _b = props.activate, activate = _b === void 0 ? false : _b, scrollBarWidth = props.scrollBarWidth;
     var _c = useState(false), show = _c[0], setShow = _c[1];
     useEffect(function () {
@@ -9,6 +11,7 @@ var createElementbackdrop = function (props) {
                 document.body.classList.add('modal-open');
                 document.body.style.overflow = "hidden";
                 document.body.style.paddingRight = scrollBarWidth + "px";
+                clearTimeout();
             }, 1);
         }
         else {
@@ -30,6 +33,7 @@ var Modal = function (props, ref) {
             setShowbackdrop(true);
             setTimeout(function () {
                 setShowModalAnim(true);
+                clearTimeout();
             }, 1);
         }
         else {
@@ -40,6 +44,7 @@ var Modal = function (props, ref) {
                 document.body.classList.remove('modal-open');
                 document.body.style.overflow = "";
                 document.body.style.paddingRight = "";
+                clearTimeout();
             }, 100);
         }
     });
@@ -47,7 +52,7 @@ var Modal = function (props, ref) {
         React.createElement("div", { id: id, ref: ref, style: showbackdrop ? { display: 'block' } : {}, className: [className, "modal", 'fade', showModalAnim ? 'show' : '', size].join(" "), "data-aria-closing": closing, onClick: onClickButton },
             React.createElement("div", { className: "modal-dialog" },
                 React.createElement("div", { className: "modal-content" }, children))),
-        showbackdrop ? React.createElement(createElementbackdrop, { id: id, activate: activate_update, scrollBarWidth: scrollBarWidth }) : ""));
+        showbackdrop ? React.createElement(CreateElementbackdrop, { id: id, activate: activate_update, scrollBarWidth: scrollBarWidth }) : ""));
 };
 export default React.forwardRef(Modal);
 //# sourceMappingURL=modal.js.map

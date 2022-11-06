@@ -1,0 +1,46 @@
+/*
+ * Opera vbuild (link_website)
+ * Copyright 2022 The Opera Espoweb Authors
+ * Licensed under MIT (https://github.com/frankin0/espoweb-opera/LICENSE)
+ */
+
+//import configuration files
+@import "_functions.scss";
+@import "_variables.scss";
+@import "_contrast.scss";
+@import "_colors.scss";
+@import "_animations.scss";
+@import "_shadow.scss";
+@import "_all.scss";
+@import "./components/_typography.scss";
+@import "_mp.scss";
+@import "_overlay.scss";
+@import "./components/_hr.scss";
+@import "_opacity.scss";
+@import "_rounds.scss";
+
+
+@import "_roots.scss"; 
+
+
+@import "_grid.scss";
+@import "_container.scss";
+@import "_flexbox.scss";
+@import "./components/_buttons.scss";
+@import "./components/_block.scss";
+@import "./components/_avatar.scss";
+@import "./components/_card.scss";
+@import "./components/_badgets.scss";
+@import "./components/_alert.scss";
+@import "./components/_breadcrumb.scss";
+@import "./components/_forms.scss";
+@import "./components/_select.scss";
+@import "./components/_modal.scss";
+@import "./components/_tooltips.scss";
+@import "./components/_pagination.scss";
+@import "./components/_toast.scss";
+@import "./components/_tabs.scss";
+@import "./components/_nav.scss";
+@import "./components/_dropdown.scss";
+@import "./components/_navbar.scss";
+@import "./components/_table.scss";

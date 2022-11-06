@@ -1,0 +1,16 @@
+.overlay-30:before {
+    opacity: .3;
+}
+
+.overlay-black:before {
+    background-color: #161c2d;
+}
+.overlay:before {
+    border-radius: inherit;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

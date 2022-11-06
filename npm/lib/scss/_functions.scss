@@ -1,0 +1,282 @@
+@function color($color, $tone: '100') {
+    @return map-get(map-get($colors, $color), $tone);
+}
+
+
+@mixin make-grid-cols($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+    @each $row in map-keys($breakpoints) {
+
+        $index: breakpoint-infix($row, $breakpoints);
+
+        @include media-breakpoint-up($row, $breakpoints){
+
+            .col#{$index}{
+                flex: 1 0 0%;
+            }
+
+            .row-cols#{$index}-auto > *{
+                @include make-col-auto();
+            }
+
+            @if $grid-row-cols > 0{
+                @for $i from 1 through $grid-row-cols{
+                    .row-cols#{$index}-#{$i}{
+                        @include make-cols($i);
+                    }
+                }
+            }
+
+            .col#{$index}-auto{
+                @include make-col-auto();
+            }
+
+            @if $columns > 0{
+                @for $i from 1 through $columns{
+                    .col#{$index}-#{$i}{
+                        @include make-cols($i, $columns);
+                    }
+                }
+
+
+                @for $i from 0 through ($columns ){
+                    @if not ($index == "" and $i == 0){
+                        .offset#{$index}-#{$i}{
+                            @include make-col-offset($i, $columns);
+                        }
+                    }
+                }
+            }
+        } 
+    }
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+    @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+ 
+@mixin make-col-auto() {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+@mixin  make-col-offset($size, $columns: $grid-columns) {
+    $num: divide($size, $columns);
+    margin-left: if($num == 0, 0, percentage($num));
+}
+@mixin make-cols($size: false, $columns: $grid-columns) {
+    @if $size{
+        flex: 0 0 auto;
+        width: percentage(divide($size, $columns));
+    }@else{
+        flex: 1 1 0 auto;
+        max-width: 100%;
+    }
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+    $min: breakpoint-min($name, $breakpoints);
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+} 
+
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    576px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+    $min: map-get($breakpoints, $name);
+    @return if($min != 0, $min, null);
+}
+
+@function divide($dividend, $divisor, $precision: 10) {
+    $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
+    $dividend: abs($dividend);
+    $divisor: abs($divisor);
+    @if $dividend == 0 {
+        @return 0;
+    }
+    @if $divisor == 0 {
+        @error "Cannot divide by 0";
+    }
+    $remainder: $dividend;
+    $result: 0;
+    $factor: 10;
+    @while ($remainder > 0 and $precision >= 0) {
+        $quotient: 0;
+        @while ($remainder >= $divisor) {
+            $remainder: $remainder - $divisor;
+            $quotient: $quotient + 1;
+        }
+        $result: $result * 10 + $quotient;
+        $factor: $factor * .1;
+        $remainder: $remainder * 10;
+        $precision: $precision - 1;
+        @if ($precision < 0 and $remainder >= $divisor * 5) {
+            $result: $result + 1;
+        }
+    }
+    $result: $result * $factor * $sign;
+    $dividend-unit: unit($dividend);
+    $divisor-unit: unit($divisor);
+    $unit-map: (
+    "px": 1px,
+    "rem": 1rem,
+    "em": 1em,
+    "%": 1%
+    );
+    @if ($dividend-unit != $divisor-unit and map-has-key($unit-map, $dividend-unit)) {
+        $result: $result * map-get($unit-map, $dividend-unit);
+    }
+    @return $result;
+}
+  
+@mixin make-container($gutter: $container-padding-x) {
+    --#{$prefix-}gutter-x: #{$gutter};
+    --#{$prefix-}gutter-y: 0;
+    width: 100%;
+    padding-right: var(--#{$prefix-}gutter-x, #{$gutter});
+    padding-left: var(--#{$prefix-}gutter-x, #{$gutter});
+    margin-right: auto;
+    margin-left: auto;
+
+    
+}
+@function brightness($color) {
+    @if type-of($color) == 'color' { 
+        @return (red($color) * .950 + green($color) * 1.3152 + blue($color) * .0722) / 255 * 100%;
+    }
+    @else {
+        @return unquote("brightness(#{$color})");
+    }
+} 
+
+@function contrast-color($color, $dark, $light, $threshold: null) {
+    @if $threshold {
+        // Deprecated in Compass 0.13
+        @warn "The $threshold argment to contrast-color is no longer needed and will be removed in the next release.";
+    }
+    @if $color == null {
+        @return null;
+    }
+    @else {
+        $color-brightness: brightness($color);
+        $dark-text-brightness: brightness($dark);
+        $light-text-brightness: brightness($light);
+        @return if(abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness), $light, $dark);
+    }
+}
+
+@mixin contrasted($background-color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    @if $threshold {
+        // Deprecated in Compass 0.13
+        @warn "The $threshold argment to contrasted is no longer needed and will be removed in the next release.";
+    }
+    background-color: $background-color;
+    color: contrast-color($background-color, $dark, $light);
+}
+
+@function obscureColor($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red), round($green - 13)  , round($blue - 11)); 
+}
+@function obscureColor2($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red), round($green - 25)  , round($blue - 22)); 
+}
+
+@function obscureColor3($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red - 6), round($green - 6)  , round($blue - 6)); 
+}
+
+
+@function obscureColor4($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red - 13), round($green - 13)  , round($blue - 13)); 
+}
+
+@function cartoonedColor($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red), round($green - 61)  , round($blue - 52)); 
+}
+
+@function cartoonedBgColor($color){
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    
+    @return rgb(round($red % 2), round($green % 2 ), round($blue % 2)); 
+}
+
+@mixin  hoverColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor($color);
+    color: contrast-color($color, $dark, $light);
+}
+@mixin  hoverWithAnimColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor($color);
+    color: contrast-color($color, $dark, $light);
+    box-shadow: 0 4px 11px opacity(obscureColor3($color), .35);
+    transform: translateY(-3px);
+}
+
+@mixin activeColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor2($color);
+    color: contrast-color($color, $dark, $light);
+}
+@mixin activeLightColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor4($color);
+    color: contrast-color($color, $dark, $light);
+}
+@mixin lightColor($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor3($color);
+    color: contrast-color($color, $dark, $light);
+}
+
+@mixin lightColorWithAnim($color, $dark: color(grays, "900"), $light: color(grays, "100"), $threshold: null) {
+    background-color: obscureColor3($color);
+    color: contrast-color($color, $dark, $light);
+    box-shadow: 0 4px 11px opacity(obscureColor3($color), .35);
+    transform: translateY(-3px);
+}
+
+
+
+
+@function findLightColor($color, $l: 96%){
+    @if type-of($color) == 'color' {
+        $l: 96%;
+        @if lightness($color) > 96%{
+            $l: lightness($color);
+        }
+        @return change-color($color, $lightness: $l);
+    }
+    @return $background;
+}
+
+@function opacity($background, $opacity: 1){
+    $red: red($background);
+    $green: green($background);
+    $blue: blue($background);
+    
+    @return rgba(round($red), round($green), round($blue), $opacity); 
+}

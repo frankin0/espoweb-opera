@@ -1,0 +1,216 @@
+
+@mixin button-variant(
+    $background, 
+    $border
+    ){
+        @include contrasted($background);
+        //border-color: transparent !important;
+}
+
+@mixin button-variant-cartoon(
+    $background,
+    $border
+) {
+    color: cartoonedColor($background);
+    background-color: findLightColor($background); 
+}
+
+@mixin button-variant-light(
+    $background,
+    $border
+) {
+    color: color(grays, "900");
+    background-color: transparent;
+
+    &:hover{
+        background-color: findLightColor($background); 
+        color: $background;
+    }
+}
+
+.btn{
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    border: 1px solid;
+    border-color: color(grays, "900");
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .8125rem 1.25rem;
+    //font-size: 1.0625rem;
+    border-radius: .3125rem;
+    background-color: #fff;
+    color: color(grays, "900");
+    outline: 0!important;
+    position: relative;
+    text-decoration: none;
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    @if $animationButton == true{
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    &:hover:not(:disabled), &.is-hover:not(:disabled){
+        color: color(grays, "900");
+        border-color:  color(grays, "500");
+    }
+
+    &:active, &.is-active{
+        border-color: #000;
+    }
+
+    &.btn-ghost{
+        border: none !important; 
+        background-color: transparent !important;
+    }
+
+    &.btn-large{
+        font-size: $btn-large !important;
+        padding: 18px 36px !important;
+    }
+
+    &.btn-small{
+        font-size: $btn-small !important;
+        padding: 5px 20px !important;
+    }
+
+    &.btn-fullwidth{
+        width: 100%;
+    }
+
+    &.btn-rounded{
+        border-radius: 20px;
+    }
+
+    &.btn-loading,
+    &.btn-loading:hover{
+        color: transparent !important;
+    }
+    &.btn-loading:after{
+        -webkit-animation: spinAround .5s infinite linear;
+        animation: spinAround .5s infinite linear;
+        border: 2px solid #dbdbdb;
+        border-radius: 9999px;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        content: "";
+        display: block;
+        height: 1em;
+        position: relative;
+        width: 1em;
+    }
+    &.btn-loading::after {
+        position: absolute;
+        left: calc(50% - (1em * .5));
+        top: calc(50% - (1em * .5));
+        position: absolute!important;
+    }
+    &:disabled{
+        opacity: .6;
+        cursor: no-drop;
+    }
+    
+    & .svg-icon {
+        flex-shrink: 0;
+        line-height: 0;
+        margin-right: .5rem;
+    }
+    & .svg-icon {
+        line-height: 1.5;
+    }
+
+    & .svg-icon.svg-icon-1 svg {
+        height: 1.3rem!important;
+        width: 1.3rem!important;
+    }
+}
+
+
+
+@each $color-attr, $value-attr in $colors {
+    @each $color, $value in $value-attr {
+        @if $color-attr == "background"{
+            .btn-#{$color}.btn-loading:after {
+                $contrastbordercolor: contrast-color($value, color(grays, "900"), color(grays, "100"));
+                border-color: transparent transparent $contrastbordercolor $contrastbordercolor;
+            }
+            .btn-#{$color}{
+                @include button-variant($value, $value);
+                border-color: transparent !important;
+
+                &:hover:not(:disabled), .is-hover:not(:disabled){
+                    @if $color == "white" && $color == "dark" && $color == "black" {
+                        @include lightColor($value);
+                    }@else{
+                        @include hoverColor($value);
+                    }
+                }
+
+                &:hover:not(:disabled), .is-hover:not(:disabled){
+                    @if $color == "white" && $color == "dark" && $color == "black" {
+                        @include lightColor($value);
+                    }@else{
+                        @include hoverColor($value);
+                    }
+                }
+
+                &.btn-anim:hover:not(:disabled), .is-hover.btn-anim:not(:disabled){
+                    @if $color == "white" && $color == "dark" && $color == "black" {
+                        @include lightColorWithAnim($value);
+                    }@else{
+                        @include hoverWithAnimColor($value);
+                    }
+                    transition: all .2s ease-in-out;
+                }
+        
+                &:active, .is-active{
+                    @if $color == "white" && $color == "dark" && $color == "black" {
+                        @include activeLightColor($value);
+                    }@else{
+                        @include activeColor($value);
+                    }
+                }
+            }
+
+            .btn.btn-#{$color}.btn-outlined{
+                background-color: transparent !important;
+                border-color: $value !important;
+                border-width: 1px;
+                border-style: dashed;
+            }
+            .btn.btn-#{$color}.btn-outlined:hover, 
+            .btn.btn-#{$color}.btn-outlined.is-hover{
+                //@include button-variant($value, $value);
+                color: $value;
+                background-color: opacity($value, .050) !important;
+                border-color: $value !important;
+            }
+
+            .btn.btn-#{$color}.btn-linked{
+                background-color: transparent;
+                color: $value;
+            }
+            .btn.btn-#{$color}.btn-linked:hover,
+            .btn.btn-#{$color}.btn-linked.is-hover{
+                background-color: opacity(#000, .045);
+            }
+
+            .btn-#{$color}.btn-cartoon{
+                @include button-variant-cartoon($value, $value);
+            }
+
+            .btn-#{$color}.btn-light{
+                @include button-variant-light($value, $value);
+            }
+        }
+    }
+}

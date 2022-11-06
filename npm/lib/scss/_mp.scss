@@ -1,0 +1,73 @@
+
+@media (min-width: 768px){
+    .mb-md-7 {
+        margin-bottom: 2.5rem!important;
+    }
+}
+.mt-auto {
+    margin-top: auto!important;
+}
+.ml-auto{
+    margin-left: auto !important;
+}
+.mr-auto{
+    margin-right: auto !important;
+}
+.mb-auto{
+    margin-bottom: auto !important;
+}
+.pt-auto {
+    padding-top: auto!important;
+}
+.pl-auto{
+    padding-left: auto !important;
+}
+.pr-auto{
+    padding-right: auto !important;
+}
+.pb-auto{
+    padding-bottom: auto !important;
+}
+.pt-14{
+    padding-top: 12rem !important; 
+}
+.pd-0{
+    padding: 0px !important;
+}
+.mr-0{
+    margin: 0px !important;
+}
+
+@each $spacer_, $val in $spacers {
+    .mg#{$spacer_}{
+        margin: $val !important;
+    }
+    .mt-#{$spacer_}{
+        margin-top: $val !important;
+    }
+    .mb-#{$spacer_}{
+        margin-bottom: $val !important;
+    }
+    .ml-#{$spacer_}{
+        margin-left: $val !important;
+    }
+    .mr-#{$spacer_}{
+        margin-right: $val !important;
+    }
+
+    .pd#{$spacer_}{
+        padding: $val !important;;
+    }
+    .pt-#{$spacer_}{
+        padding-top: $val !important;
+    }
+    .pb-#{$spacer_}{
+        padding-bottom: $val !important;
+    }
+    .pl-#{$spacer_}{
+        padding-left: $val !important;
+    }
+    .pr-#{$spacer_}{
+        padding-right: $val !important;
+    }
+}

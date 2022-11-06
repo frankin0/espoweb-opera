@@ -1,0 +1,63 @@
+// scss-docs-start gradient-bg-mixin
+@mixin gradient-bg($color: null) {
+    background-color: $color;
+
+    @if $enable-gradients {
+        background-image: var(--#{$prefix-}gradient);
+    }
+}
+
+@each $color-attr, $value-attr in $colors {
+    @each $color, $value in $value-attr {
+        .#{$color-attr}-#{$color}, 
+        button.#{$color-attr}-#{$color}{
+            @if $color-attr == "text" or $color-attr == "text-dark" or $color-attr == "text-light"{
+                color: $value !important;
+            }@else if $color-attr == "grays"{
+                color: $value !important;
+            } @else if $color-attr == "background" or $color-attr == "background-dark" or $color-attr == "background-light"{
+                background-color: $value !important;
+            }@else if $color-attr == "background-gr"{
+                background: $value !important;
+            }
+        }
+
+        @if $color-attr == "background" or $color-attr == "background-dark" or $color-attr == "background-light"{
+            .box-checkbox .opera-checkbox.checkbox-#{$color-attr}-#{$color}:checked ~ .opera-checkbox-label:not(.no-custom-check)::before,
+            .box-radio .opera-checkbox.checkbox-#{$color-attr}-#{$color}:checked ~ .opera-checkbox-label:not(.no-custom-check)::before{
+                @include contrasted($value);
+                border-color: $value !important;
+            }
+        }
+        
+        @if $color-attr == "grays"{
+            .background-#{$color-attr}-#{$color}{
+                background-color: $value !important;
+            }
+            .text-#{$color-attr}-#{$color}{
+                color: $value !important;
+            }
+        }
+
+        @if $color-attr == "colors"{
+            .background-#{$color-attr}-#{$color}{
+                background-color: $value !important;
+            }
+            .text-#{$color-attr}-#{$color}{
+                color: $value !important;
+            }
+        }
+
+        .btn.btn-icon-#{$color} .svg-icon svg [fill]:not(.permanent):not(g) {
+            transition: fill .3s ease;
+            fill: $value;
+        }
+    }
+}
+
+.border-white{
+    border-color: $white !important;
+}
+.border-black{
+    border-color: $black !important;
+}

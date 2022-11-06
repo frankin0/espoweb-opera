@@ -1,0 +1,12 @@
+.rounded-circle {
+    border-radius: 50%!important;
+}
+.rounded {
+    border-radius: .375rem!important;
+}
+
+@for $var from 0 to 6 {
+    .rounded-#{$var}{
+        border-radius: .375rem * $var !important;
+    } 
+}

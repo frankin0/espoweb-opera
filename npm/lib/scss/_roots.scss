@@ -1,0 +1,9 @@
+:root{
+    @each $color-attr, $value-attr in $colors {
+        @each $color, $value in $value-attr {
+            --#{$prefix-}#{$color-attr}-#{$color}: #{$value};
+        }
+    }
+    
+    --#{$prefix-}font-sans-serif: #{$font-sans-serif};
+}

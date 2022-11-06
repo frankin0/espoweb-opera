@@ -1,0 +1,10 @@
+.op-0{
+    opacity: 0;
+}
+@for $i from 0 to 11 {
+    @if $i > 0 {
+        .op-#{$i}0{
+            opacity: $i*100/1000;
+        } 
+    }
+}

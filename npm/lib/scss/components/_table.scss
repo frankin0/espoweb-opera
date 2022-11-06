@@ -1,0 +1,68 @@
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #181C32;
+    vertical-align: top;
+    border-color: #eff2f5;
+}
+table {
+    caption-side: bottom;
+    border-collapse: collapse;
+}
+.table > thead {
+    vertical-align: bottom;
+}
+thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+th {
+    text-align: inherit;
+    text-align: -webkit-match-parent;
+}
+.table tr:last-child, .table th:last-child, .table td:last-child {
+    padding-right: 0;
+}
+.table tr:first-child, .table th:first-child, .table td:first-child {
+    padding-left: 0;
+}
+.table tr, .table th, .table td {
+    border-color: inherit;
+    border-width: inherit;
+    border-style: inherit;
+    text-transform: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    color: inherit;
+    height: inherit;
+    min-height: inherit;
+}
+.table > :not(:last-child) > :last-child > * {
+    border-bottom-color: inherit;
+}
+.table tr:first-child, .table th:first-child, .table td:first-child {
+    padding-left: 0;
+}
+.table > :not(:first-child) {
+    border-color: transparent;
+    border-width: 0;
+    border-style: none;
+}
+.table > tbody {
+    vertical-align: inherit;
+}
+
+
+@each $spacer_, $val in $spacers {
+
+    .table tr.ptb-#{$spacer_} th,
+    .table tr.ptb-#{$spacer_} td{
+        padding: $val 0 !important;
+    }
+    
+}

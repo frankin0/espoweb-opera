@@ -1,0 +1,83 @@
+[data-tooltip] {
+    user-select: none;
+}
+
+html:not(.is-mobile):not(.is-tablet):not(.is-touch) .tooltip {
+    animation: tooltip-scale-in 0.15s both ease-out;
+}
+
+@keyframes tooltip-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.tooltip {
+    position: fixed;
+    z-index: 1080;
+    display: block;
+    margin: 0;
+    font-family: var(--op-font-sans-serif);
+    font-style: normal; 
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    white-space: normal;
+    line-break: auto;
+    word-wrap: break-word;
+    background-color: color("grays", "200");
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset;
+    padding: .75rem 1rem;
+    border-radius: 4px;
+    font-size: 14px;
+    pointer-events: none;
+    backface-visibility: hidden;
+
+    &.background-dark{
+        color: color('text', 'white') !important; 
+    }
+
+    /* tooltip  after*/
+    /*&::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }*/
+    
+    &.show {
+        opacity: 1;
+    }
+    &.fade {
+        transition: opacity .15s linear;
+    }
+    &.tooltip-auto[data-popper-placement^=top], &.tooltip-top {
+       // padding: .4rem 0;
+    }
+}
+.tooltip-copy {
+    display: block;
+    font-size: 0.75em;
+    line-height: inherit;
+    letter-spacing: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }

@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import '../../opera.css';
 export declare type componentSize = 'default' | 'fullscreen' | 'modal-xl' | 'modal-lg' | 'modal-sm' | 'modal-fluid';
 export interface ModalProps {
     id?: string;

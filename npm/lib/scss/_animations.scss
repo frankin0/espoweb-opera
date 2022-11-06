@@ -1,0 +1,25 @@
+@-webkit-keyframes spinAround{
+    from{
+        transform:rotate(0)
+    }
+    to{
+        transform:rotate(359deg)
+    }
+}
+
+@keyframes spinAround{
+    from{
+        transform:rotate(0)
+    }
+    to{
+        transform:rotate(359deg)
+    }
+}
+
+.fade{
+    transition: opacity .15s linear;
+
+    &:not(.show) {
+        opacity: 0;
+    }
+}
